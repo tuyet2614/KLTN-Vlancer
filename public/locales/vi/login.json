@@ -1,0 +1,17 @@
+{
+    "placeholder": {
+        "email": "Email hoặc tên đăng nhập",
+        "password": "Mật khẩu"
+    },
+    "remember": "Ghi nhớ tôi",
+    "forgot": "Quên mật khẩu?",
+    "login": "Đăng nhập",
+    "already": "Bạn chưa có tài khoản?",
+    "sign-up": "Đăng ký",
+    "full-name": "Họ và tên",
+    "confirm": "Xác nhận mật khẩu",
+    "register-as": "Tôi muốn đăng ký làm",
+    "recruiter": "Nhà tuyển dụng",
+    "agree": "Khi tạo tài khoản bạn đồng ý với",
+    "terms": "điều khoản của vLance"
+}

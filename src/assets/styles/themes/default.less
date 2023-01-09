@@ -1,0 +1,466 @@
+// -------- Colors -----------
+// >>> Primary
+@primary-color: #2db964;
+
+@neutral1: #fcfcfd;
+@neutral2: #f4f5f6;
+@neutral3: #e6e8ec;
+@neutral4: #b1b5c4;
+@neutral5: #777e91;
+@neutral6: #353945;
+@neutral7: #23262f; @neutral8: #141414; @black: #000;
+@neutra19: #0072f8;
+@neutra20: #ed2649;
+@bgColorTagSuccess: #EAF3FD;
+@colorType: #2db964;
+@white: #fff;
+
+// Status color
+@red: #ed2649;
+@blue: #0072f8;
+
+// Antd variables
+// @layout-body-background: @neutral2;
+@border-radius-base: 8px;
+@table-header-bg: @neutral3;
+@table-header-color: @neutral5;
+@table-header-sort-bg: @neutral3;
+@table-body-sort-bg: @white;
+@checkbox-border-radius: 2px;
+@container-padding: 10px;
+@height-input: 48px;
+// Base Scaffolding Variables
+// ---
+@font-family: -apple-system, Averta, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+  'Noto Color Emoji';
+
+@border-radius-base: 8px;
+@line-height-base: 1.4;
+
+// font-size
+@font-size-base: 16px;
+@font-size-sm: 14px;
+
+// height rules
+@height-base: 48px;
+
+// Buttons
+@btn-font-weight: 600;
+@btn-border-radius-base: @border-radius-base;
+@text-btn-min-w: 130px;
+
+// primary
+@btn-primary-color: @white;
+@btn-primary-bg: @primary-color;
+
+@btn-default-color: @text-color;
+@btn-default-bg: @white;
+
+@btn-default-ghost-color: @neutral8;
+@btn-default-ghost-bg: @neutral3;
+@btn-default-ghost-border: @btn-default-ghost-bg;
+
+@btn-danger-bg: #ED2649;
+@btn-danger-color: @white;
+@btn-danger-border: @btn-danger-bg;
+@btn-danger-hover-bg: #bd1e3a;
+
+@btn-sub-primary-bg: #0072F8;
+@btn-sub-primary-color: @white;
+@btn-sub-primary-border: @btn-sub-primary-bg;
+
+.ant-btn-dangerous {
+  background-color: @btn-danger-bg !important;
+  color: @btn-danger-color !important;
+
+  &:hover {
+    background-color: @btn-danger-hover-bg !important;
+  }
+}
+
+
+// Headers
+@layout-header-height: 100%;
+@layout-header-background: @white;
+@layout-header-color: @black;
+@menu-background: @primary-color;
+@menu-color: @neutral1;
+@menu-height: 60px;
+@menu-item-gap: 10px;
+@selected-menu-background: #608200;
+@selected-menu-color: @neutral1;
+@menu-top-height: 80px;
+
+// Card border
+@card-head-color: @black;
+@card-radius: 16px;
+@card-head-font-size: 20px;
+@card-head-font-weight: 700;
+
+.ant-card-head-title {
+  font-weight: @card-head-font-weight;
+}
+
+// Typography
+@typography-title-font-weight: 700;
+@heading-1-size: 48px;
+@heading-2-size: 40px;
+@heading-3-size: 32px;
+@heading-4-size: 24px;
+@heading-5-size: 20px;
+@text-color-secondary: @neutral5;
+
+// Modal
+@modal-body-padding: 24px;
+@modal-header-title-line-height: 1.4;
+@modal-header-title-font-size: 20px;
+@modal-border-radius: @border-radius-base * 2;
+
+// Pagination
+@pagination-item-size: 36px;
+
+// Modal
+.ant-modal-content {
+  .ant-modal-header {
+    .ant-modal-title {
+      font-style: normal;
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 140%;
+      display: flex;
+      align-items: center;
+      color: var(--neutral8);
+    }
+  }
+
+  .ant-modal-body {
+    .ant-form-item {
+      .ant-form-item-row {
+        display: flex;
+        flex-direction: column;
+
+        .ant-form-item-label {
+          display: flex;
+          justify-content: flex-start;
+          font-style: normal;
+          font-weight: 600;
+          font-size: var(--font-size-base);
+          line-height: 140%;
+          color: var(--neutral8);
+
+          label::after {
+            display: none;
+          }
+
+          .ant-form-item-required {
+            flex-direction: row-reverse;
+            flex-wrap: wrap;
+            gap: 5px;
+          }
+        }
+
+        .ant-form-item-control {
+          .ant-form-item-control-input {
+            .ant-form-item-control-input-content {
+              .date_of_birth {
+                width: 100%;
+                height: 48px;
+              }
+
+              .ant-input {
+                // height: 48px;
+              }
+
+              .ant-select-in-form-item {
+                .ant-select-selector {
+                  display: flex;
+                  align-items: center;
+                  height: 48px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .ant-select {
+      .ant-select-arrow {
+        color: var(--neutral8);
+      }
+    }
+  }
+
+  .ant-modal-footer {
+    padding: 18px 16px;
+
+    .btn-btn {
+      height: 48px;
+      width: 130px;
+      font-style: normal;
+      font-weight: 600;
+      font-size: var(--font-size-base);
+      line-height: 140%;
+      text-align: center;
+      color: #fcfcfd;
+    }
+  }
+
+  .ant-modal-close {
+    .ant-modal-close-x {
+      margin-right: 15px;
+      margin-top: 10px;
+    }
+  }
+}
+
+//
+.ant-modal-title {
+  font-weight: 700;
+}
+
+.ant-modal-footer {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 30px;
+
+  .ant-btn {
+    padding-left: 22px;
+    padding-right: 22px;
+    margin-left: 0 !important;
+    min-width: 130px;
+  }
+
+  .ant-btn-default {
+    border-color: @btn-default-ghost-border;
+    color: @btn-default-ghost-color;
+  }
+}
+
+// Table
+.ant-table {
+  &-selection-column {
+    padding: 16px !important;
+  }
+
+  &-thead>tr>th::before {
+    background-color: transparent !important;
+  }
+
+  &-thead th.ant-table-column-has-sorters:hover {
+    background: @white;
+  }
+}
+
+.pagination-container {
+  border-top: 1px solid @neutral2;
+}
+
+.ant-pagination {
+  &-prev {
+    margin-left: 30px;
+  }
+
+  &-next {
+    margin-right: 22px;
+  }
+
+  &-options-quick-jumper {
+    margin-left: 38px !important;
+    height: 36px !important;
+    line-height: 36px !important;
+
+    input {
+      height: 36px !important;
+    }
+  }
+
+  &-item-link {
+    .ant-pagination-item-container {
+      height: 100%;
+
+      .ant-pagination-item-link-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+      }
+    }
+  }
+
+  .ant-select:not(.ant-select-customize-input) .ant-select-selector {
+    height: 36px;
+  }
+
+  .ant-select-single .ant-select-selector .ant-select-selection-item {
+    line-height: 34px;
+  }
+
+  &-options-size-changer .ant-select-selector .ant-select-selection-item {
+    font-weight: bold;
+  }
+}
+
+.ant-form-item-explain-error {
+  font-size: 13px;
+  bottom: 0 !important;
+}
+
+.ant-table-sticky-holder {
+  top: @menu-height !important;
+}
+
+.ant-input-affix-wrapper>input.ant-input {
+  border-radius: 0;
+}
+
+.ant-tooltip-inner {
+  font-size: 14px;
+}
+
+.ant-form-item-control-input {
+  .ant-form-item-control-input-content {
+    .ant-input-affix-wrapper {
+      height: @height-input;
+      padding: 2.8px 11px !important;
+    }
+  }
+}
+
+.ant-form-item .ant-form-item-label label {
+  font-weight: 600;
+  font-size: var(--font-size-base);
+  line-height: 140%;
+  color: @neutral8;
+}
+
+// Global variables
+// Using variables of antd in another css file.
+:root {
+  --primary-color: @primary-color;
+  --neutral1: @neutral1;
+  --neutral2: @neutral2;
+  --neutral3: @neutral3;
+  --neutral4: @neutral4;
+  --neutral5: @neutral5;
+  --neutral6: @neutral6;
+  --neutral7: @neutral7;
+  --neutral8: @neutral8;
+  --neutra19: @neutra19;
+  --neutra20: @neutra20;
+  --bgColorTagSuccess: @bgColorTagSuccess;
+  --colorType: @colorType;
+  --black: @black;
+  --white: @white;
+  --red: @red;
+  --blue: @blue;
+  --blue-light-1: #67a4ef;
+
+  // Container padding
+  --container-padding: @container-padding;
+
+  // Menu
+  --menu-background: @menu-background;
+  --menu-color: @menu-color;
+  --menu-height: @menu-height;
+  --menu-item-gap: @menu-item-gap;
+  --selected-menu-background: @selected-menu-background;
+  --selected-menu-color: @selected-menu-color;
+  --menu-top-height: @menu-top-height;
+
+  //button
+  --text-btn-min-w: @text-btn-min-w;
+  //input
+  --height-input: @height-input;
+
+  // Text
+  --font-size-base: @font-size-sm;
+  --font-size-sm: @font-size-sm;
+
+  // Radius
+  --border-radius-base: @border-radius-base;
+
+  // Button
+  --btn-sub-primary-bg: @btn-sub-primary-bg;
+  --btn-sub-primary-color: @btn-sub-primary-color;
+  --btn-sub-primary-border: @btn-sub-primary-border;
+  --btn-sub-primary-hover-bg: #065dc4;
+  --btn-danger-hover-bg: @btn-danger-hover-bg;
+
+  // Typography
+  --typography-title-font-weight: @typography-title-font-weight;
+  --heading-1-size: @heading-1-size;
+  --heading-2-size: @heading-2-size;
+  --heading-3-size: @heading-3-size;
+  --heading-4-size: 18px;
+  --heading-5-size: @heading-5-size;
+
+
+  @media screen and (min-width: 1366px) {
+    --font-size-base: @font-size-base;
+    --menu-item-gap: 24px;
+    --heading-1-size: @heading-1-size;
+    --heading-2-size: @heading-2-size;
+    --heading-3-size: @heading-3-size;
+    --heading-4-size: @heading-4-size;
+    --heading-5-size: @heading-5-size;
+    --container-padding: calc(@container-padding + 10px);
+  }
+
+  @media screen and (min-width: 1600px) {
+    --container-padding: calc(@container-padding + 20px);
+  }
+
+  @media screen and (min-width: 1920px) {
+    --container-padding: calc(@container-padding + 40px);
+  }
+
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active,
+input:-internal-autofill-selected {
+  box-shadow: 0 0 0 30px transparent inset !important;
+  transition: all 5000s ease-in-out 0s;
+  transition-property: background-color, color;
+}
+
+.main-list {
+  .ant-table-wrapper {
+    min-width: 720px;
+  }
+}
+
+.badge-active {
+  color: var(--neutra19);
+  background-color: rgb(222, 237, 255);
+}
+
+.badge-disable {
+  color: var(--neutra20);
+  background-color: rgb(222, 237, 255);
+}
+
+.truncate-custom {
+  line-height: 1.29;
+  letter-spacing: normal;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  -webkit-hyphens: auto;
+  display: block;
+  hyphens: auto;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-wrap: break-word;
+}
+
+
+.ant-image-preview-img-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,0 +1,50 @@
+.post-job {
+    max-width: 50%;
+    padding-bottom: 50px;
+    .title {
+        font-size: 50px;
+        font-weight: 700;
+        line-height: 1.4;
+        text-align: center;
+    }
+    .title-item {
+        font-size: 23px;
+        font-weight: 700;
+        line-height: 1.4;
+    }
+    .icon {
+        border: 3px solid #67a4ef;
+        min-width: 80px;
+        max-height:80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 100%;
+    }
+    .number_salary {
+        .ant-form-item-control-input-content {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+    .input-calender {
+        width: 45%;
+    }
+
+    .confirm-post {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 50px;
+        div {
+            width: 85%;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: #f0f0f0;
+        }
+        .ant-btn {
+            background-color: #ffd600;
+            width: 100%;
+        }
+    }
+}

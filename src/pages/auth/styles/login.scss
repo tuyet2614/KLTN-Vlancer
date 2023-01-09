@@ -1,0 +1,55 @@
+.login {   
+    max-width: 400px;
+    margin: 30px auto;
+    max-height: 100%;
+    .login-item {
+        width: 100%;
+        box-sizing: border-box;
+        .ant-btn {
+            justify-content: center;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-content: center;
+            .title {
+                color: white;
+            }
+        }
+        
+        .icon {
+            max-width: 30px;
+        }
+    }
+    
+    .ant-divider {
+        .ant-divider-inner-text {
+            color: #ccc;
+        }
+    }
+    .ant-form-item {
+        .ant-row {
+            .ant-form-item-label {
+                padding: 0;
+                label {
+                    font-size: 18px;
+                    font-weight: 600;
+                    line-height: 1.4;
+                }
+                
+            }
+            .ant-form-item-control {
+                .ant-radio-group {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 70px;
+                }
+            }
+        }
+    }
+    .btn-login {
+        width: 100%;
+    }
+    
+}

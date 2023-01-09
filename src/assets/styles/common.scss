@@ -1,0 +1,49 @@
+.sticky-bar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: calc(var(--menu-height) + 5px) !important;
+}
+
+body {
+  min-width: 1024px;
+}
+
+.divide {
+  width: 100%;
+  height: 1px;
+  background-color: var(--neutral3);
+}
+
+.text-primary {
+  color: #0072f8
+}
+
+.title-custom {
+  color: rgb(0 0 0);
+}
+
+.text-primary-color {
+  color: var(--primary-color);
+}
+
+.badge-primary {
+  color: var(--neutra19);
+  background-color: var(--neutral4);
+}
+
+.badge-danger {
+  color: var(--neutra20);
+  background-color: var(--neutral4);
+}
+
+.text-primary {
+ color: var(--neutra19)!important;
+}
+
+.text-danger {
+  color: var(--neutra20);
+}
+
+.z-max{
+  z-index: 9999 !important;
+}

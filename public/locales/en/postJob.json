@@ -1,0 +1,78 @@
+{
+    "post": "Post a job",
+    "hire-job": "Jobs need to hire freelancers",
+    "select-field":"Select field to recruit",
+    "categories": "Categorsies",
+    "service-fitting": "Choose the service fitting your recruitment requirements",
+    "service": "Service",
+    "specific-title": "Set a specific title for the job",
+    "placeholder": "Eg: Design a website sellling premium product",
+    "detail-information": "Detailed information about job description",
+    "accurate-bid": "Detailed information, and tasks need to be done (A detailed job description will help freelancer to understand more about the job, and make an accurate bid).",
+    "example-holder": "Example: Website interfaces that need to be designed such as homepage, view, checkout...",
+    "attachment": "Add attachments",
+    "skill": "Skills that freelancers must have",
+    "deadline": "Deadline to receive bids",
+    "pattern": "Work pattern",
+    "workplace": "Workplace",
+    "project": "Project",
+    "part-time": "Part-time job",
+    "full-time": "Full-time job",
+    "office": "At the office",
+    "online": "Online",
+    "requirements": "Other requirements for freelancers",
+    "hire-freelancer": "Hire freelancers to work at",
+    "location": "Locations",
+    "expected": "Expected budget for this job",
+    "payment": "Payment method",
+    "pay-project": "Pay by project",
+    "hour-pay": "Hourly pay",
+    "month-pay": "Monthly pay",
+    "maximum": "The maximum amount I can pay for is",
+    "from": "From",
+    "to": "To",
+    "display": "Display options for this job (optional)",
+    "display-private": "I want this to be displayed private - only people I send this link and invitation via vLance is able to view it. (The number of impressions will be low, because only the authorised users can view).",
+    "confirm": "When posting a job, I confirm that I agree to the terms of use of vLance.vn, and do not disclose any personal contact information in the job description.",
+    "program": 
+        {
+            "it": "IT and programming",
+            "web": "Web Programming",
+            "mobile": "Mobile Application",
+            "other": "Other Programming",
+            "software": "Software Programming",
+            "engine": "Search Engine Optimization - SEO",
+            "consulting": "Consulting, Designing Network Systems",
+            "tester": "QA Tester",
+            "management": "Project Management",
+            "embedded": "Embedded Programming",
+            "artificial": "AI - Artificial Intelligence, Machine Learning"
+        },
+    
+    "marketing": 
+        {
+            "sales": "Marketing & Sales",
+            "advert": "Advertising Google Adwords - SEM",
+            "associate": "Sales Associate",
+            "consulting": "Sales Consulting & Product Introduction",
+            "research": "Market Research & Survey",
+            "business": "Other Business and Marketing",
+            "event": "Event Organization",
+            "consult": "Consult, Plan & Implement Online Marketing",
+            "face": "Facebook Ads",
+            "email": "Email Marketing",
+            "forum": "Forum Seeding",
+            "affiliate": "Affiliate Marketing" 
+        },
+        "service-option": {
+            "2d": "2D Cartoon Character Animation",
+            "2d-game": "2D Game Interface Design",
+            "degree": "360-degree Photography",
+            "3d": "3D Architectural Visualisation",
+            "3d-design": "3D Character Design",
+            "3d-jewelry": "3D Jewelry Design",
+            "adv": "Advertising Banner Design"
+        }
+    
+
+}

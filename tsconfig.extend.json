@@ -1,0 +1,43 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@*": [
+        "./src/*"
+      ],
+      "@assets/*": [
+        "./assets/*"
+      ],
+      "@configs/*": [
+        "./configs/*"
+      ],
+      "@bases/*": [
+        "./bases/*"
+      ],
+      "@graphql/*": [
+        "./graphql/*"
+      ],
+      "@hocs/*": [
+        "./hocs/*"
+      ],
+      "@layout/*": [
+        "./layout/*"
+      ],
+      "@modules/*": [
+        "./modules/*"
+      ],
+      "@routes/*": [
+        "./routes/*"
+      ],
+      "@untils/*": [
+        "./untils/*"
+      ],
+      "@libs/*": [
+        "./libs/*"
+      ],
+      "@pages/*": [
+        "./pages/*"
+      ]
+    }
+  }
+}

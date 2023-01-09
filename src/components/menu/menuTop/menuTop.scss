@@ -1,0 +1,50 @@
+.menuTop {
+
+    display: flex;
+    
+    justify-content: space-between;
+    top: 0;
+  
+    .logo {
+      height: fit-content;
+    }
+  
+    .avatar {
+      // height: 50px;
+      border-radius: 100%;
+    }
+    .menu-left {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 50px;
+      align-items: center;
+    }
+    .menu-right {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 50px;
+      justify-content: center;
+      align-items: center;
+      
+    }
+  }
+  
+  .languagePopover {
+    display: flex;
+    flex-direction: column;
+    border-right: none;
+  
+    .ant-image {
+      width: 24px;
+    }
+    .ant-menu-item {
+      display: inline-flex;
+      gap: 5px;
+      align-items: center;
+  
+      &:after {
+        display: none;
+      }
+    }
+  }
+  

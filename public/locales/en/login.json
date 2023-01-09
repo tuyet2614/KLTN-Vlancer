@@ -1,0 +1,17 @@
+{
+    "placeholder": {
+        "email": "Email or Username",
+        "password": "Password"
+    },
+    "remember": "Remember me",
+    "forgot": "Forgot Password?",
+    "login": "Log in",
+    "already": "Don't have an account?",
+    "sign-up": "Sign up",
+    "full-name": "Full name",
+    "confirm": "Confirm password",
+    "register-as": "I want to register as",
+    "recruiter": "Recruiter",
+    "agree": "When creating an account you agree to",
+    "terms": "Terms of vLance"
+}
