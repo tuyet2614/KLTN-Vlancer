@@ -1,0 +1,43 @@
+.freelancer-item {
+    width: 100%;
+    background-color: #f2fbfd;
+    border: 1px solid #7fd5e8;
+    padding: 20px;
+    .name {
+        color: #353535;
+        word-wrap: break-word;
+        font-size: 20px;
+        font-weight: 600;
+        line-height: initial;
+    }
+    .address {
+        background-color: #d9f3f9;
+        margin: 8px 0 10px;
+        border-radius: 2px;
+        padding: 8px;
+    }
+    .skills {
+        padding: 3px 7px 2px;
+        font-size: 11px;
+        border-radius: 3px;
+        color: #adadad;
+        background-color: #f7f7f7;
+        display: inline-block;
+        line-height: 18px;
+        text-transform: uppercase;
+        font-weight: 600;
+        margin-bottom: 3px;
+        margin-right: 1px;
+        cursor: pointer;
+        :focus {
+        color: #fff;
+        background-color: #adabad;
+    }
+    }
+    .contact-btn {
+        color: #353535;
+    background-color: #fc0;
+    background-position: 0 -15px;
+    }
+    
+}

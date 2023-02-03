@@ -7,6 +7,7 @@ import {
   routePostContest,
   RoutesPostContest,
 } from "../pages/Contest/service/route";
+import { routeFindFreelancer, RoutesFindFreelancer } from "../pages/find-freelancer/service/route";
 
 const routers: RouteObject[] = [
   {
@@ -16,6 +17,7 @@ const routers: RouteObject[] = [
       ...routerAuth,
       ...routePostJob,
       ...routePostContest,
+      ...routeFindFreelancer
     ],
   },
 ];
@@ -25,6 +27,7 @@ export const systemRoutes = {
   ...RoutesAuth,
   ...RoutesPostJob,
   ...RoutesPostContest,
+  ...RoutesFindFreelancer,
 };
 
 export const browserRouters = createBrowserRouter(routers);

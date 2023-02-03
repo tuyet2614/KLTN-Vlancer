@@ -60,6 +60,7 @@ export default function DesktopMenu() {
             {
               label: t("find-freelancer"),
               key: "find-freelancer",
+              onClick: () => navigate(systemRoutes.FREELANCERS_ROUTE),
             },
             {
               label: t("find-project"),

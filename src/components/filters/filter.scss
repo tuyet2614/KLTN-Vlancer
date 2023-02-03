@@ -1,0 +1,245 @@
+.filter-container {
+  width: 250px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 15px;
+
+  .ant-collapse {
+    border: none;
+    width: 250px;
+
+    &-header {
+      background-color: var(--white);
+      font-weight: 600;
+      border-radius: 8px !important;
+    }
+
+    &-content {
+      border-top: none;
+
+      .ant-collapse-content-box {
+        padding-top: 0;
+      }
+    }
+
+    &-item {
+      border: none;
+    }
+
+    .ant-form-item {
+      margin-bottom: 0;
+
+      &-label {
+        height: 32px;
+        font-weight: 400;
+      }
+
+      &-control-input-content .ant-input {
+        height: 32px;
+      }
+    }
+
+    .ant-input-affix-wrapper,
+    .ant-picker,
+    .ant-select-selector {
+      height: 40px;
+    }
+  }
+
+  .ant-tree {
+    &-treenode {
+      width: 100%;
+    }
+
+    &-node-content-wrapper {
+      width: calc(100% - 10px);
+    }
+    .ant-tree-list {
+      .ant-tree-list-scrollbar {
+        display: none;
+      }
+      .ant-tree-list-holder {
+        overflow-y: auto !important;
+      }
+    }
+  }
+  .filter-commodity-group {
+    .ant-tree {
+      &-treenode {
+        width: 100%;
+      }
+
+      &-node-content-wrapper {
+        width: calc(100% - 10px);
+        overflow: hidden;
+      }
+
+      &-switcher-icon {
+        transition: 0.2s;
+      }
+
+      &-switcher_open .ant-tree-switcher-icon {
+        transform: rotate(90deg);
+      }
+
+      &-node-content-wrapper.ant-tree-node-selected {
+        background-color: transparent;
+        color: var(--primary-color);
+      }
+    }
+  }
+
+  .ant-form-item-label {
+    padding: 0 !important;
+  }
+
+  .ant-card {
+    border-radius: 8px;
+    .ant-card-body {
+      padding: 10px 16px;
+    }
+    .filter-staff-title {
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+  }
+
+  .ant-input-affix-wrapper {
+    height: 40px;
+    padding: 2.8px 11px;
+  }
+
+  .checkbox-price-book {
+    word-break: break-word;
+    .ant-checkbox + span {
+      width: 100%;
+    }
+  }
+}
+
+.input-number-price-book {
+  .ant-input-number-input {
+    text-align: right;
+  }
+}
+
+.modal-commodity {
+  width: 568px !important;
+
+  .ant-modal-content {
+    border-radius: 16px;
+
+    .ant-modal-header {
+      border-radius: 16px 16px 0 0;
+
+      .ant-modal-title {
+        color: #000000;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 140%;
+      }
+    }
+
+    .ant-modal-body {
+      padding-bottom: 0px;
+      .ant-form {
+        .ant-form-item {
+          .ant-form-item-row {
+            .ant-form-item-label {
+              font-style: normal;
+              font-weight: 600;
+              font-size: var(--font-size-base);
+              line-height: 140%;
+              color: var(--neutral8);
+            }
+
+            .ant-form-item-control {
+              max-width: 100%;
+
+              .ant-form-item-control-input {
+                .ant-form-item-control-input-content {
+                  .ant-input {
+                    height: 48px;
+                  }
+                }
+
+                .ant-select {
+                  .ant-select-selector {
+                    height: 48px;
+                    align-items: center;
+
+                    .ant-select-selection-search {
+                      .ant-select-selection-search-input {
+                        height: 100%;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .ant-modal-footer {
+      .ant-btn-primary {
+        height: 48px;
+        width: 130px;
+
+        span {
+          font-style: normal;
+          font-weight: 600;
+          font-size: var(--font-size-base);
+          line-height: 140%;
+          color: var(--neutral1);
+        }
+      }
+
+      .ant-btn-default {
+        width: 130px;
+        height: 48px;
+        background: var(--neutral3);
+        margin-left: 20px;
+
+        span {
+          font-style: normal;
+          font-weight: 600;
+          font-size: var(--font-size-base);
+          line-height: 140%;
+          color: var(--neutral8);
+        }
+      }
+
+      .ant-btn-dangerous {
+        margin-left: 20px;
+      }
+      .btn-btn {
+        height: 48px;
+        width: 130px;
+        font-style: normal;
+        font-weight: 600;
+        font-size: var(--font-size-base);
+        line-height: 140%;
+        text-align: center;
+        color: var(--neutral1);
+      }
+      .btn-update {
+        background-color: var(--primary-color);
+      }
+      .btn-delete {
+        background-color: var(--red);
+        display: flex;
+        gap: 5px;
+        justify-content: center;
+        align-items: center;
+      }
+      .btn-close {
+        background-color: var(--neutral2);
+        color: var(--neutral8);
+      }
+    }
+  }
+}
