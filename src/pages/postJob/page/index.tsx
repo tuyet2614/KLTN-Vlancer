@@ -4,52 +4,20 @@ import { t } from "i18next";
 import { useTranslation } from "react-i18next";
 import ChooseItem from "../../../components/base/chooseItem";
 import FormInput from "../../../components/base/formInput";
+import {
+  getCategories,
+  getService,
+  getSkills,
+} from "../../../components/filters/api";
 import Icon from "../../../components/Icon";
 import { addNewPost } from "../service/api";
 import "../styles/index.scss";
 
 const PostJob = () => {
   const { t } = useTranslation("postJob");
-  const categoriesOption = [
-    { label: t("categories"), value: "categories" },
-    {
-      label: t("it"),
-      options: [
-        { label: t("program.web"), value: "web" },
-        { label: t("program.mobile"), value: "mobile" },
-        { label: t("program.other"), value: "other" },
-        { label: t("program.software"), value: "software" },
-        { label: t("program.engine"), value: "engine" },
-        { label: t("program.consulting"), value: "program-consulting" },
-        { label: t("program.tester"), value: "tester" },
-        { label: t("program.management"), value: "management" },
-      ],
-    },
-    {
-      label: t("sales"),
-      options: [
-        { label: t("marketing.advert"), value: "advert" },
-        { label: t("marketing.associate"), value: "associate" },
-        { label: t("marketing.consulting"), value: "marketing-consulting" },
-        { label: t("marketing.research"), value: "research" },
-        { label: t("marketing.business"), value: "business" },
-        { label: t("marketing.event"), value: "event" },
-        { label: t("marketing.consult"), value: "consult" },
-        { label: t("marketing.face"), value: "face" },
-      ],
-    },
-  ];
-
-  const serviceOptions = [
-    { label: t("service"), value: "service" },
-    { label: t("service-option.2d"), value: "2d" },
-    { label: t("service-option.2d-game"), value: "2d-game" },
-    { label: t("service-option.degree"), value: "degree" },
-    { label: t("service-option.3d"), value: "3d" },
-    { label: t("service-option.3d-design"), value: "3d-design" },
-    { label: t("service-option.3d-jewelry"), value: "3d-jewelry" },
-    { label: t("service-option.adv"), value: "adv" },
-  ];
+  const dataCategory = getCategories();
+  const dataServices = getService();
+  const dataSkills = getSkills();
 
   const patternOptions = [
     { label: t("project"), value: "project" },
@@ -79,13 +47,13 @@ const PostJob = () => {
     { label: t("month-pay"), value: "month-pay" },
   ];
 
-  const handleAddNewStaff = (value: any) => {
-    addNewPost(value);
+  const handleAddNewPost = (value: any) => {
+    JSON.stringify(addNewPost(value));
   };
 
   return (
     <div className="w-full flex justify-center bg-[#fafafa]">
-      <Form className="post-job" layout="vertical" onFinish={handleAddNewStaff}>
+      <Form className="post-job" layout="vertical" onFinish={handleAddNewPost}>
         <div className="title py-10">{t("post")}</div>
 
         <div className="flex gap-8">
@@ -94,28 +62,26 @@ const PostJob = () => {
           </div>
           <div className="w-full">
             <p className="title-item">{t("hire-job")}</p>
-            <Form.Item name="category">
-              <ChooseItem
-                label={t("select-field")}
-                defaultValue={"categories"}
-                options={categoriesOption}
-              />
-            </Form.Item>
 
-            <Form.Item name="service">
-              <ChooseItem
-                label={t("service-fitting")}
-                defaultValue={"service"}
-                options={serviceOptions}
-              />
-            </Form.Item>
+            <ChooseItem
+              label={t("select-field")}
+              defaultValue={"categories"}
+              options={dataCategory}
+              name="category"
+            />
 
-            <Form.Item name="title">
-              <FormInput
-                label={t("specific-title")}
-                placeholder={t("placeholder")}
-              />
-            </Form.Item>
+            <ChooseItem
+              label={t("service-fitting")}
+              defaultValue={"service"}
+              options={dataServices}
+              name="service"
+            />
+
+            <FormInput
+              label={t("specific-title")}
+              placeholder={t("placeholder")}
+              name="title"
+            />
           </div>
         </div>
 
@@ -129,12 +95,13 @@ const PostJob = () => {
               <TextArea placeholder="example-holder" />
             </Form.Item>
             <div>{t("attachment")}</div>
-            <Form.Item name="skill">
-              <FormInput
-                label={t("skill")}
-                placeholder="VD: Photoshop, English"
-              />
-            </Form.Item>
+
+            <ChooseItem
+              label={t("service-fitting")}
+              defaultValue={"service"}
+              options={dataSkills}
+              name="skill"
+            />
 
             <Form.Item label={t("deadline")} name="deadline">
               <DatePicker />

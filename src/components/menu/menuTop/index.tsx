@@ -7,12 +7,15 @@ import { useLocation, useNavigate } from "react-router-dom";
 import HireFreelancer from "../menuComponent/HireFreelancer";
 import "./menuTop.scss";
 import ChangeLanguageComponent from "../menuComponent/ChangeLanguage";
+import { getAuthToken } from "../../../untils/token";
+import MenuAuth from "../../base/components/MenuAuth";
 
 export default function DesktopMenu() {
   const { t } = useTranslation("menu");
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const [defaultSelectedKeys, setDefaultSelectedKeys] = useState([pathname]);
+  const isLogin = getAuthToken();
 
   useEffect(() => {
     setDefaultSelectedKeys([
@@ -142,28 +145,34 @@ export default function DesktopMenu() {
         <div className="">
           <ChangeLanguageComponent />
         </div>
-        <Button
-          onClick={() => {
-            navigate(systemRoutes.SIGN_UP_ROUTE);
-          }}
-        >
-          Register
-        </Button>
-        <Button
-          onClick={() => {
-            navigate(systemRoutes.LOGIN_ROUTE);
-          }}
-        >
-          Login
-        </Button>
-        <div>
-          <Button
-            type="primary"
-            onClick={() => navigate(systemRoutes.POSTJOB_ROUTE)}
-          >
-            Post a job
-          </Button>
-        </div>
+        {!isLogin ? (
+          <div>
+            <Button
+              onClick={() => {
+                navigate(systemRoutes.SIGN_UP_ROUTE);
+              }}
+            >
+              Register
+            </Button>
+            <Button
+              onClick={() => {
+                navigate(systemRoutes.LOGIN_ROUTE);
+              }}
+            >
+              Login
+            </Button>
+            <div>
+              <Button
+                type="primary"
+                onClick={() => navigate(systemRoutes.POSTJOB_ROUTE)}
+              >
+                Post a job
+              </Button>
+            </div>
+          </div>
+        ) : (
+          <MenuAuth />
+        )}
       </div>
     </div>
   );

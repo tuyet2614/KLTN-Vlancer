@@ -1,6 +1,7 @@
 import { Layout } from "antd";
 import { Fragment } from "react";
 import { Outlet } from "react-router-dom";
+import authHOC from "../../components/base/hoc/authHOC";
 import MenuTop from "../../components/menu/menuTop";
 import Footer from "../component/Footer";
 import "./containerLayout.scss";

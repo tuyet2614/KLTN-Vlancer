@@ -60,11 +60,11 @@ const JobItemComponent: React.FC<jobComponent> = (Props) => {
         <span>Application deadline: {deadline}</span>
       </div>
       <div>{content}</div>
-      <div className="list-type">
+      {/* <div className="list-type">
         {categories.map((item) => (
           <Button>{item}</Button>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 };

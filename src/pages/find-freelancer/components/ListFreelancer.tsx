@@ -12,8 +12,6 @@ const ListFreelancer = () => {
 
   const data = getListFreelancer();
 
-  console.log("list: ", data);
-
   return (
     <div className="p-6">
       <Row className="flex">

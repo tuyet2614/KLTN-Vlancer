@@ -1,12 +1,18 @@
 import { Button, Col, Image, Row } from "antd";
 import "./index.scss";
 import imageDefault from "@assets/images/logo_img.png";
+import { useNavigate } from "react-router-dom";
+import { systemRoutes } from "../../../routes";
 
 interface Props {
   data?: any;
 }
 
 const FreelancerItem = ({ data }: Props) => {
+  const navigate = useNavigate();
+  const handleRouteToDetail = () => {
+    navigate(systemRoutes.DETAIL_FREELANCERS_ROUTE);
+  };
   return (
     <div className="freelancer-item">
       <Row gutter={24} className="flex">
@@ -19,7 +25,9 @@ const FreelancerItem = ({ data }: Props) => {
         </Col>
         <Col span={19}>
           <Row className="flex justify-between items-center">
-            <p className="name m-0">check</p>
+            <p className="name m-0 cursor-pointer" onClick={handleRouteToDetail}>
+              check
+            </p>
             <Button className="contact-btn">Contact directly</Button>
           </Row>
 

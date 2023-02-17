@@ -10,42 +10,54 @@ import {
   Select,
   Space,
 } from "antd";
-import { Fragment, useEffect } from "react";
+import { Fragment, useCallback, useEffect } from "react";
+import authApi from "../../../constant/http-common";
 
 import "../styles/login.scss";
 import { useTranslation } from "react-i18next";
 import LoginRouteComponent from "../components/loginRouteComponent";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { systemRoutes } from "../../../routes";
 import { useLoginApi } from "../service/api";
 import axios from "axios";
+import { LocalStorageKey } from "../../../configs/common";
+import { setAuthData } from "../../../untils/token";
+import Notification from "../../../components/base/components/Notification";
 
 const Login = () => {
   const { t } = useTranslation("login");
   const [form] = Form.useForm();
-  // const  [loginUser]  = useLoginApi();
+  const navigate = useNavigate();
+  // const {loginUser} = useLoginApi;
 
   const onSubmit = (value: any) => {
-    // useEffect(useLoginApi(value.user, value.password), [])
-    // loginUser(value.user, value.password)
-    useLoginApi(value.user, value.password)
-    // axios
-    //   .post("http://localhost:1337/api/auth/local", {
-    //     identifier: value.user,
-    //     password: value.password,
-    //   })
-    //   .then((response) => {
-    //     console.log(response);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
-
-    // localStorage.setItem(
-    //   LocalStorageKey.IS_REMEMBER_ME,
-    //   JSON.stringify(value?.remember)
-    // );
+    authApi
+      .post("/auth/local", value)
+      .then((response) => {
+        setAuthData(response.data.jwt);
+        Notification.Success({ message: t("login.success") });
+        navigate(systemRoutes.ONBOARD_ROUTE);
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
+
+  const checkRememberValue = useCallback(() => {
+    const isRemember = JSON.parse(
+      localStorage.getItem(LocalStorageKey.IS_REMEMBER_ME) ?? "false"
+    );
+    if (isRemember) {
+      form.setFieldValue("remember", true);
+    } else {
+      form.setFieldValue("remember", false);
+    }
+  }, [form]);
+
+  useEffect(() => {
+    checkRememberValue();
+  }, [checkRememberValue]);
 
   return (
     <Fragment>
@@ -53,7 +65,7 @@ const Login = () => {
         <Form labelCol={{ span: 24 }} form={form} onFinish={onSubmit}>
           <LoginRouteComponent />
           <Form.Item
-            name="user"
+            name="identifier"
             label="Email"
             rules={[{ required: true, message: t("not_empty") }]}
           >
@@ -64,12 +76,27 @@ const Login = () => {
             label="Password"
             rules={[{ required: true, message: t("not_empty") }]}
           >
-            <Input placeholder={t("placeholder.password")} />
+            <Input.Password placeholder={t("placeholder.password")} />
           </Form.Item>
-          <div className="flex justify-between">
+          <Space className="more">
+            <Form.Item
+              name="remember"
+              valuePropName="checked"
+              className="!mb-0"
+            >
+              <Checkbox className="remember_me">{t("remember")}</Checkbox>
+            </Form.Item>
+            <Link
+              to={systemRoutes.FORGOT_PASS_ROUTE}
+              className="forgot_password"
+            >
+              {t("forgot")}
+            </Link>
+          </Space>
+          {/* <div className="flex justify-between">
             <Checkbox>{t("remember")}</Checkbox>
             <div>{t("forgot")}</div>
-          </div>
+          </div> */}
 
           <Button
             type="primary"
