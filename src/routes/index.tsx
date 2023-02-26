@@ -12,6 +12,10 @@ import {
   routeFindFreelancer,
   RoutesFindFreelancer,
 } from "../pages/find-freelancer/service/route";
+import {
+  RouteListJobsOnlinePage,
+  routeListJobsOnlinePage,
+} from "../pages/job-online";
 
 const routers: RouteObject[] = [
   {
@@ -21,6 +25,7 @@ const routers: RouteObject[] = [
       ...routerAuth,
       ...routePostJob,
       ...routePostContest,
+      ...routeListJobsOnlinePage,
       ...routeFindFreelancer,
     ],
   },
@@ -32,6 +37,7 @@ export const systemRoutes = {
   ...RoutesPostJob,
   ...RoutesPostContest,
   ...RoutesFindFreelancer,
+  ...RouteListJobsOnlinePage,
 };
 
 export const browserRouters = createBrowserRouter(routers);
