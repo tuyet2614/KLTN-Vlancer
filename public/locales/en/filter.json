@@ -1,10 +1,19 @@
 {
-    "categories": "Categories",
-    "all": "All",
-    "service": "Service",
-    "status": "Status",
-    "verified": "Verified",
-    "city": "City",
-    "nation": "Nationwide",
-    "skill": "Skill"
+  "categories": "Categories",
+  "all": "All",
+  "service": "Service",
+  "status": "Status",
+  "verified": "Verified",
+  "city": "City",
+  "nation": "Nationwide",
+  "skill": "Skill",
+  "accepting": "Receiving applications",
+  "assigned": "Assigned job",
+  "pattern": "Work pattern",
+  "online": "Online",
+  "office": "At the office",
+  "Payment": "Payment method",
+  "project": "Pay by project",
+  "hour": "Pay by the hour",
+  "month": "Pay by month"
 }
