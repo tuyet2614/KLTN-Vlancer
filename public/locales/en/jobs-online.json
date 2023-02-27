@@ -3,5 +3,6 @@
   "partime": "Part-time job",
   "fulltime": "Full-time job",
   "contest": "Contest",
-  "search": "Search"
+  "search": "Search",
+  "placeholderSearch": "Find freelance jobs"
 }

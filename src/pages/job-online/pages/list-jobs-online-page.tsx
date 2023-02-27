@@ -1,12 +1,12 @@
-import { Form } from "antd";
+import { Form, Pagination } from "antd";
 import { useState } from "react";
 import { ButtonTopSearch, InputSearch } from "../components";
-import { FilterLeftWidgets } from "../widgets";
+import { FilterLeftWidgets, ListJobs } from "../widgets";
 
 interface ListJobsOnlinePageProps {}
 
 const ListJobsOnlinePage: React.FC<ListJobsOnlinePageProps> = () => {
-  const [buttonTop, setButtonTop] = useState("all");
+  const [buttonTop, setButtonTop] = useState("all-jobs");
 
   return (
     <Form>
@@ -19,7 +19,10 @@ const ListJobsOnlinePage: React.FC<ListJobsOnlinePageProps> = () => {
             configsButtonTop={["all-jobs", "partime", "fulltime", "contest"]}
           />
           <InputSearch />
-          {/* <ListJobs/> */}
+          <ListJobs />
+          <div className="flex justify-center mb-6">
+            <Pagination defaultCurrent={1} total={50} />
+          </div>
         </div>
       </div>
     </Form>
