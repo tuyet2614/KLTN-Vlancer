@@ -1,10 +1,19 @@
 {
-    "categories": "Lĩnh vực",
-    "all": "Tất cả",
-    "service": "Dịch vụ",
-    "status": "Trạng thái",
-    "verified": "Đã xác thực",
-    "city": "Thành phố",
-    "nation": "Toàn quốc",
-    "skill": "Kỹ năng"
+  "categories": "Lĩnh vực",
+  "all": "Tất cả",
+  "service": "Dịch vụ",
+  "status": "Trạng thái",
+  "verified": "Đã xác thực",
+  "city": "Thành phố",
+  "nation": "Toàn quốc",
+  "skill": "Kỹ năng",
+  "accepting": "Đang nhận hồ sơ",
+  "assigned": "Đã giao việc",
+  "pattern": "Hình thức làm việc",
+  "online": "làm online",
+  "office": "Làm tại văn phòng",
+  "Payment": "Hình thức trả lương",
+  "project": "Trả theo dự án",
+  "hour": "Trả theo giờ",
+  "month": "Trả theo tháng"
 }

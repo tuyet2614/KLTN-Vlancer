@@ -92,6 +92,7 @@ export default function DesktopMenu() {
             {
               label: t("online"),
               key: "online",
+              onClick: () => navigate(systemRoutes.Jobs_Online_ROUTE),
             },
             {
               label: t("design-exam"),
