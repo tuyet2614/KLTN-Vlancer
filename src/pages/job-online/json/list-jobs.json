@@ -1,0 +1,58 @@
+[
+  {
+    "id": "1",
+    "jobname": "THIẾT KẾ BỘ NHẬN DIỆN THƯƠNG HIỆU CHO KHU NGHỈ DƯỠNG CAO CẤP 5*",
+    "name": "Thanh Ha",
+    "address": "Hà Nội",
+    "pricefrom": 5000000,
+    "priceto": 10000000,
+    "describe": "Khách hàng mục tiêu là phân khúc trung cấp, Khách hàng mục tiêu là phân khúc trung cấp,Khách hàng mục tiêu là phân khúc trung cấp,Khách hàng mục tiêu là phân khúc trung cấp,Khách hàng mục tiêu là phân khúc trung cấp,Khách hàng mục tiêu là phân khúc trung cấp,cao cấp và khách hàng quốc tế nên Logo thể hiện màu sắc trang nhã, sang trọng, tinh tế, và quốc tế.",
+    "image": [
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0nNzacqZZSeMM35xodsh-QiOJEr1YbGO2tw&usqp=CAU",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRJGZnaVzLkDcfkhm2KhZnxznMgRaG6mptsw&usqp=CAU",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTa-m7hs87N6mD5I-NyqzsdYNQFaVoR6Mu7dQ&usqp=CAU"
+    ]
+  },
+  {
+    "id": "2",
+    "jobname": "THIẾT KẾ BỘ NHẬN DIỆN THƯƠNG HIỆU CHO KHU NGHỈ DƯỠNG CAO CẤP 5*",
+    "name": "Thanh Ha",
+    "address": "Hà Nội",
+    "pricefrom": 5000000,
+    "priceto": 10000000,
+    "describe": "Khách hàng mục tiêu h hàng mục tiêu là phân khúc trung cấp, Khách hàng mục tiêu là phân khúc trun h hàng mục tiêu là phân khúc trung cấp, Khách hàng mục tiêu là phân khúc trun h hàng mục tiêu là phân khúc trung cấp, Khách hàng mục tiêu là phân khúc trun là phân khúc h hàng mục tiêu là phân khúc trung cấp, Khách hàng mục tiêu là phân khúc trun trung cấp, cao cấp và khách hàng quốc tế nên Logo thể hiện màu sắc trang nhã, sang trọng, tinh tế, và quốc tế.",
+    "image": [
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0nNzacqZZSeMM35xodsh-QiOJEr1YbGO2tw&usqp=CAU",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRJGZnaVzLkDcfkhm2KhZnxznMgRaG6mptsw&usqp=CAU",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTa-m7hs87N6mD5I-NyqzsdYNQFaVoR6Mu7dQ&usqp=CAU"
+    ]
+  },
+  {
+    "id": "3",
+    "jobname": "THIẾT KẾ BỘ NHẬN DIỆN THƯƠNG HIỆU CHO KHU NGHỈ DƯỠNG CAO CẤP 5*",
+    "name": "Thanh Ha",
+    "address": "Hà Nội",
+    "pricefrom": 5000000,
+    "priceto": 10000000,
+    "describe": "Khách hàng mục tiêu là phân h hàng mục tiêu là phân khúc trung cấp, Khách hàng mục tiêu là phân khúc t khúc trung cấp, cao cấp và khách hàng quốc tế nên Logo thể hiện màu sắc trang nhã, sang trọng, tinh tế, và quốc tế.",
+    "image": [
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0nNzacqZZSeMM35xodsh-QiOJEr1YbGO2tw&usqp=CAU",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRJGZnaVzLkDcfkhm2KhZnxznMgRaG6mptsw&usqp=CAU",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTa-m7hs87N6mD5I-NyqzsdYNQFaVoR6Mu7dQ&usqp=CAU"
+    ]
+  },
+  {
+    "id": "4",
+    "jobname": "THIẾT KẾ BỘ NHẬN DIỆN THƯƠNG HIỆU CHO KHU NGHỈ DƯỠNG CAO CẤP 5*",
+    "name": "Thanh Ha",
+    "address": "Hà Nội",
+    "pricefrom": 5000000,
+    "priceto": 10000000,
+    "describe": "Khách hàng mục tiêu là phân khúc trung cấp, cao cấp và khách hàng quốc tế nên Logo thể hiện màu sắc trang nhã, sang trọng, tinh tế, và quốc tế.",
+    "image": [
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0nNzacqZZSeMM35xodsh-QiOJEr1YbGO2tw&usqp=CAU",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRJGZnaVzLkDcfkhm2KhZnxznMgRaG6mptsw&usqp=CAU",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTa-m7hs87N6mD5I-NyqzsdYNQFaVoR6Mu7dQ&usqp=CAU"
+    ]
+  }
+]
