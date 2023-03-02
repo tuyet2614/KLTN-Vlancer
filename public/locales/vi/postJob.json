@@ -6,7 +6,6 @@
     "service-fitting": "Chọn dịch vụ phù hợp với yêu cầu tuyển freelancer của bạn nhất",
     "service": "Tên dịch vụ",
     "specific-title": "Đặt tên cụ thể cho công việc cần tuyển",
-    "placeholder": "VD: Thiết kế trang web bán hàng cao cấp",
     "detail-information": "Thông tin đầy đủ về yêu cầu tuyển dụng",
     "accurate-bid": "Nội dung chi tiết, và các đầu việc cần Freelancer thực hiện (càng chi tiết, freelancer càng có đầy đủ thông tin để gửi báo giá chính xác hơn).",
     "example-holder": "Ví dụ: Các giao diện website cần thiết kế như trang chủ, xem hàng, thanh toán...",
@@ -72,6 +71,16 @@
               "3d-design": "Thiết kế nhân vật 3D",
               "3d-jewelry": "Thiết kế trang sức 3D",
               "adv": "Thiết kế biểu ngữ quảng cáo"
+        },
+        "placeholder": {
+            "enter_category": "Chọn lĩnh vực",
+            "enter_service": "Chọn dịch vụ",
+            "title": "VD: Thiết kế trang web bán hàng cao cấp",
+            "detail": "Ví dụ: Các giao diện website cần thiết kế như trang chủ, xem hàng, thanh toán...",
+            "skill": "Chọn kĩ năng",
+            "deadline": "Hạn cuối nhận chào giá của freelancer",
+            "location": "Nơi làm việc"
+
         }
 
 }

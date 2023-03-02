@@ -5,7 +5,7 @@ export const getCategories = () => {
     useEffect( 
         () => {      
         getApi
-        .get("/categories")
+        .get("/categories?filters[name][$contains]=a")
         .then((response) => {
         setData(response.data.data)
         })
@@ -23,7 +23,7 @@ export const getService = () => {
     useEffect( 
         () => {      
         getApi
-        .get("/services")
+        .get(`/services?filters[name][$contains]=a`, )
         .then((response) => {
         setData(response.data.data)
         })

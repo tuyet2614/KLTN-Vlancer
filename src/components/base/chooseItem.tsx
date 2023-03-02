@@ -16,7 +16,6 @@ const ChooseItem = ({
   name,
 }: Props) => {
   const { t } = useTranslation("");
-  console.log("options: ", options);
 
   return (
     <Form.Item label={label} className="label-content" name={name}>

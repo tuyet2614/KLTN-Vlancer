@@ -6,17 +6,22 @@ import "./styles.scss";
 import { useTranslation } from "react-i18next";
 import { getMyUser } from "../../../pages/auth/service/api";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { systemRoutes } from "../../../routes";
 
 const MenuAuth = () => {
   const { t } = useTranslation("auth");
 
   const userData: any = getMyUser();
-  console.log("me: ", userData);
 
   const items: MenuProps["items"] = [
     {
       key: "1",
-      label: <p>{t("profile")}</p>,
+      label: (
+        <Link to={`${systemRoutes.USERS_ROUTE}/${userData?.id}`}>
+          {<p>{t("profile")}</p>}
+        </Link>
+      ),
     },
     {
       key: "2",
@@ -53,6 +58,7 @@ const MenuAuth = () => {
             preview={false}
             className="cursor-pointer avatar-img"
           />
+
           <div>
             <div className="flex gap-2">
               <h1>{userData?.username}</h1>
@@ -60,7 +66,7 @@ const MenuAuth = () => {
             </div>
 
             <div className="flex gap-2">
-              <span>Thuong</span>
+              <span>{t("gift")}</span>
               <span>credit</span>
             </div>
           </div>

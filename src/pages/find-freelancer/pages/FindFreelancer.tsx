@@ -1,47 +1,34 @@
-import { Col, Row, Tabs } from "antd";
-import { Fragment } from "react";
+import { Col, Form, Pagination, Row, Tabs } from "antd";
+import { Fragment, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { InputSearch } from "../../../components/base/components/InputSearch";
+import { ButtonTopSearch } from "../components/button-top-search";
 import FilterLeft from "../components/FilterLeft";
-import FilterTop from "../components/FilterTop";
 import ListFreelancer from "../components/ListFreelancer";
-
 
 const FindFreelancer = () => {
   const { t } = useTranslation("");
   const onFilter = () => {};
+  const [buttonTop, setButtonTop] = useState("all");
 
   return (
-    <div className="p-4">
-      <Row className="flex gap-5" gutter={24}>
-        <Col span={4}>
-          <FilterLeft onValuesChange={onFilter} />
-        </Col>
-        <Col className="bg-white" span={18}>
-          <Tabs
-            items={[
-              {
-                label: (
-                  <div className="w-[152px] flex justify-center">
-                    {t("in4")}
-                  </div>
-                ),
-                key: "item-1",
-                children: <ListFreelancer />,
-              },
-              {
-                label: (
-                  <div className="w-[233px] flex justify-center">
-                    {t("careProducts")}
-                  </div>
-                ),
-                key: "item-2",
-                children: "Content 2",
-              },
-            ]}
+    <Form>
+      <div className="p-8 overflow-x-scroll flex space-x-8">
+        <FilterLeft onValuesChange={onFilter} />
+        <div className="flex-1 flex flex-col border bg-white rounded-lg shadow-lg">
+          <ButtonTopSearch
+            SetButtonTop={setButtonTop}
+            buttonTop={buttonTop}
+            configsButtonTop={["all", "verified"]}
           />
-        </Col>
-      </Row>
-    </div>
+          <InputSearch placeholderSearch="placeholder-search-freelancer" />
+          <ListFreelancer />
+          <div className="flex justify-center mb-6">
+            <Pagination defaultCurrent={1} total={50} />
+          </div>
+        </div>
+      </div>
+    </Form>
   );
 };
 

@@ -25,7 +25,7 @@ import { setAuthData } from "../../../untils/token";
 import Notification from "../../../components/base/components/Notification";
 
 const Login = () => {
-  const { t } = useTranslation("login");
+  const { t } = useTranslation(["login", "notify"]);
   const [form] = Form.useForm();
   const navigate = useNavigate();
   // const {loginUser} = useLoginApi;
@@ -35,7 +35,7 @@ const Login = () => {
       .post("/auth/local", value)
       .then((response) => {
         setAuthData(response.data.jwt);
-        Notification.Success({ message: t("login.success") });
+        Notification.Success({ message: t("login.success", { ns: "notify" }) });
         navigate(systemRoutes.ONBOARD_ROUTE);
         console.log(response);
       })
