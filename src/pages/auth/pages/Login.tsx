@@ -37,7 +37,6 @@ const Login = () => {
         setAuthData(response.data.jwt);
         Notification.Success({ message: t("login.success", { ns: "notify" }) });
         navigate(systemRoutes.ONBOARD_ROUTE);
-        console.log(response);
       })
       .catch((error) => {
         console.log(error);

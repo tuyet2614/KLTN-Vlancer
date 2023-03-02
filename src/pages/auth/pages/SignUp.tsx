@@ -19,8 +19,6 @@ const SignUp: React.FC = () => {
   };
   const listRole: any = getListRoles();
 
-  console.log("list role: ", listRole);
-
   const handleSubmit = (values: any) => {
     // const newValues = {
     //   ...values,

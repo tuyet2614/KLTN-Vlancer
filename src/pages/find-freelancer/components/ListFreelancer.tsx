@@ -12,8 +12,6 @@ const ListFreelancer = () => {
 
   const data = getListFreelancer();
 
-  console.log("list freelancer: ", data);
-
   return (
     <div className="p-6">
       <div className="w-full">

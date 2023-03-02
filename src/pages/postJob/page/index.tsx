@@ -25,12 +25,6 @@ const PostJob = () => {
   // let newValue = cloneDeep(dataCategory);
   const [newValue, setNewValue] = useState([]);
 
-  // useEffect(() => {
-  //   setNewValue(dataCategory);
-  // }, [dataCategory]);
-
-  console.log("value state: ", newValue);
-
   const patternOptions = [
     { label: t("project"), value: "project" },
     { label: t("part-time"), value: "part-time" },
@@ -64,7 +58,6 @@ const PostJob = () => {
   };
 
   const handleChangeFilter = (text: any) => {
-    console.log("text: ", text);
     dataCategory.filter((item: any) => {
       if (text === "") setNewValue(dataCategory);
       else if (
@@ -75,8 +68,6 @@ const PostJob = () => {
     });
     return newValue;
   };
-
-  console.log("new value: ", newValue);
 
   return (
     <div className="w-full flex justify-center bg-[#fafafa]">

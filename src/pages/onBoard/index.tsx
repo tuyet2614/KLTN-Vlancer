@@ -9,7 +9,6 @@ import { getListPosts } from "../postJob/service/api";
 const OnBoard = () => {
   const { t } = useTranslation("onBoard");
   const postData = getListPosts();
-  console.log("post: ", postData);
 
   return (
     <Fragment>

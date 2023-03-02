@@ -8,7 +8,6 @@ export const getDetailUser = (id?: string) => {
         userApi
         .get(`/users/${id}`)
         .then((response) => {
-            console.log(response.data)
         setData(response.data)
         })
         .catch((error) => {
