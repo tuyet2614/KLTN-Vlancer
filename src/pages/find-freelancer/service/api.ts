@@ -7,8 +7,6 @@ export const getListFreelancer = () => {
         getApi.get('/users?filters[$and][0][role][name][$eq]=Freelancer&&populate=*').then(
             (response) => {
                 setData(response.data)
-                // response.data.map(item => {item.})
-                console.log("user: ", response)
             }
         ).catch((error) => {
         console.log(error);

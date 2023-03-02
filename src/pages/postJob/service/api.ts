@@ -4,7 +4,6 @@ import getApi from "../../../constant/http-common";
 export const addNewPost = (data: any) => {
     authApi.post('/posts', {data})
         .then( (response) =>  {
-            console.log(response);
         })
         .catch((error) => {
             console.log(error.response);

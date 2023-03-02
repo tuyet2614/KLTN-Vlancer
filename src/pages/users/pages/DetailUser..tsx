@@ -7,7 +7,6 @@ import { useParams } from "react-router-dom";
 const DetailUser = () => {
   const { id } = useParams();
   const dataUser: any = getDetailUser(id);
-  console.log("data user: ", dataUser);
 
   return (
     <div className="detail-user">

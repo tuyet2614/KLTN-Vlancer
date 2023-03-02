@@ -18,7 +18,6 @@ export const useLoginApi = (user: any) => {
             setAuthData(response.data.jwt);
             Notification.Success({ message: t('login.success') });
             navigate(systemRoutes.ONBOARD_ROUTE);
-            console.log(response);
             localStorage.getItem("auth-token")
         })
         .catch((error) => {
@@ -35,13 +34,11 @@ export const CreateUserApi = (user: any, handleFc: () => void) => {
     
     .then(function (response) {
         //handle success
-        console.log(response);
         // navigate(systemRoutes.LOGIN_ROUTE)
         handleFc()
     })
     .catch(function (response) {
         //handle error
-        console.log(response);
     });
 }
 
@@ -52,7 +49,6 @@ export const getMyUser = () => {
         userApi
         .get("/users/me")
         .then((response) => {
-            console.log(response.data)
         setData(response.data)
         })
         .catch((error) => {
@@ -71,7 +67,6 @@ export const getListRoles = () => {
         authApi
         .get("/users-permissions/roles")
         .then((response) => {
-            console.log(response.data)
         setData(response.data)
         })
         .catch((error) => {
