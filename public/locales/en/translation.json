@@ -8,6 +8,23 @@
     "language": {
         "vi": "Vietnamese",
     "en": "English"
-    }
+    },
+    "notify": {
+    "success": "Success",
+    "info": "Info",
+    "error": "Error",
+    "invalid_otp": "Invalid OTP",
+    "invalid_url": "Invalid URL"
+  },
+  "input_notify": {
+    "required": "This field is required",
+    "more200": "No more than 200 characters",
+    "wrong_format": "Wrong format",
+    "wrong_float_format": "Maximum decimal part {{number}} digits",
+    "trim_length": "Do not accept values that are purely whitespace",
+    "max_length": "No more than {{count}} characters",
+    "max_value": "The value must be less than {{amount}}",
+    "number-string_only": "Only number formats are allowed"
+  }
     
 }

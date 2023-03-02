@@ -8,6 +8,25 @@
     "language": {
         "vi": "Tiếng Việt",
     "en": "Tiếng Anh"
-    }
+    },
+    "notify": {
+    "success": "Thành công",
+    "info": "Thông tin",
+    "error": "Lỗi",
+    "invalid_otp": "OTP không hợp lệ",
+    "invalid_url": "Đường dẫn không hợp lệ"
+
+  },
+  "input_notify": {
+    "required": "Đây là trường bắt buộc",
+    "more200": "Không được quá 200 kí tự",
+    "wrong_format": "Không đúng định dạng",
+    "wrong_float_format": "Phần thập phân tối đa {{number}} chữ số",
+    "max_length": "Không được quá {{count}} kí tự",
+    "max_value": "Giá trị phải nhỏ hơn {{amount}}",
+    "trim_length": "Không chấp nhận giá trị hoàn toàn là khoảng trắng",
+    "number-string_only": "Chỉ được phép nhập định dạng số"
+  }
+    
     
 }

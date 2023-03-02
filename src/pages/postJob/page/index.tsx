@@ -1,9 +1,12 @@
-import { Button, Checkbox, DatePicker, Form, InputNumber } from "antd";
+import { Button, Checkbox, DatePicker, Form, InputNumber, Select } from "antd";
 import TextArea from "antd/lib/input/TextArea";
 import { t } from "i18next";
+import { cloneDeep, debounce } from "lodash";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import ChooseItem from "../../../components/base/chooseItem";
 import FormInput from "../../../components/base/formInput";
+
 import {
   getCategories,
   getService,
@@ -15,9 +18,18 @@ import "../styles/index.scss";
 
 const PostJob = () => {
   const { t } = useTranslation("postJob");
+  const [serviceChoosen, setServiceChoosen] = useState();
   const dataCategory = getCategories();
   const dataServices = getService();
   const dataSkills = getSkills();
+  // let newValue = cloneDeep(dataCategory);
+  const [newValue, setNewValue] = useState([]);
+
+  // useEffect(() => {
+  //   setNewValue(dataCategory);
+  // }, [dataCategory]);
+
+  console.log("value state: ", newValue);
 
   const patternOptions = [
     { label: t("project"), value: "project" },
@@ -51,6 +63,21 @@ const PostJob = () => {
     JSON.stringify(addNewPost(value));
   };
 
+  const handleChangeFilter = (text: any) => {
+    console.log("text: ", text);
+    dataCategory.filter((item: any) => {
+      if (text === "") setNewValue(dataCategory);
+      else if (
+        item.attributes.name.toLowerCase().includes(text.toLowerCase())
+      ) {
+        setNewValue({ ...newValue, ...item });
+      }
+    });
+    return newValue;
+  };
+
+  console.log("new value: ", newValue);
+
   return (
     <div className="w-full flex justify-center bg-[#fafafa]">
       <Form className="post-job" layout="vertical" onFinish={handleAddNewPost}>
@@ -63,25 +90,61 @@ const PostJob = () => {
           <div className="w-full">
             <p className="title-item">{t("hire-job")}</p>
 
-            <ChooseItem
+            {/* <ChooseItem
               label={t("select-field")}
               defaultValue={"categories"}
               options={dataCategory}
               name="category"
-            />
+            /> */}
+            <Form.Item
+              name="category"
+              label={t("select-field")}
+              rules={[{ required: true, message: t("error.required") }]}
+            >
+              <Select
+                tabIndex={3}
+                placeholder={t("placeholder.enter_category")}
+                showSearch
+                onSearch={(e: any) => {
+                  handleChangeFilter(e);
+                }}
+                filterOption={false}
+                onChange={(item) => setServiceChoosen(item)}
+              >
+                {dataCategory?.map((item: any) => (
+                  <Select.Option value={item?.id} key={item?.id}>
+                    {t(item?.attributes?.name)}
+                  </Select.Option>
+                ))}
+              </Select>
+            </Form.Item>
 
-            <ChooseItem
-              label={t("service-fitting")}
-              defaultValue={"service"}
-              options={dataServices}
-              name="service"
-            />
+            <Form.Item name={"service"} label={t("service-fitting")}>
+              <Select
+                tabIndex={3}
+                placeholder={t("placeholder.enter_service")}
+                showSearch
+                onSearch={(e: any) => {
+                  handleChangeFilter(e);
+                }}
+                filterOption={false}
+                onChange={(item) => setServiceChoosen(item)}
+              >
+                {dataServices?.map((item: any) => (
+                  <Select.Option value={item?.id} key={item?.id}>
+                    {t(item?.attributes?.name)}
+                  </Select.Option>
+                ))}
+              </Select>
+            </Form.Item>
 
-            <FormInput
-              label={t("specific-title")}
-              placeholder={t("placeholder")}
-              name="title"
-            />
+            <Form.Item name={"title"}>
+              <FormInput
+                label={t("specific-title")}
+                placeholder={t("placeholder.title")}
+                name="title"
+              />
+            </Form.Item>
           </div>
         </div>
 
@@ -92,21 +155,51 @@ const PostJob = () => {
           <div className="w-full">
             <p className="title-item">{t("detail-information")}</p>
             <Form.Item label={t("accurate-bid")} name="description">
-              <TextArea placeholder="example-holder" />
+              <TextArea placeholder="placeholder.detail" />
             </Form.Item>
             <div>{t("attachment")}</div>
 
-            <ChooseItem
-              label={t("service-fitting")}
-              defaultValue={"service"}
-              options={dataSkills}
-              name="skill"
-            />
+            <Form.Item name={"skill"} label={t("skill")}>
+              <Select
+                tabIndex={3}
+                placeholder={t("placeholder.skill")}
+                showSearch
+                onSearch={(e: any) => {
+                  handleChangeFilter(e);
+                }}
+                filterOption={false}
+                onChange={(item) => setServiceChoosen(item)}
+              >
+                {dataSkills?.map((item: any) => (
+                  <Select.Option value={item?.id} key={item?.id}>
+                    {t(item?.attributes?.name)}
+                  </Select.Option>
+                ))}
+              </Select>
+            </Form.Item>
 
-            <Form.Item label={t("deadline")} name="deadline">
+            <Form.Item label={t("deadline")} name="placeholder.deadline">
               <DatePicker />
             </Form.Item>
 
+            <Form.Item name={"pattern"} label={t("pattern")}>
+              <Select
+                tabIndex={3}
+                placeholder={t("placeholder.skill")}
+                showSearch
+                onSearch={(e: any) => {
+                  handleChangeFilter(e);
+                }}
+                filterOption={false}
+                onChange={(item) => setServiceChoosen(item)}
+              >
+                {patternOptions?.map((item: any) => (
+                  <Select.Option value={item?.id} key={item?.id}>
+                    {t(item?.attributes?.name)}
+                  </Select.Option>
+                ))}
+              </Select>
+            </Form.Item>
             <Form.Item>
               <ChooseItem
                 label={t("pattern")}
@@ -115,12 +208,22 @@ const PostJob = () => {
               />
             </Form.Item>
 
-            <Form.Item>
-              <ChooseItem
-                label={t("workplace")}
-                defaultValue="office"
-                options={workplaceOptions}
-              />
+            <Form.Item name={"workplace"} label={t("workplace")}>
+              <Select
+                tabIndex={3}
+                showSearch
+                onSearch={(e: any) => {
+                  handleChangeFilter(e);
+                }}
+                filterOption={false}
+                onChange={(item) => setServiceChoosen(item)}
+              >
+                {workplaceOptions?.map((item: any) => (
+                  <Select.Option value={item?.id} key={item?.id}>
+                    {t(item?.attributes?.name)}
+                  </Select.Option>
+                ))}
+              </Select>
             </Form.Item>
           </div>
         </div>
@@ -131,12 +234,23 @@ const PostJob = () => {
           </div>
           <div className="w-full">
             <p className="title-item">{t("requirements")}</p>
-            <Form.Item>
-              <ChooseItem
-                label={t("hire-freelancer")}
-                options={locationOptions}
-                defaultValue="location"
-              />
+            <Form.Item name={"location"} label={t("hire-freelancer")}>
+              <Select
+                tabIndex={3}
+                placeholder={t("placeholder.location")}
+                showSearch
+                onSearch={(e: any) => {
+                  handleChangeFilter(e);
+                }}
+                filterOption={false}
+                onChange={(item) => setServiceChoosen(item)}
+              >
+                {workplaceOptions?.map((item: any) => (
+                  <Select.Option value={item?.id} key={item?.id}>
+                    {t(item?.attributes?.name)}
+                  </Select.Option>
+                ))}
+              </Select>
             </Form.Item>
           </div>
         </div>

@@ -63,3 +63,22 @@ export const getMyUser = () => {
     
     return data
 }
+
+export const getListRoles = () => {
+    const [data, setData] = useState()
+    useEffect( 
+        () => {      
+        authApi
+        .get("/users-permissions/roles")
+        .then((response) => {
+            console.log(response.data)
+        setData(response.data)
+        })
+        .catch((error) => {
+        console.log(error);
+        });
+            }, []
+        )
+    
+    return data
+}

@@ -13,5 +13,39 @@
     "register-as": "Tôi muốn đăng ký làm",
     "recruiter": "Nhà tuyển dụng",
     "agree": "Khi tạo tài khoản bạn đồng ý với",
-    "terms": "điều khoản của vLance"
+    "terms": "điều khoản của vLance",
+    "password_note": "Độ dài 8-32 ký tự, chứa ít nhất 1 ký tự in hoa, 1 ký tự thường, 1 kí tự đặc biệt và số.",
+    "success": {
+    "create_user_success": "Tạo mới người dùng thành công",
+    "update_user_success": "Cập nhật người dùng thành công",
+    "ban_user_success": "Ngừng hoạt động người dùng thành công",
+    "active_user_success": "Kích hoạt người dùng thành công"
+  },
+  "error": {
+    "required": "Trường này là bắt buộc",
+    "invalid_full_name": "Tên người dùng không hợp lệ",
+    "invalid_username": "Tên đăng nhập không hợp lệ",
+    "invalid_password": "Mật khẩu không hợp lệ",
+    "password_confirm_must_be_equal_password": "Mật khẩu xác nhận phải giống mật khẩu",
+    "invalid_email": "Email không hợp lệ",
+    "invalid_phone_number": "Số điện thoại không hợp lệ",
+    "username_is_already_used": "Tên đăng nhập đã được sử dụng",
+    "email_is_already_used": "Email đã được sử dụng",
+    "phone_number_is_already_used": "Số điện thoại đã được sử dụng"
+  },
+  "email": "Email",
+  "password": "Mật khẩu",
+  "password_confirm": "Nhập lại mật khẩu",
+  "birthday": "Ngày sinh",
+  "warehouse": "Kho hàng",
+  "permissions": "Quyền truy cập",
+  "note": "Ghi chú",
+  "enter_full_name": "Nhập họ và tên",
+  "enter_username": "Nhập tên đăng nhập",
+  "enter_password": "Nhập mật khẩu",
+  "enter_password_confirm": "Nhập lại mật khẩu",
+  "enter_positions": "Nhập chức vụ",
+  "enter_birthday": "Nhập ngày sinh",
+  "enter_email": "Nhập email",
+  "enter_phone_number": "Nhập số điện thoại"
 }

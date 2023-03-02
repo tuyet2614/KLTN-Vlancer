@@ -4,5 +4,8 @@
   "fulltime": "Full-time job",
   "contest": "Contest",
   "search": "Search",
-  "placeholderSearch": "Find freelance jobs"
+  "placeholderSearch": "Find freelance jobs",
+  "all": "All",
+  "verified": "Verified",
+  "placeholder-search-freelancer": "Search freelancer"
 }

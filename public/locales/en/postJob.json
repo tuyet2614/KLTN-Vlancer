@@ -6,7 +6,6 @@
     "service-fitting": "Choose the service fitting your recruitment requirements",
     "service": "Service",
     "specific-title": "Set a specific title for the job",
-    "placeholder": "Eg: Design a website sellling premium product",
     "detail-information": "Detailed information about job description",
     "accurate-bid": "Detailed information, and tasks need to be done (A detailed job description will help freelancer to understand more about the job, and make an accurate bid).",
     "example-holder": "Example: Website interfaces that need to be designed such as homepage, view, checkout...",
@@ -72,6 +71,16 @@
             "3d-design": "3D Character Design",
             "3d-jewelry": "3D Jewelry Design",
             "adv": "Advertising Banner Design"
+        },
+        "placeholder": {
+            "enter_category": "Enter category",
+            "enter_service": "Enter service",
+            "title": "Ex: Design a sale web",
+            "detail": "Ex: Website interfaces that need to be designed such as homepage, view, checkout...",
+            "skill": "Enter skill",
+            "deadline": "Enter deadline",
+            "location": "Enter location"
+
         }
     
 

@@ -1,14 +1,14 @@
+import { systemRoutes } from "../../../routes";
 import { Button, Col, Image, Row } from "antd";
 import "./index.scss";
 import imageDefault from "@assets/images/logo_img.png";
-import { useNavigate } from "react-router-dom";
-import { systemRoutes } from "../../../routes";
+import { useNavigate } from "react-router";
 
-interface Props {
-  data?: any;
+interface ListFreelancerProps {
+  data: any;
 }
 
-const FreelancerItem = ({ data }: Props) => {
+export const FreelancerItem: React.FC<ListFreelancerProps> = ({ data }) => {
   const navigate = useNavigate();
   const handleRouteToDetail = () => {
     navigate(systemRoutes.DETAIL_FREELANCERS_ROUTE);
@@ -18,27 +18,36 @@ const FreelancerItem = ({ data }: Props) => {
       <Row gutter={24} className="flex">
         <Col className="!flex items-center" span={5}>
           <Image
-            src={imageDefault}
+            src={data?.avatar ? data?.avatar.url : imageDefault}
             preview={false}
             className="max-w-[180px] max-h-[180px] rounded-lg"
           />
         </Col>
         <Col span={19}>
           <Row className="flex justify-between items-center">
-            <p className="name m-0 cursor-pointer" onClick={handleRouteToDetail}>
-              check
+            <p
+              className="name m-0 cursor-pointer"
+              onClick={handleRouteToDetail}
+            >
+              {data?.username}
             </p>
             <Button className="contact-btn">Contact directly</Button>
           </Row>
 
-          <p>quản lý nhân sự</p>
+          <p>{data?.workTitle}</p>
           <div className="address">
-            <p className="m-0">Nghe An | Other Administrative Tasks</p>
+            <p className="m-0">
+              {data?.addresses && data.addresses[0].city} | Other Administrative
+              Tasks
+            </p>
           </div>
 
-          <div className="flex">
-            <div className="skills">WRITE ARTICLES</div>
-            <div className="skills">PERSONNEL</div>
+          <div className="flex gap-2">
+            {data.skills.map((item: any) => (
+              <div className="skills" key={item.id}>
+                {item.name}
+              </div>
+            ))}
           </div>
         </Col>
         {/* <Col>
@@ -48,5 +57,3 @@ const FreelancerItem = ({ data }: Props) => {
     </div>
   );
 };
-
-export default FreelancerItem;
