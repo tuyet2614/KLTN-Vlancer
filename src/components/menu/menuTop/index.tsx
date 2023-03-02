@@ -92,15 +92,26 @@ export default function DesktopMenu() {
             {
               label: t("online"),
               key: "online",
-              onClick: () => navigate(systemRoutes.Jobs_Online_ROUTE),
+              onClick: () =>
+                navigate(systemRoutes.Jobs_Online_ROUTE, {
+                  state: { page: "all-jobs" },
+                }),
             },
             {
               label: t("design-exam"),
               key: "design-exam",
+              onClick: () =>
+                navigate(systemRoutes.Jobs_Online_ROUTE, {
+                  state: { page: "contest" },
+                }),
             },
             {
               label: t("full-time"),
               key: "full-time",
+              onClick: () =>
+                navigate(systemRoutes.Jobs_Online_ROUTE, {
+                  state: { page: "fulltime" },
+                }),
             },
           ],
         },

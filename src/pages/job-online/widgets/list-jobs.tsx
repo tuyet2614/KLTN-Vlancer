@@ -1,5 +1,5 @@
 import { DollarCircleFilled } from "@ant-design/icons";
-import { Divider } from "antd";
+import { Divider, Image } from "antd";
 import { Link } from "react-router-dom";
 import { formatNumber } from "../../../untils/string";
 import configsListJobs from "../json/list-jobs.json";
@@ -31,6 +31,11 @@ export const ListJobs: React.FC<ListJobsProps> = () => {
             </p>
           </div>
           <span className="line-clamp-2">{item.describe}</span>
+          <div className="flex space-x-2">
+            {item.image.map((img, i) => (
+              <Image src={img} key={i} width={80} height={80} />
+            ))}
+          </div>
         </div>
       ))}
     </div>
