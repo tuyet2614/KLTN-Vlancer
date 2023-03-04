@@ -4,7 +4,7 @@ import axios from 'axios'
 import authApi from '../../../constant/http-common'
 import { useEffect, useState } from "react"
 import { systemRoutes } from "../../../routes"
-import { setAuthData } from "../../../untils/token"
+import { getAuthToken, setAuthData } from "../../../untils/token"
 import Notification from "../../../components/base/components/Notification"
 import userApi from "../../../constant/http-auth-common"
 
@@ -44,10 +44,11 @@ export const CreateUserApi = (user: any, handleFc: () => void) => {
 
 export const getMyUser = () => {
     const [data, setData] = useState()
+    const header = { authorization: `Bearer ${getAuthToken()}` };
     useEffect( 
         () => {      
-        userApi
-        .get("/users/me")
+        axios
+        .get("/users/me", {baseURL: "http://localhost:1337/api", headers:header})
         .then((response) => {
         setData(response.data)
         })

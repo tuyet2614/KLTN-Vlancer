@@ -8,9 +8,11 @@ import { getMyUser } from "../../../pages/auth/service/api";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { systemRoutes } from "../../../routes";
+import { useLogout } from "../../service/api";
 
 const MenuAuth = () => {
   const { t } = useTranslation("auth");
+  const { onLogout } = useLogout();
 
   const userData: any = getMyUser();
 
@@ -33,7 +35,7 @@ const MenuAuth = () => {
     },
     {
       key: "4",
-      label: <p>{t("logout")}</p>,
+      label: <p onClick={onLogout}>{t("logout")}</p>,
     },
   ];
   return (

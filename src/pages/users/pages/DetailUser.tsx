@@ -3,8 +3,10 @@ import avatarDefault from "@assets/images/icon/avatar.jpg";
 import "../styles/index.scss";
 import { getDetailUser } from "../services/api";
 import { useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const DetailUser = () => {
+  const { t } = useTranslation("user");
   const { id } = useParams();
   const dataUser: any = getDetailUser(id);
 
@@ -19,9 +21,13 @@ const DetailUser = () => {
             </div>
             <div>
               <p>{dataUser?.username}</p>
-              <p>service</p>
-              <p>Location</p>
-              <p>Skill</p>
+              <p>{dataUser?.workTitle}</p>
+              <p>{dataUser?.addresses[0].city}</p>
+              <div className="flex">
+                {dataUser?.skills.map((item: any) => (
+                  <div>{item.name}</div>
+                ))}
+              </div>
             </div>
           </div>
         </Col>
