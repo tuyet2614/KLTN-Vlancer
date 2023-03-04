@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import userApi from "../../../constant/http-auth-common"
+import getApi from "../../../constant/http-common"
 
 export const getDetailUser = (id?: string) => {
     const [data, setData] = useState()
     useEffect( 
         () => {      
-        userApi
-        .get(`/users/${id}`)
+        getApi
+        .get(`/users/${id}?populate=*`)
         .then((response) => {
         setData(response.data)
         })

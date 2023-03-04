@@ -1,5 +1,5 @@
 import type { RouteObject } from "react-router-dom";
-import DetailUser from "../users/pages/DetailUser.";
+import DetailUser from "../users/pages/DetailUser";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 

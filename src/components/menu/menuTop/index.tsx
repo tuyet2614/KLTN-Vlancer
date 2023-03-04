@@ -158,7 +158,7 @@ export default function DesktopMenu() {
           <ChangeLanguageComponent />
         </div>
         {!isLogin ? (
-          <div>
+          <div className="flex gap-4">
             <Button
               onClick={() => {
                 navigate(systemRoutes.SIGN_UP_ROUTE);

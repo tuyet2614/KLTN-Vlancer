@@ -1,11 +1,12 @@
 import { lazy } from "react";
 import type { RouteObject } from "react-router-dom";
 const FreelancerPage = lazy(() => import("../pages/FindFreelancer"));
-const DetailFreelancerPage = lazy(() => import("../pages/DetailFreelancer"));
+const DetailUser = lazy(() => import("../../users/pages/DetailUser"));
 
 export const RoutesFindFreelancer = {
   FREELANCERS_ROUTE: "/freelancers",
-  DETAIL_FREELANCERS_ROUTE: '/freelancer',
+  DETAIL_FREELANCERS_ROUTE: (freelancerId: string) =>
+    "/freelancer/" + freelancerId,
 };
 
 export const routeFindFreelancer: RouteObject[] = [
@@ -14,7 +15,7 @@ export const routeFindFreelancer: RouteObject[] = [
     element: <FreelancerPage />,
   },
   {
-    path: "/freelancer",
-    element: <DetailFreelancerPage />,
+    path: "/freelancer/:id",
+    element: <DetailUser />,
   },
 ];

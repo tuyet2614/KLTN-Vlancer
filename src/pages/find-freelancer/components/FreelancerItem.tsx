@@ -11,7 +11,7 @@ interface ListFreelancerProps {
 export const FreelancerItem: React.FC<ListFreelancerProps> = ({ data }) => {
   const navigate = useNavigate();
   const handleRouteToDetail = () => {
-    navigate(systemRoutes.DETAIL_FREELANCERS_ROUTE);
+    navigate(systemRoutes.DETAIL_FREELANCERS_ROUTE(data.id));
   };
   return (
     <div className="freelancer-item">
