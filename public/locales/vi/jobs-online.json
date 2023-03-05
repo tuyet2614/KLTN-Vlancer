@@ -19,6 +19,15 @@
     "priceMax": "Ngân sách",
     "users_info": "Thông tin khách hàng",
     "name": "Tên khách hàng",
-    "invite_at": "Tham gia"
+    "invite_at": "Tham gia",
+    "info_price": "THÔNG TIN CHÀO GIÁ",
+    "want_price": "ĐỀ XUẤT CHI PHÍ",
+    "price_want": "Bạn muốn nhận (mức phí thực nhận cho dự án)",
+    "deadline": "NGÀY DỰ KIẾN HOÀN THÀNH",
+    "PROPOSED": "ĐỀ XUẤT THUYẾT PHỤC KHÁCH HÀNG",
+    "ques": "Bạn có những kinh nghiệm và kỹ năng nào phù hợp với dự án này?",
+    "send": "Gửi chào giá",
+    "messagePrice": "Đề xuất chi phí không được bỏ trống",
+    "messagedescription": "Kinh nghiệm và kỹ năng không được bỏ trống"
   }
 }

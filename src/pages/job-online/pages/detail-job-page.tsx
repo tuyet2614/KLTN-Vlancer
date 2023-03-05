@@ -2,22 +2,26 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
+import Loading from "../../../components/base/components/loading";
 import { formatNumber } from "../../../untils/string";
 import { getBasicTimeFromTimeStamp } from "../../../untils/time";
 import { FormPost } from "../widgets";
 
 function DetailJobPage() {
   const [dataJob, setDataJobs] = useState<any>();
+  const [dataRecmt, setDataRecmt] = useState<any>();
   const { t } = useTranslation("jobs-online");
   const location = useLocation();
   const { id } = location.state;
   const token = localStorage.getItem("auth-token");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     axios
       .get(`/posts/${id}?populate[recommends][populate]=*`)
-      .then((res) => setDataJobs(res.data));
-  }, []);
+      .then((res) => setDataRecmt(res.data));
+    axios.get(`/posts/${id}?populate=*`).then((res) => setDataJobs(res.data));
+  }, [loading]);
 
   const postId: any = dataJob?.data?.id;
 
@@ -76,57 +80,71 @@ function DetailJobPage() {
   ];
 
   return (
-    <div className="py-16  items-center flex flex-col justify-center space-y-8">
-      <div className="flex space-x-14 ">
-        <div className="max-w-2xl">
-          <h1 className="text-4xl font-bold uppercase">
-            {dataJob?.data?.attributes?.title}
-          </h1>
-          <span>{dataJob?.data?.attributes?.description}</span>
-        </div>
-        <div className="bg-gray-50 shadow-lg p-6">
-          <div className="space-y-6">
-            {configsInfosProject.map((i) => (
-              <div className="flex flex-col justify-start space-y-4">
-                <h2 className="font-bold">{i.title}</h2>
-                <div>
-                  {i.detail.map((item) => (
+    <>
+      {loading ? (
+        <Loading />
+      ) : (
+        <div className="py-16  items-center flex flex-col justify-center space-y-8">
+          <div className="flex space-x-14 ">
+            <div className="max-w-2xl">
+              <h1 className="text-4xl font-bold uppercase">
+                {dataJob?.data?.attributes?.title}
+              </h1>
+              <span>{dataJob?.data?.attributes?.description}</span>
+            </div>
+            <div className="bg-gray-50 shadow-lg p-6">
+              <div className="space-y-6">
+                {configsInfosProject.map((i) => (
+                  <div className="flex flex-col justify-start space-y-4">
+                    <h2 className="font-bold">{i.title}</h2>
                     <div>
-                      <p className="inline-block w-44 text-gray-400">
-                        {item.name}
-                      </p>
-                      <span>{item.info}</span>
+                      {i.detail.map((item) => (
+                        <div>
+                          <p className="inline-block w-44 text-gray-400">
+                            {item.name}
+                          </p>
+                          <span>{item.info}</span>
+                        </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-        </div>
-      </div>
-      {token && <FormPost postId={postId} />}
-      <div className="space-y-5">
-        {dataJob?.data?.attributes?.recommends?.data?.map((recmt: any) => (
-          <div key={recmt.id} className="bg-gray-50 shadow-lg p-6">
-            <h2 className="text-blue-500">
-              {
-                recmt?.attributes?.users_permissions_user?.data?.attributes
-                  ?.username
-              }
-            </h2>
-            <div>
-              <p className="w-32 inline-block">Ngày ra nhập</p>
-              <span>
-                {getBasicTimeFromTimeStamp(
-                  recmt?.attributes?.users_permissions_user?.data?.attributes
-                    ?.updatedAt
-                )}
-              </span>
             </div>
           </div>
-        ))}
-      </div>
-    </div>
+          {token && (
+            <FormPost
+              postId={postId}
+              loading={loading}
+              setLoading={setLoading}
+            />
+          )}
+          <div className="space-y-5">
+            {dataRecmt?.data?.attributes?.recommends?.data?.map(
+              (recmt: any) => (
+                <div key={recmt.id} className="bg-gray-50 shadow-lg p-6">
+                  <h2 className="text-blue-500">
+                    {
+                      recmt?.attributes?.users_permissions_user?.data
+                        ?.attributes?.username
+                    }
+                  </h2>
+                  <div>
+                    <p className="w-32 inline-block">{t("detail.invite_at")}</p>
+                    <span>
+                      {getBasicTimeFromTimeStamp(
+                        recmt?.attributes?.users_permissions_user?.data
+                          ?.attributes?.updatedAt
+                      )}
+                    </span>
+                  </div>
+                </div>
+              )
+            )}
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 

@@ -1,36 +1,41 @@
 import { Button, DatePicker, Divider, Form, Input, InputNumber } from "antd";
 import axios from "axios";
 import dayjs from "dayjs";
+import { Dispatch } from "react";
+import { useTranslation } from "react-i18next";
 import { useUserStore } from "../../../store/user";
 
 interface FormPostProps {
   postId: any;
+  loading: boolean;
+  setLoading: Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const FormPost: React.FC<FormPostProps> = ({ postId }) => {
+export const FormPost: React.FC<FormPostProps> = ({ postId, setLoading }) => {
   const nowDay = new Date();
   const customDay = dayjs(nowDay).format("YYYY/MM/DD HH:mm");
-
-  const { user } = useUserStore();
-
-  console.log("ss", user);
+  const { t } = useTranslation("jobs-online");
+  const { user, setUser } = useUserStore();
 
   const onFinish = (e: any) => {
     const dateValue = dayjs(e.date).endOf("D").format("YYYY-MM-DD");
-    axios.post(`/recommends`, {
-      data: {
-        price: e.price,
-        deadline: dateValue,
-        description: e.description,
-        users_permissions_user: user?.id,
-        post: postId,
-        file: [],
-      },
-    });
+    setLoading(true);
+    axios
+      .post(`/recommends`, {
+        data: {
+          price: e.price,
+          deadline: dateValue,
+          description: e.description,
+          users_permissions_user: user?.id,
+          post: postId,
+          file: [],
+        },
+      })
+      .finally(() => setLoading(false));
   };
   return (
     <div className="bg-gray-50 shadow-lg p-6 px-10 ">
-      <h1 className="p-0 m-0">THÔNG TIN CHÀO GIÁ</h1>
+      <h1 className="p-0 m-0">{t("detail.info_price")}</h1>
       <Divider className="bg-gray-300" />
       <Form
         className="flex justify-start"
@@ -43,17 +48,15 @@ export const FormPost: React.FC<FormPostProps> = ({ postId }) => {
             <Form.Item
               name="price"
               required={true}
-              rules={[{ required: true }]}
-              label={"ĐỀ XUẤT CHI PHÍ"}
+              rules={[{ required: true, message: t("detail.messagePrice") }]}
+              label={t("detail.want_price")}
             >
               <div className="flex w-80 space-x-2 border border-gray-300 items-center p-2 rounded-lg">
-                <p className="w-36">
-                  Bạn muốn nhận (mức phí thực nhận cho dự án)
-                </p>
+                <p className="w-36">{t("detail.price_want")}</p>
                 <InputNumber className=" flex-1" />
               </div>
             </Form.Item>
-            <Form.Item name="date" label={"NGÀY DỰ KIẾN HOÀN THÀNH"} required>
+            <Form.Item name="date" label={t("detail.deadline")} required>
               <DatePicker
                 tabIndex={2}
                 className="w-full"
@@ -67,13 +70,13 @@ export const FormPost: React.FC<FormPostProps> = ({ postId }) => {
             <Form.Item
               name="description"
               required={true}
-              rules={[{ required: true }]}
-              label={"ĐỀ XUẤT CHI PHÍ"}
+              rules={[
+                { required: true, message: t("detail.messagedescription") },
+              ]}
+              label={t("detail.PROPOSED")}
             >
               <div className="flex flex-col items-center p-2 h-60">
-                <p>
-                  Bạn có những kinh nghiệm và kỹ năng nào phù hợp với dự án này?
-                </p>
+                <p>{t("detail.ques")}</p>
                 <Input.TextArea className="flex-1" />
               </div>
             </Form.Item>
@@ -82,7 +85,7 @@ export const FormPost: React.FC<FormPostProps> = ({ postId }) => {
       </Form>
       <div className="justify-end flex">
         <Button type="primary" htmlType="submit" form="form" className="w-40">
-          Gửi chào giá
+          {t("detail.send")}
         </Button>
       </div>
     </div>

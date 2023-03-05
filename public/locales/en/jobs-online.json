@@ -10,6 +10,24 @@
   "placeholder-search-freelancer": "Search freelancer",
   "application_deadline": "Application deadline",
   "detail": {
-    "Project_ID": "Project ID"
+    "Project_ID": "Project ID",
+    "Project_info": "Project information",
+    "address": "Location",
+    "created_at": "Posted date",
+    "workType": "Work pattern",
+    "payType": "Payment method",
+    "priceMax": "Budget",
+    "users_info": "Client Information",
+    "name": "Name",
+    "invite_at": "Join",
+    "info_price": "BIDDING INFORMATION",
+    "want_price": "PROPOSED COST",
+    "price_want": "You want to receive (exact payment for the project)",
+    "deadline": "EXPECTED COMPLETION IN",
+    "PROPOSED": "PROPOSED CONSULT CLIENTS",
+    "ques": "What experience and skills do you have that would be a good fit for this project?",
+    "send": "Submit bid",
+    "messagePrice": "Proposed cost is required",
+    "messagedescription": "experience and skills are required"
   }
 }
