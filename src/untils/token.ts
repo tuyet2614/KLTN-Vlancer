@@ -1,14 +1,13 @@
-import { LocalStorageKey } from '../configs/common';
-import env from '../configs/env';
-import dayjs from 'dayjs';
-import moment from 'moment';
-import { isJsonString } from './string';
+import { LocalStorageKey } from "../configs/common";
+import env from "../configs/env";
+import dayjs from "dayjs";
+import moment from "moment";
+import { isJsonString } from "./string";
 
-let TOKEN: any = '';
+let TOKEN: any = "";
 export const TOKEN_KEY = env.tokenKey;
 
 export const setAuthData = (authData: any) => {
-
   localStorage.setItem(TOKEN_KEY, JSON.stringify(authData || {}));
   TOKEN = authData.jwt;
 };
@@ -34,22 +33,33 @@ export const getAuthToken = () => {
 };
 
 export const getRememberMeToken = () => {
-  return JSON.parse(localStorage.getItem(LocalStorageKey.IS_REMEMBER_ME) ?? 'false');
+  return JSON.parse(
+    localStorage.getItem(LocalStorageKey.IS_REMEMBER_ME) ?? "false"
+  );
 };
 
 export const rememberMeChecker = (authData: any | null) => {
   const isRememberMe = getRememberMeToken();
-  return authData?.refreshTokenExpiresAt && isRememberMe && dayjs(authData.refreshTokenExpiresAt).isSame(Date.now(), 'day');
+  return (
+    authData?.refreshTokenExpiresAt &&
+    isRememberMe &&
+    dayjs(authData.refreshTokenExpiresAt).isSame(Date.now(), "day")
+  );
 };
 
 export const tokenChecker = (authData: any | null) => {
-  if (!authData || !authData.accessToken || authData.expiresAt < moment().unix()) return false;
+  if (
+    !authData ||
+    !authData.accessToken ||
+    authData.expiresAt < moment().unix()
+  )
+    return false;
   return true;
 };
 
 export const getAuthLocalDataOnRequest = () => {
-  if (typeof localStorage !== 'undefined' && localStorage !== null) {
-    const authData = parseTokenString(localStorage?.getItem(TOKEN_KEY) || '');
+  if (typeof localStorage !== "undefined" && localStorage !== null) {
+    const authData = parseTokenString(localStorage?.getItem(TOKEN_KEY) || "");
     if (!tokenChecker(authData)) {
       return null;
     }
@@ -59,8 +69,8 @@ export const getAuthLocalDataOnRequest = () => {
 };
 
 export const getAuthLocalData = () => {
-  if (typeof localStorage !== 'undefined' && localStorage !== null) {
-    const authData = parseTokenString(localStorage?.getItem(TOKEN_KEY) || '');
+  if (typeof localStorage !== "undefined" && localStorage !== null) {
+    const authData = parseTokenString(localStorage?.getItem(TOKEN_KEY) || "");
     if (!tokenChecker(authData)) {
       localStorage.removeItem(TOKEN_KEY);
       return null;
@@ -76,5 +86,5 @@ export const getToken = () => {
 
 export const removeToken = () => {
   localStorage.removeItem(TOKEN_KEY);
-  TOKEN = '';
+  TOKEN = "";
 };

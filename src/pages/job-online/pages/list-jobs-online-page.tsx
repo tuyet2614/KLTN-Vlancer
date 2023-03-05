@@ -1,4 +1,5 @@
-import { Form, Pagination } from "antd";
+import { Form, Pagination, PaginationProps } from "antd";
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { ButtonTopSearch, InputSearch } from "../components";
@@ -8,13 +9,37 @@ interface ListJobsOnlinePageProps {}
 
 const ListJobsOnlinePage: React.FC<ListJobsOnlinePageProps> = () => {
   const [buttonTop, setButtonTop] = useState("");
+  const [dataListJobs, setDataListJobs] = useState<any>();
+  const [pagination, setPagination] = useState({
+    page: 1,
+    pageSize: 10,
+  });
 
   const location = useLocation();
   const { page } = location.state;
 
   useEffect(() => {
+    axios
+      .get(
+        `/posts?pagination%5Bpage%5D=${pagination.page}&pagination%5BpageSize%5D=${pagination.pageSize}`
+      )
+      .then((res) => setDataListJobs(res.data));
+  }, [pagination]);
+
+  useEffect(() => {
     setButtonTop(page);
   }, [page]);
+
+  const onShowSizeChange: PaginationProps["onShowSizeChange"] = (
+    current,
+    pageSize
+  ) => {
+    setPagination((pagination) => ({
+      ...pagination,
+      page: current,
+      pageSize: pageSize,
+    }));
+  };
 
   return (
     <Form>
@@ -27,9 +52,15 @@ const ListJobsOnlinePage: React.FC<ListJobsOnlinePageProps> = () => {
             configsButtonTop={["all-jobs", "partime", "fulltime", "contest"]}
           />
           <InputSearch />
-          <ListJobs />
+          <ListJobs dataListJobs={dataListJobs} />
           <div className="flex justify-center mb-6">
-            <Pagination defaultCurrent={1} total={50} />
+            <Pagination
+              showSizeChanger
+              current={dataListJobs?.meta?.pagination?.page}
+              onChange={onShowSizeChange}
+              pageSize={pagination.pageSize}
+              total={dataListJobs?.meta?.pagination?.total || 0}
+            />
           </div>
         </div>
       </div>
