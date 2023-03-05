@@ -21,7 +21,7 @@ const ListJobsOnlinePage: React.FC<ListJobsOnlinePageProps> = () => {
   useEffect(() => {
     axios
       .get(
-        `/posts?pagination%5Bpage%5D=${pagination.page}&pagination%5BpageSize%5D=${pagination.pageSize}`
+        `/posts?populate=*&pagination%5Bpage%5D=${pagination.page}&pagination%5BpageSize%5D=${pagination.pageSize}`
       )
       .then((res) => setDataListJobs(res.data));
   }, [pagination]);
