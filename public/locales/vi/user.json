@@ -1,3 +1,19 @@
 {
-    "information": "Thông tin liên lạc"
+    "information": "Thông tin liên lạc",
+    "introduce": "Giới thiệu",
+    "service": "Dịch vụ",
+    "profile": "Hồ sơ năng lực",
+    "contact": "Liên hệ",
+    "press": "Nhấn ",
+    "direct": "Liên hệ trực tiếp ",
+    "contact-btn": "để làm việc với freelancer ngay lập tức",
+    "summary": "Tóm lược",
+    "work": "Làm việc",
+    "full-time": "Toàn thời gian (40h/tuần)",
+    "profession": "Chuyên gia (trên 5 năm kinh nghiệm)",
+    "newbie": "Mới đi làm (Dưới 2 năm kinh nghiệm)",
+    "experienced": "Đã có kinh nghiệm (2-5 năm kinh nghiệm)",
+    "hired": "Đã được ẩn",
+    "list-service": "Danh sách các dịch vụ được freelancer cung cấp:",
+    "no-comment": "Freelancer chưa có đánh giá vì chưa trúng thầu dự án nào trên vlance.vn"
 }

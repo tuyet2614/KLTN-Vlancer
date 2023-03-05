@@ -1,3 +1,19 @@
 {
-    "information": "Information"
+    "information": "Information",
+    "introduce": "Introduction",
+     "service": "Service",
+     "profile": "Capability Profile",
+     "contact": "Contact",
+     "press": "Press ",
+     "direct": "Contact Direct ",
+     "contact-btn": "to work with freelancers immediately",
+     "summary": "summary",
+     "work": "Work",
+     "full-time": "Full time (40h/week)",
+     "newbie": "New to work (Under 2 years experience)",
+     "experienced": "Experienced (2-5 years of experience)",
+     "profession": "Expert (over 5 years of experience)",
+     "hired": "Hired",
+     "list-service": "List of services provided by the freelancer:",
+     "no-comment": "Freelancer has no reviews yet because he hasn't won any projects on vlance.vn"
 }
