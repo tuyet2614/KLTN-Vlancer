@@ -18,12 +18,12 @@ export const getCategories = () => {
     return data
 }
 
-export const getService = () => {
+export const getService = (text?: any) => {
     const [data, setData] = useState([])
     useEffect( 
         () => {      
         getApi
-        .get(`/services?filters[name][$contains]=a`, )
+        .get(`/services?filters[name][$contains]=${text}`, )
         .then((response) => {
         setData(response.data.data)
         })

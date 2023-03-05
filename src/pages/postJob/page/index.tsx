@@ -18,39 +18,29 @@ import "../styles/index.scss";
 
 const PostJob = () => {
   const { t } = useTranslation("postJob");
-  const [serviceChoosen, setServiceChoosen] = useState();
+  const [searchService, setSearchService] = useState<any>("");
+  const [serviceChoosen, setServiceChoosen] = useState("");
   const dataCategory = getCategories();
-  const dataServices = getService();
+  const dataServices = getService(searchService);
   const dataSkills = getSkills();
   // let newValue = cloneDeep(dataCategory);
   const [newValue, setNewValue] = useState([]);
 
   const patternOptions = [
-    { label: t("project"), value: "project" },
-    { label: t("part-time"), value: "part-time" },
-    { label: t("full-time"), value: "full-time" },
+    { id: 1, label: t("project"), value: "project" },
+    { id: 2, label: t("part-time"), value: "part-time" },
+    { id: 3, label: t("full-time"), value: "full-time" },
   ];
 
   const workplaceOptions = [
-    { label: t("office"), value: "office" },
-    { label: t("online"), value: "online" },
-  ];
-
-  const locationOptions = [
-    { label: t("location"), value: "location" },
-    { label: t("Ha Noi"), value: "HaNoi" },
-    { label: t("TP. Ho Chi Minh"), value: "HoChiMinh" },
-    { label: t("Da Nang"), value: "DaNang" },
-    { label: t("An Giang"), value: "AnGiang" },
-    { label: t("Bac Giang"), value: "BacGiang" },
-    { label: t("Bac Ninh"), value: "BacNinh" },
-    { label: t("Binh Duong"), value: "BinhDuong" },
+    { id: 1, label: t("office"), value: "office" },
+    { id: 2, label: t("online"), value: "online" },
   ];
 
   const expectedOption = [
-    { label: t("pay-project"), value: "pay-project" },
-    { label: t("hour-pay"), value: "hour-pay" },
-    { label: t("month-pay"), value: "month-pay" },
+    { id: 1, label: t("pay-project"), value: "pay-project" },
+    { id: 2, label: t("hour-pay"), value: "hour-pay" },
+    { id: 3, label: t("month-pay"), value: "month-pay" },
   ];
 
   const handleAddNewPost = (value: any) => {
@@ -116,7 +106,7 @@ const PostJob = () => {
                 placeholder={t("placeholder.enter_service")}
                 showSearch
                 onSearch={(e: any) => {
-                  handleChangeFilter(e);
+                  setSearchService(e);
                 }}
                 filterOption={false}
                 onChange={(item) => setServiceChoosen(item)}
@@ -146,7 +136,7 @@ const PostJob = () => {
           <div className="w-full">
             <p className="title-item">{t("detail-information")}</p>
             <Form.Item label={t("accurate-bid")} name="description">
-              <TextArea placeholder="placeholder.detail" />
+              <TextArea placeholder={t("placeholder.detail")} />
             </Form.Item>
             <div>{t("attachment")}</div>
 
@@ -173,10 +163,9 @@ const PostJob = () => {
               <DatePicker />
             </Form.Item>
 
-            <Form.Item name={"pattern"} label={t("pattern")}>
+            <Form.Item name={"pattern"} label={t("pattern")} initialValue={1}>
               <Select
                 tabIndex={3}
-                placeholder={t("placeholder.skill")}
                 showSearch
                 onSearch={(e: any) => {
                   handleChangeFilter(e);
@@ -186,20 +175,16 @@ const PostJob = () => {
               >
                 {patternOptions?.map((item: any) => (
                   <Select.Option value={item?.id} key={item?.id}>
-                    {t(item?.attributes?.name)}
+                    {item?.label}
                   </Select.Option>
                 ))}
               </Select>
             </Form.Item>
-            <Form.Item>
-              <ChooseItem
-                label={t("pattern")}
-                defaultValue="project"
-                options={patternOptions}
-              />
-            </Form.Item>
-
-            <Form.Item name={"workplace"} label={t("workplace")}>
+            <Form.Item
+              name={"workplace"}
+              label={t("workplace")}
+              initialValue={1}
+            >
               <Select
                 tabIndex={3}
                 showSearch
@@ -211,7 +196,7 @@ const PostJob = () => {
               >
                 {workplaceOptions?.map((item: any) => (
                   <Select.Option value={item?.id} key={item?.id}>
-                    {t(item?.attributes?.name)}
+                    {item?.label}
                   </Select.Option>
                 ))}
               </Select>
@@ -252,12 +237,22 @@ const PostJob = () => {
           </div>
           <div className="w-full">
             <p className="title-item">{t("expected")}</p>
-            <Form.Item>
-              <ChooseItem
-                label={t("payment")}
-                defaultValue="pay-project"
-                options={expectedOption}
-              />
+            <Form.Item name={"payment"} label={t("payment")} initialValue={1}>
+              <Select
+                tabIndex={3}
+                showSearch
+                onSearch={(e: any) => {
+                  handleChangeFilter(e);
+                }}
+                filterOption={false}
+                onChange={(item) => setServiceChoosen(item)}
+              >
+                {expectedOption?.map((item: any) => (
+                  <Select.Option value={item?.id} key={item?.id}>
+                    {item?.label}
+                  </Select.Option>
+                ))}
+              </Select>
             </Form.Item>
 
             <Form.Item label={t("maximum")} className="number_salary">

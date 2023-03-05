@@ -1,7 +1,79 @@
 .detail-user {
+    padding-top: 30px;
+    padding-left: 50px;
+    padding-right: 50px;
     .avatar {
-        max-width: 150px;
-        max-height: 150px;
+        max-width: 180px;
+        max-height: 180px;
         border-radius: 100%;
+    }
+    .user-name {
+        margin-top: 20px;
+        margin-bottom: 10px;
+        font-size: 24px;
+        font-weight: 800;
+    }
+    .simple {
+        color: #999;
+        font-size: 18px;
+        p{
+            margin-bottom: 10px;
+        }
+        
+    }
+    .skill-item {
+        color: #0fe19b;
+        font-size: 15px;
+        font-weight: 400;
+        text-decoration: none;
+        border: 1px solid #0fe19b;
+        border-radius: 3px;
+        -moz-border-radius: 3px;
+        -webkit-border-radius: 3px;
+        padding: 1px 9px 3px;
+        line-height: 20px;
+    }
+    .contact {
+        width: 450px;
+        border: 0;
+        padding: 10px 30px 40px 40px;
+        background: #fff;
+        box-shadow: 0 0 6px rgba(0,0,0,.2)!important;
+        border-radius: 5px;
+        .info-item {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            padding-bottom: 10px;
+            p {
+                margin: 0;
+                line-height: 140%;
+                font-size: 18px;
+            }
+        }
+        .ant-btn {
+            width: 100%;
+            background-color: #fc0;
+            font-size: 18px;
+            font-weight: 800;
+        }
+        .direct {
+            font-size: 18px;
+            padding-top: 10px;
+        }
+    }
+    .intro-item {
+        font-size: 16px;
+        margin-bottom: 40px;
+        .title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .list-service {
+            color: #0fe19b;
+            display: flex;
+            align-items: center;
+        }
     }
 }
