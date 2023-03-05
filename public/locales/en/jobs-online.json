@@ -8,5 +8,8 @@
   "all": "All",
   "verified": "Verified",
   "placeholder-search-freelancer": "Search freelancer",
-  "application_deadline": "Application deadline"
+  "application_deadline": "Application deadline",
+  "detail": {
+    "Project_ID": "Project ID"
+  }
 }

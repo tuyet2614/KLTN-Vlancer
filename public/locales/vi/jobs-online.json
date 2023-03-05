@@ -8,5 +8,17 @@
   "all": "Tất cả",
   "verified": "Đã xác thực",
   "placeholder-search-freelancer": "Tìm kiếm freelancer",
-  "application_deadline": "Hạn nộp hồ sơ"
+  "application_deadline": "Hạn nộp hồ sơ",
+  "detail": {
+    "Project_ID": "ID dự án",
+    "Project_info": "Thông tin dự án",
+    "address": "Địa điểm",
+    "created_at": "Ngày đăng",
+    "workType": "Hình thức làm việc",
+    "payType": "Hình thức trả lương",
+    "priceMax": "Ngân sách",
+    "users_info": "Thông tin khách hàng",
+    "name": "Tên khách hàng",
+    "invite_at": "Tham gia"
+  }
 }
