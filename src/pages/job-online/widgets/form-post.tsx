@@ -1,6 +1,7 @@
 import { Button, DatePicker, Divider, Form, Input, InputNumber } from "antd";
 import axios from "axios";
 import dayjs from "dayjs";
+import { useUserStore } from "../../../store/user";
 
 interface FormPostProps {
   postId: any;
@@ -10,6 +11,10 @@ export const FormPost: React.FC<FormPostProps> = ({ postId }) => {
   const nowDay = new Date();
   const customDay = dayjs(nowDay).format("YYYY/MM/DD HH:mm");
 
+  const { user } = useUserStore();
+
+  console.log("ss", user);
+
   const onFinish = (e: any) => {
     const dateValue = dayjs(e.date).endOf("D").format("YYYY-MM-DD");
     axios.post(`/recommends`, {
@@ -17,7 +22,7 @@ export const FormPost: React.FC<FormPostProps> = ({ postId }) => {
         price: e.price,
         deadline: dateValue,
         description: e.description,
-        users_permissions_user: "1",
+        users_permissions_user: user?.id,
         post: postId,
         file: [],
       },
