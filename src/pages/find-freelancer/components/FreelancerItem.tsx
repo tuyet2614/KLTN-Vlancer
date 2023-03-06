@@ -13,12 +13,14 @@ export const FreelancerItem: React.FC<ListFreelancerProps> = ({ data }) => {
   const handleRouteToDetail = () => {
     navigate(systemRoutes.DETAIL_FREELANCERS_ROUTE(data.id));
   };
+  const api_url: string =
+    "http://localhost:1337" + data?.avatar?.formats?.thumbnail.url;
   return (
     <div className="freelancer-item">
       <Row gutter={24} className="flex">
         <Col className="!flex items-center" span={5}>
           <Image
-            src={data?.avatar ? data?.avatar.url : imageDefault}
+            src={data?.avatar ? api_url : imageDefault}
             preview={false}
             className="max-w-[180px] max-h-[180px] rounded-lg"
           />

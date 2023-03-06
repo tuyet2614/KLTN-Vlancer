@@ -13,20 +13,15 @@ const MoneyIcon = (props: any) => (
       height="13"
       rx="2"
       stroke="#67a4ef"
-      stroke-width="2"
+      strokeWidth="2"
     />
     <path
       d="M7 15H7.01"
       stroke="#67a4ef"
-      stroke-width="2"
-      stroke-linecap="round"
+      strokeWidth="2"
+      strokeLinecap="round"
     />
-    <path
-      d="M4 11H21"
-      stroke="#67a4ef"
-      stroke-width="2"
-      stroke-linecap="round"
-    />
+    <path d="M4 11H21" stroke="#67a4ef" strokeWidth="2" strokeLinecap="round" />
   </svg>
 );
 

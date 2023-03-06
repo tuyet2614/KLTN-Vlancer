@@ -1,11 +1,26 @@
-import { Button, Checkbox, DatePicker, Form, InputNumber, Select } from "antd";
+import { UploadOutlined } from "@ant-design/icons";
+import {
+  Button,
+  Checkbox,
+  DatePicker,
+  Form,
+  InputNumber,
+  message,
+  Select,
+  Upload,
+  UploadFile,
+  UploadProps,
+} from "antd";
 import TextArea from "antd/lib/input/TextArea";
+import axios from "axios";
 import { t } from "i18next";
 import { cloneDeep, debounce } from "lodash";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import ChooseItem from "../../../components/base/chooseItem";
 import FormInput from "../../../components/base/formInput";
+import { getCities } from "../../../components/filters/api";
+import authApi from "../../../constant/http-auth-common";
 
 import {
   getCategories,
@@ -15,36 +30,86 @@ import {
 import Icon from "../../../components/Icon";
 import { addNewPost } from "../service/api";
 import "../styles/index.scss";
+import { useNavigate } from "react-router-dom";
+import Notification from "../../../components/base/components/Notification";
+import { systemRoutes } from "../../../routes";
+
+const { Dragger } = Upload;
+export const deriveMediaToFileList = (media: any): UploadFile => {
+  return {
+    uid: media.id,
+    name: media?.fileName || "unknown",
+    status: "done",
+    url: media?.url,
+    thumbUrl: media?.url,
+    preview: media?.url,
+  };
+};
 
 const PostJob = () => {
   const { t } = useTranslation("postJob");
+  const props: UploadProps = {
+    name: "file",
+    multiple: true,
+    listType: "text",
+    accept: ".doc, .docx, .xlsx, .xls",
+  };
   const [searchService, setSearchService] = useState<any>("");
+  const [searchCategory, setSearchCategory] = useState<any>("");
+  const [searchSkill, setSearchSkill] = useState<any>("");
+  const [searchAdd, setSearchAdd] = useState<any>("");
+  const [useUpload, setUseUpload] = useState(false);
   const [serviceChoosen, setServiceChoosen] = useState("");
-  const dataCategory = getCategories();
+  const navigate = useNavigate();
+
+  const dataCategory = getCategories(searchCategory);
   const dataServices = getService(searchService);
-  const dataSkills = getSkills();
+  const dataSkills = getSkills(searchSkill);
+  const listAddress = getCities(searchAdd);
+
   // let newValue = cloneDeep(dataCategory);
   const [newValue, setNewValue] = useState([]);
+  const [filters, setFilter] = useState();
 
   const patternOptions = [
-    { id: 1, label: t("project"), value: "project" },
-    { id: 2, label: t("part-time"), value: "part-time" },
-    { id: 3, label: t("full-time"), value: "full-time" },
-  ];
-
-  const workplaceOptions = [
-    { id: 1, label: t("office"), value: "office" },
-    { id: 2, label: t("online"), value: "online" },
+    { id: "Bán thời gian", label: t("part-time"), value: "part-time" },
+    { id: "Toàn thời gian", label: t("full-time"), value: "full-time" },
   ];
 
   const expectedOption = [
-    { id: 1, label: t("pay-project"), value: "pay-project" },
-    { id: 2, label: t("hour-pay"), value: "hour-pay" },
-    { id: 3, label: t("month-pay"), value: "month-pay" },
+    { id: "Trả theo dự dán", label: t("pay-project"), value: "pay-project" },
+    { id: "Trả theo giờ", label: t("hour-pay"), value: "hour-pay" },
+    { id: "Trả theo tháng", label: t("month-pay"), value: "month-pay" },
   ];
 
   const handleAddNewPost = (value: any) => {
-    JSON.stringify(addNewPost(value));
+    // JSON.stringify(addNewPost(value));
+    const data = {
+      deadline: value.deadline,
+      place: value.location,
+      budgetMin: value.budgetMin,
+      budgetMax: value.budgetMax,
+      workType: value.workType,
+      payType: value.payType,
+    };
+
+    JSON.stringify(
+      authApi
+        .post("/projects", { data })
+        .then((res) => {
+          const filter = {
+            ...value,
+            project: res.data?.data.id,
+          };
+
+          addNewPost(filter);
+          Notification.Success({ message: "success" });
+          navigate(systemRoutes.Jobs_Online_ROUTE);
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+    );
   };
 
   const handleChangeFilter = (text: any) => {
@@ -71,12 +136,6 @@ const PostJob = () => {
           <div className="w-full">
             <p className="title-item">{t("hire-job")}</p>
 
-            {/* <ChooseItem
-              label={t("select-field")}
-              defaultValue={"categories"}
-              options={dataCategory}
-              name="category"
-            /> */}
             <Form.Item
               name="category"
               label={t("select-field")}
@@ -87,7 +146,7 @@ const PostJob = () => {
                 placeholder={t("placeholder.enter_category")}
                 showSearch
                 onSearch={(e: any) => {
-                  handleChangeFilter(e);
+                  setSearchCategory(e.toLowerCase());
                 }}
                 filterOption={false}
                 onChange={(item) => setServiceChoosen(item)}
@@ -100,16 +159,16 @@ const PostJob = () => {
               </Select>
             </Form.Item>
 
-            <Form.Item name={"service"} label={t("service-fitting")}>
+            <Form.Item name={"services"} label={t("service-fitting")}>
               <Select
                 tabIndex={3}
                 placeholder={t("placeholder.enter_service")}
                 showSearch
-                onSearch={(e: any) => {
-                  setSearchService(e);
-                }}
                 filterOption={false}
                 onChange={(item) => setServiceChoosen(item)}
+                onSearch={(e: any) => {
+                  setSearchService(e.toLowerCase());
+                }}
               >
                 {dataServices?.map((item: any) => (
                   <Select.Option value={item?.id} key={item?.id}>
@@ -138,15 +197,35 @@ const PostJob = () => {
             <Form.Item label={t("accurate-bid")} name="description">
               <TextArea placeholder={t("placeholder.detail")} />
             </Form.Item>
-            <div>{t("attachment")}</div>
+            <div className="attach">
+              <div
+                className="attach_title"
+                onClick={() => setUseUpload(!useUpload)}
+              >
+                {t("attachment")}
+              </div>
 
-            <Form.Item name={"skill"} label={t("skill")}>
+              {useUpload && (
+                <div>
+                  <p>{t("type")}</p>
+                  <p>{t("size")}</p>
+                  <div>
+                    <Upload beforeUpload={() => false} {...props}>
+                      <Button icon={<UploadOutlined />}>Click to Upload</Button>
+                    </Upload>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <Form.Item name={"skills"} label={t("skill")}>
               <Select
+                mode="multiple"
                 tabIndex={3}
                 placeholder={t("placeholder.skill")}
                 showSearch
                 onSearch={(e: any) => {
-                  handleChangeFilter(e);
+                  setSearchSkill(e.toLowerCase());
                 }}
                 filterOption={false}
                 onChange={(item) => setServiceChoosen(item)}
@@ -159,31 +238,14 @@ const PostJob = () => {
               </Select>
             </Form.Item>
 
-            <Form.Item label={t("deadline")} name="placeholder.deadline">
+            <Form.Item label={t("deadline")} name="deadline">
               <DatePicker />
             </Form.Item>
 
-            <Form.Item name={"pattern"} label={t("pattern")} initialValue={1}>
-              <Select
-                tabIndex={3}
-                showSearch
-                onSearch={(e: any) => {
-                  handleChangeFilter(e);
-                }}
-                filterOption={false}
-                onChange={(item) => setServiceChoosen(item)}
-              >
-                {patternOptions?.map((item: any) => (
-                  <Select.Option value={item?.id} key={item?.id}>
-                    {item?.label}
-                  </Select.Option>
-                ))}
-              </Select>
-            </Form.Item>
             <Form.Item
-              name={"workplace"}
-              label={t("workplace")}
-              initialValue={1}
+              name={"workType"}
+              label={t("pattern")}
+              initialValue={"Bán thời gian"}
             >
               <Select
                 tabIndex={3}
@@ -194,7 +256,7 @@ const PostJob = () => {
                 filterOption={false}
                 onChange={(item) => setServiceChoosen(item)}
               >
-                {workplaceOptions?.map((item: any) => (
+                {patternOptions?.map((item: any) => (
                   <Select.Option value={item?.id} key={item?.id}>
                     {item?.label}
                   </Select.Option>
@@ -221,9 +283,12 @@ const PostJob = () => {
                 filterOption={false}
                 onChange={(item) => setServiceChoosen(item)}
               >
-                {workplaceOptions?.map((item: any) => (
-                  <Select.Option value={item?.id} key={item?.id}>
-                    {t(item?.attributes?.name)}
+                {listAddress?.map((item: any) => (
+                  <Select.Option
+                    value={item?.attributes?.city}
+                    key={item?.attributes?.city}
+                  >
+                    {t(item.attributes?.city)}
                   </Select.Option>
                 ))}
               </Select>
@@ -237,7 +302,11 @@ const PostJob = () => {
           </div>
           <div className="w-full">
             <p className="title-item">{t("expected")}</p>
-            <Form.Item name={"payment"} label={t("payment")} initialValue={1}>
+            <Form.Item
+              name={"payType"}
+              label={t("payment")}
+              initialValue={"Trả theo dự dán"}
+            >
               <Select
                 tabIndex={3}
                 showSearch
@@ -255,12 +324,22 @@ const PostJob = () => {
               </Select>
             </Form.Item>
 
-            <Form.Item label={t("maximum")} className="number_salary">
+            <Form.Item
+              label={t("minimum")}
+              className="number_salary"
+              name="budgetMin"
+            >
               <InputNumber
                 placeholder={t("from")}
                 className="input-calender"
                 controls={false}
               />
+            </Form.Item>
+            <Form.Item
+              label={t("maximum")}
+              className="number_salary"
+              name="budgetMax"
+            >
               <InputNumber
                 placeholder={t("to")}
                 className="input-calender"

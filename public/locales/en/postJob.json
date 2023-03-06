@@ -30,6 +30,8 @@
     "maximum": "The maximum amount I can pay for is",
     "from": "From",
     "to": "To",
+    "type": "Supported formats: png, jpg, gif, pdf, psd, xls, xlsx, doc, docx, ppt, pptx, ods, odt, zip, rar",
+     "size": "Maximum size: 10MB",
     "display": "Display options for this job (optional)",
     "display-private": "I want this to be displayed private - only people I send this link and invitation via vLance is able to view it. (The number of impressions will be low, because only the authorised users can view).",
     "confirm": "When posting a job, I confirm that I agree to the terms of use of vLance.vn, and do not disclose any personal contact information in the job description.",
@@ -81,7 +83,8 @@
             "deadline": "Enter deadline",
             "location": "Enter location"
 
-        }
+        },
+        "success": "Create post job success"
     
 
 }

@@ -31,6 +31,8 @@
     "from": "Từ",
     "to": "Đến",
     "display": "Tùy chọn hiển thị cho công việc này (không bắt buộc)",
+    "type": "Định dạng được hỗ trợ: png, jpg, gif, pdf, psd, xls, xlsx, doc, docx, ppt, pptx, ods, odt, zip, rar",
+    "size": "Kích thước tối đa: 10MB",
     "display-private": "Tôi muốn việc này được Hiển Thị Bí Mật - chỉ những người nào tôi gửi link việc này cho họ và tôi mời họ làm việc qua vLance.vn, thì mới xem được. (Số lượng hiển thị sẽ rất ít, vì chỉ những người được cho phép mới xem được).",
     "confirm": "Khi đăng việc, tôi xác nhận đồng ý các điều khoản sử dụng của vLance.vn, và không để lộ bất kỳ thông tin liên lạc cá nhân nào trong phần mô tả nội dung công việc.",
     "program": 
@@ -81,6 +83,7 @@
             "deadline": "Hạn cuối nhận chào giá của freelancer",
             "location": "Nơi làm việc"
 
-        }
+        },
+        "success": "Tạo bài đăng công việc thành công"
 
 }
