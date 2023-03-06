@@ -47,4 +47,12 @@
             width: 100%;
         }
     }
+    .attach {
+        padding-bottom: 40px;
+        &_title {
+            color: #08c;
+            cursor: pointer;
+            padding-bottom: 10px;
+        }
+    }
 }

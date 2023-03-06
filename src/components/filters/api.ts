@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
 import getApi from "../../constant/http-common";
-export const getCategories = () => {
+export const getCategories = (text?: any) => {
     const [data, setData] = useState([])
     useEffect( 
         () => {      
         getApi
-        .get("/categories?filters[name][$contains]=a")
+        .get(`/categories?filters[name][$contains]=${text}`)
         .then((response) => {
         setData(response.data.data)
         })
         .catch((error) => {
         console.log(error);
         });
-            }, []
+            }, [text]
         )
     
     return data
@@ -30,43 +30,43 @@ export const getService = (text?: any) => {
         .catch((error) => {
         console.log(error);
         });
-            }, []
+            }, [text]
         )
     
     return data
 }
 
-export const getCities = () => {
+export const getCities = (text?: any) => {
     const [data, setData] = useState([])
     useEffect( 
         () => {      
         getApi
-        .get("/services")
+        .get(`/addresses?filters[city][$contains]=${text}`)
         .then((response) => {
         setData(response.data.data)
         })
         .catch((error) => {
         console.log(error);
         });
-            }, []
+            }, [text]
         )
     
     return data
 }
 
-export const getSkills = () => {
+export const getSkills = (text?: any) => {
     const [data, setData] = useState([])
     useEffect( 
         () => {      
         getApi
-        .get("/skills")
+        .get(`/skills?filters[name][$contains]=${text}`)
         .then((response) => {
         setData(response.data.data)
         })
         .catch((error) => {
         console.log(error);
         });
-            }, []
+            }, [text]
         )
     
     return data
