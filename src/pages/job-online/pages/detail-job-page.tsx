@@ -86,7 +86,7 @@ function DetailJobPage() {
       ) : (
         <div className="py-16  items-center flex flex-col justify-center space-y-8">
           <div className="flex space-x-14 ">
-            <div className="max-w-2xl">
+            <div className="w-2xl">
               <h1 className="text-4xl font-bold uppercase">
                 {dataJob?.data?.attributes?.title}
               </h1>
