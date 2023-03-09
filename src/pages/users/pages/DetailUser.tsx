@@ -43,7 +43,7 @@ const DetailUser = () => {
             <p className="title">{t("service")}</p>
             <ul className="">
               {t("list-service")}
-              {dataUser?.services.map((item: any) => (
+              {dataUser?.service?.map((item: any) => (
                 <li key={item.id} className="list-service pt-2">
                   <CheckOutlined />
                   <span>{item.name}</span>

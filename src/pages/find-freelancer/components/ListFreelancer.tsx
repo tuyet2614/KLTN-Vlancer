@@ -4,18 +4,20 @@ import { RiSearchLine } from "react-icons/ri";
 import { getListFreelancer } from "../service/api";
 import { FreelancerItem } from "./FreelancerItem";
 
-const ListFreelancer = () => {
+interface Props {
+  data: any;
+}
+
+const ListFreelancer = ({ data }: Props) => {
   const { t } = useTranslation("freelancer");
   const getName = (e: any) => {
     console.log(e);
   };
 
-  const data = getListFreelancer();
-
   return (
     <div className="p-6">
       <div className="w-full">
-        {data.map((item) => (
+        {data.map((item: any) => (
           <FreelancerItem data={item} />
         ))}
       </div>

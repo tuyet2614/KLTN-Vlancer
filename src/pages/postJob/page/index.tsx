@@ -71,6 +71,10 @@ const PostJob = () => {
   const [newValue, setNewValue] = useState([]);
   const [filters, setFilter] = useState();
 
+  const routeListJob = () => {
+    navigate(systemRoutes.Jobs_Online_ROUTE);
+  };
+
   const patternOptions = [
     { id: "Bán thời gian", label: t("part-time"), value: "part-time" },
     { id: "Toàn thời gian", label: t("full-time"), value: "full-time" },
@@ -102,9 +106,8 @@ const PostJob = () => {
             project: res.data?.data.id,
           };
 
-          addNewPost(filter);
-          Notification.Success({ message: "success" });
-          navigate(systemRoutes.Jobs_Online_ROUTE);
+          addNewPost(filter, routeListJob);
+          Notification.Success({ message: t("success") });
         })
         .catch((error) => {
           console.log(error);

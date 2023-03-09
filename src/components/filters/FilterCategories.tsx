@@ -10,10 +10,12 @@ import "./filter.scss";
 
 interface FilterCategoriesProps {
   onFilterCategoriesGroup: (values: any) => void;
+  name?: string;
 }
 
 const FilterCategories: React.FC<FilterCategoriesProps> = ({
   onFilterCategoriesGroup,
+  name,
 }) => {
   const { t } = useTranslation("filter");
   const [expandedKeys, setExpandedKeys] = useState<React.Key[]>([]);
@@ -22,8 +24,9 @@ const FilterCategories: React.FC<FilterCategoriesProps> = ({
   const [treeData, setTreeData] = useState<any>([]);
   const [defaultData, setDefaultData] = useState<any>([]);
   const [treeDataSelect, setTreeDataSelect] = useState<any>([]);
+  const [searchCate, setSearchCate] = useState("");
 
-  const data = getCategories();
+  const data = getCategories(searchCate);
 
   const loop = (dataNode: DataNode[]): DataNode[] =>
     dataNode.map((item: any) => {
@@ -106,7 +109,7 @@ const FilterCategories: React.FC<FilterCategoriesProps> = ({
     <>
       <Collapse defaultActiveKey="1" expandIconPosition="end">
         <Collapse.Panel header={t("categories")} key="1">
-          <Form.Item name="categoryId_in" className="filter-commodity-group">
+          <Form.Item name={name} className="filter-commodity-group">
             <Tree
               onExpand={onExpand}
               expandedKeys={expandedKeys}
