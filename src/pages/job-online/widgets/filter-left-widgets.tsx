@@ -1,3 +1,5 @@
+import { RadioChangeEvent } from "antd";
+import { CheckboxValueType } from "antd/lib/checkbox/Group";
 import { useTranslation } from "react-i18next";
 import FilterCheckBoxBase from "../../../components/filters/filter-checkbox-base";
 import FilterCategories from "../../../components/filters/FilterCategories";
@@ -12,7 +14,28 @@ interface FilterLeftWidgetsProps {
 export const FilterLeftWidgets: React.FC<FilterLeftWidgetsProps> = ({
   buttonTop,
 }) => {
-  const onFilterCategoriesGroup = (value: any) => {};
+  const onFilterCategoriesGroup = (value: any) => {
+    console.log("1", value);
+  };
+  const onChangeValue1 = (checkedValues: CheckboxValueType[]) => {
+    console.log("2", checkedValues);
+  };
+  const onChangeValue2 = (checkedValues: CheckboxValueType[]) => {
+    console.log("6", checkedValues);
+  };
+  const onChangeValue3 = (checkedValues: CheckboxValueType[]) => {
+    console.log("7", checkedValues);
+  };
+
+  const onChangeCheckbox1 = (value: RadioChangeEvent) => {
+    console.log("3", value);
+  };
+  const onChangeCheckbox2 = (value: RadioChangeEvent) => {
+    console.log("4", value);
+  };
+  const onChangeCheckbox3 = (value: RadioChangeEvent) => {
+    console.log("5", value);
+  };
   const { t } = useTranslation("filter");
 
   return (
@@ -21,12 +44,14 @@ export const FilterLeftWidgets: React.FC<FilterLeftWidgetsProps> = ({
       {buttonTop !== "contest" && (
         <>
           <FilterService
+            onChangeValue={onChangeValue1}
             autoOpen={true}
             header={t("service")}
             name="createById_in"
             placeholder={t("creator", { ns: "import_manager" })}
           />
           <FilterCheckBoxBase
+            onChangeCheckbox={onChangeCheckbox1}
             header="status"
             name="status"
             configsCheckboxs={[
@@ -36,6 +61,7 @@ export const FilterLeftWidgets: React.FC<FilterLeftWidgetsProps> = ({
             ]}
           />
           <FilterCheckBoxBase
+            onChangeCheckbox={onChangeCheckbox2}
             header="pattern"
             name="pattern"
             configsCheckboxs={[
@@ -45,6 +71,7 @@ export const FilterLeftWidgets: React.FC<FilterLeftWidgetsProps> = ({
             ]}
           />
           <FilterCheckBoxBase
+            onChangeCheckbox={onChangeCheckbox3}
             header="Payment"
             name="Payment"
             configsCheckboxs={[
@@ -55,12 +82,18 @@ export const FilterLeftWidgets: React.FC<FilterLeftWidgetsProps> = ({
             ]}
           />
           <FilterCity
+            onChangeValue={onChangeValue2}
             autoOpen={true}
             header={t("city")}
             name="filterCity"
             placeholder={t("creator", { ns: "import_manager" })}
           />
-          <FilterSkill autoOpen={true} header={t("skill")} name="filterCity" />
+          <FilterSkill
+            autoOpen={true}
+            header={t("skill")}
+            name="filterCity"
+            onChangeValue={onChangeValue3}
+          />
         </>
       )}
     </div>

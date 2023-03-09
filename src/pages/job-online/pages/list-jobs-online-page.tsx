@@ -16,7 +16,7 @@ const ListJobsOnlinePage: React.FC<ListJobsOnlinePageProps> = () => {
   });
 
   const location = useLocation();
-  // const { page } = location?.state;
+  const { page } = location?.state;
 
   useEffect(() => {
     axios
@@ -26,9 +26,9 @@ const ListJobsOnlinePage: React.FC<ListJobsOnlinePageProps> = () => {
       .then((res) => setDataListJobs(res.data));
   }, [pagination]);
 
-  // useEffect(() => {
-  //   setButtonTop(page);
-  // }, [page]);
+  useEffect(() => {
+    setButtonTop(page);
+  }, [page]);
 
   const onShowSizeChange: PaginationProps["onShowSizeChange"] = (
     current,

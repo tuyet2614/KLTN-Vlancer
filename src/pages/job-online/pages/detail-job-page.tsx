@@ -84,9 +84,9 @@ function DetailJobPage() {
       {loading ? (
         <Loading />
       ) : (
-        <div className="py-16  items-center flex flex-col justify-center space-y-8">
-          <div className="flex space-x-14 ">
-            <div className="w-2xl">
+        <div className="py-16 items-center flex flex-col justify-center space-y-8">
+          <div className="flex flex-wrap space-x-14 ">
+            <div className="w-[510px] flex flex-col">
               <h1 className="text-4xl font-bold uppercase">
                 {dataJob?.data?.attributes?.title}
               </h1>
