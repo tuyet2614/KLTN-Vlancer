@@ -39,8 +39,7 @@ export const FreelancerItem: React.FC<ListFreelancerProps> = ({ data }) => {
           <p>{data?.workTitle}</p>
           <div className="address">
             <p className="m-0">
-              {data?.addresses && data.addresses[0]?.city} | Other
-              Administrative Tasks
+              {data?.addresses && data.addresses[0]?.city} | {}
             </p>
           </div>
 

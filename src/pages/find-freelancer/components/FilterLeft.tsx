@@ -17,23 +17,26 @@ const FilterLeft = ({ onValuesChange }: FilterLeftProps) => {
   };
   return (
     <div className="filter-container">
-      <FilterCategories onFilterCategoriesGroup={onFilterCategoriesGroup} />
+      <FilterCategories
+        onFilterCategoriesGroup={onFilterCategoriesGroup}
+        name="category"
+      />
       <FilterService
         autoOpen={true}
         header={t("service")}
-        name="createById_in"
+        name="service"
         placeholder={t("creator", { ns: "import_manager" })}
         // onChangeValue={handleChangeFilterCreateBy}
       />
-      <FilterStatus header={t("status")} />
+      <FilterStatus header={t("status")} name="status" />
       <FilterCity
         autoOpen={true}
         header={t("city")}
-        name="filterCity"
+        name="city"
         placeholder={t("creator", { ns: "import_manager" })}
       />
 
-      <FilterSkill autoOpen={true} header={t("skill")} name="filterCity" />
+      <FilterSkill autoOpen={true} header={t("skill")} name="skill" />
     </div>
   );
 };

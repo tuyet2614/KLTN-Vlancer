@@ -1,4 +1,12 @@
-import { Checkbox, Collapse, CollapseProps, Input, Space, Tooltip } from "antd";
+import {
+  Checkbox,
+  Collapse,
+  CollapseProps,
+  Form,
+  Input,
+  Space,
+  Tooltip,
+} from "antd";
 import { CheckboxValueType } from "antd/lib/checkbox/Group";
 import { memo, useState } from "react";
 import { toNonAccentVietnamese } from "../../untils/string";
@@ -15,10 +23,10 @@ interface Props extends CollapseProps {
   //   rule_eq?: QueryPermissionInput;
 }
 const FilterService = memo(
-  ({ header, onChangeValue, placeholder, autoOpen = false }: Props) => {
+  ({ header, onChangeValue, placeholder, autoOpen = false, name }: Props) => {
     const { t } = useTranslation("filter");
     const [search, setSearch] = useState("");
-    const data = getService();
+    const data = getService(search);
     const changeSearch = (value: string) => {
       setSearch(value.trim());
     };
@@ -36,27 +44,31 @@ const FilterService = memo(
             className="mb-3"
             onChange={(e) => changeSearch(e.target.value)}
           />
-          <Checkbox.Group onChange={onChangeValue}>
-            <Space direction="vertical">
-              {data
-                .filter((x: any) =>
-                  toNonAccentVietnamese(
-                    x?.attributes?.name
-                      ? x.attributes?.name.toLocaleLowerCase()
-                      : ""
-                  ).includes(toNonAccentVietnamese(search.toLocaleLowerCase()))
-                )
-                .map((value: any) => (
-                  <Checkbox key={value?.id} value={value?.id}>
-                    <Tooltip placement="right" title={value.attributes?.name}>
-                      <span className="line-clamp line-clamp-1">
-                        {value.attributes?.name}
-                      </span>
-                    </Tooltip>
-                  </Checkbox>
-                ))}
-            </Space>
-          </Checkbox.Group>
+          <Form.Item name={name}>
+            <Checkbox.Group onChange={onChangeValue}>
+              <Space direction="vertical">
+                {data
+                  .filter((x: any) =>
+                    toNonAccentVietnamese(
+                      x?.attributes?.name
+                        ? x.attributes?.name.toLocaleLowerCase()
+                        : ""
+                    ).includes(
+                      toNonAccentVietnamese(search.toLocaleLowerCase())
+                    )
+                  )
+                  .map((value: any) => (
+                    <Checkbox key={value?.id} value={value?.id}>
+                      <Tooltip placement="right" title={value.attributes?.name}>
+                        <span className="line-clamp line-clamp-1">
+                          {value.attributes?.name}
+                        </span>
+                      </Tooltip>
+                    </Checkbox>
+                  ))}
+              </Space>
+            </Checkbox.Group>
+          </Form.Item>
         </Collapse.Panel>
       </Collapse>
     );

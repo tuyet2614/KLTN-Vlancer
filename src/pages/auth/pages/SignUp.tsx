@@ -1,5 +1,4 @@
 import { Button, Divider, Form, Input, Radio, Space, Tooltip } from "antd";
-import { log } from "console";
 import React, { Fragment } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
@@ -106,7 +105,7 @@ const SignUp: React.FC = () => {
             />
           </Form.Item>
 
-          <Form.Item label={t("register-as")} name="role">
+          {/* <Form.Item label={t("register-as")} name="role">
             <Radio.Group className="flex-wrap gap-12 flex">
               {listRole?.roles?.map((role: any) => (
                 <Radio key={role.id} value={role.id}>
@@ -115,10 +114,10 @@ const SignUp: React.FC = () => {
                   </span>
                 </Radio>
               ))}
-              {/* <Radio value={"Client"}>{t("recruiter")}</Radio>
-              <Radio value={"Freelancer"}>Freelancer</Radio> */}
+              <Radio value={"Client"}>{t("recruiter")}</Radio>
+              <Radio value={"Freelancer"}>Freelancer</Radio>
             </Radio.Group>
-          </Form.Item>
+          </Form.Item> */}
           <Button
             type="primary"
             className="btn-login mt-6 mb-2"

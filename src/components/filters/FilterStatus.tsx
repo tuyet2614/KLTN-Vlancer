@@ -6,12 +6,12 @@ interface Props {
   name?: string;
 }
 
-const FilterStatus = ({header, name }: Props) => {
+const FilterStatus = ({ header, name }: Props) => {
   const { t } = useTranslation("filter");
   return (
     <Collapse defaultActiveKey="1" expandIconPosition="end">
       <Collapse.Panel header={t(header)} key="1">
-        <Form.Item name={name || "status"}>
+        <Form.Item name={name || "status"} initialValue="all">
           <Radio.Group>
             <Space direction="vertical">
               <Radio value="all">{t("all")}</Radio>
