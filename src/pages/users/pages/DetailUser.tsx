@@ -2,14 +2,23 @@ import { Button, Col, Image, Row } from "antd";
 import avatarDefault from "@assets/images/icon/avatar.jpg";
 import "../styles/index.scss";
 import { getDetailUser } from "../services/api";
-import { useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { CheckOutlined, MailOutlined, PhoneOutlined } from "@ant-design/icons";
+import { api_url } from "../../../untils/string";
+import { getMyUser } from "../../auth/service/api";
+import { systemRoutes } from "../../../routes";
 
 const DetailUser = () => {
   const { t } = useTranslation("user");
   const { id } = useParams();
-  const dataUser: any = getDetailUser(id);
+  const dataUser: any = id === "me" ? getMyUser() : getDetailUser(id);
+  const avatar: string = api_url + dataUser?.avatar?.formats?.thumbnail.url;
+  const navigate = useNavigate();
+
+  const handleRouteToUpdate = () => {
+    navigate(systemRoutes.UPDATE_USER_ROUTE(dataUser.id));
+  };
 
   return (
     <div className="detail-user">
@@ -17,11 +26,23 @@ const DetailUser = () => {
         <Col className="w-3/5">
           <div className="flex gap-4">
             <div>
-              <Image src={avatarDefault} preview={false} className="avatar" />
+              <Image
+                src={dataUser?.avatar ? avatar : avatarDefault}
+                preview={false}
+                className="avatar"
+              />
               <p className="text-center">id. {dataUser?.id}</p>
             </div>
             <div>
-              <p className="user-name">{dataUser?.username}</p>
+              <div className="flex gap-4 items-center">
+                <p className="user-name">{dataUser?.username}</p>
+                {id === "me" && (
+                  <Button type="primary" onClick={handleRouteToUpdate}>
+                    {t("update")}
+                  </Button>
+                )}
+              </div>
+
               <div className="simple">
                 <p>{dataUser?.workTitle}</p>
                 <p>{dataUser?.addresses[0]?.city}</p>
@@ -60,20 +81,32 @@ const DetailUser = () => {
             <p className="user-name">{t("information")}</p>
             <div className="info-item">
               <MailOutlined />
-              <p>{dataUser?.blocked ? dataUser?.email : t("hired")}</p>
+              <p>
+                {dataUser?.blocked || id !== "me"
+                  ? t("hired")
+                  : dataUser?.email}
+              </p>
             </div>
             <div className="info-item">
               <PhoneOutlined />
-              <p>{dataUser?.blocked ? dataUser?.phoneNumber : t("hired")}</p>
+              <p>
+                {dataUser?.blocked || id !== "me"
+                  ? t("hired")
+                  : dataUser?.phoneNumber}
+              </p>
             </div>
-            <Button>{t("contact")}</Button>
-            <div className="direct">
-              <span>{t("press")}</span>
-              <span>
-                <b>{t("direct")}</b>
-              </span>
-              <span>{t("contact-btn")}</span>
-            </div>
+            {id !== "me" && (
+              <>
+                <Button>{t("contact")}</Button>
+                <div className="direct">
+                  <span>{t("press")}</span>
+                  <span>
+                    <b>{t("direct")}</b>
+                  </span>
+                  <span>{t("contact-btn")}</span>
+                </div>
+              </>
+            )}
           </div>
           <div className="intro-item pt-10">
             <p className="title">{t("summary")}</p>

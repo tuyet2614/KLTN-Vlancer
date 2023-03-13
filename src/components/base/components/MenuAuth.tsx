@@ -9,33 +9,47 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { systemRoutes } from "../../../routes";
 import { useLogout } from "../../service/api";
+import { api_url } from "../../../untils/string";
+import { useUserStore } from "../../../store/user";
 
 const MenuAuth = () => {
   const { t } = useTranslation("auth");
+  const { user, setUser } = useUserStore();
+
   const { onLogout } = useLogout();
 
   const userData: any = getMyUser();
+
+  const avatar: string = api_url + userData?.avatar?.formats?.thumbnail.url;
 
   const items: MenuProps["items"] = [
     {
       key: "1",
       label: (
-        <Link to={`${systemRoutes.USERS_ROUTE}/${userData?.id}`}>
-          {<p>{t("profile")}</p>}
+        <Link to={`${systemRoutes.USERS_ROUTE}/me`}>
+          {<p className="my-2">{t("profile")}</p>}
         </Link>
       ),
     },
     {
       key: "2",
-      label: <p>{t("edit-profile")}</p>,
+      label: (
+        <Link to={`${systemRoutes.UPDATE_USER_ROUTE(user.id)}`}>
+          {<p className="my-2">{t("edit-profile")}</p>}
+        </Link>
+      ),
     },
     {
       key: "3",
-      label: <p>{t("setting-notification")}</p>,
+      label: <p className="my-2">{t("setting-notification")}</p>,
     },
     {
       key: "4",
-      label: <p onClick={onLogout}>{t("logout")}</p>,
+      label: (
+        <p onClick={onLogout} className="my-2">
+          {t("logout")}
+        </p>
+      ),
     },
   ];
   return (
@@ -55,7 +69,7 @@ const MenuAuth = () => {
       <Dropdown menu={{ items }} placement="bottom" trigger={["click"]}>
         <div className="account-menu">
           <Image
-            src={DEFAULT_IMG}
+            src={userData?.avatar ? avatar : DEFAULT_IMG}
             alt="avatar_img"
             preview={false}
             className="cursor-pointer avatar-img"

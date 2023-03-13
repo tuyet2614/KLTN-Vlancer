@@ -47,7 +47,7 @@ export const getMyUser = () => {
   const header = { authorization: `Bearer ${getAuthToken()}` };
   useEffect(() => {
     axios
-      .get("/users/me", {
+      .get("/users/me?populate=*", {
         baseURL: "http://localhost:1337/api",
         headers: header,
       })

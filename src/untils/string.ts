@@ -130,3 +130,6 @@ export const stringToNumber = (s: string) => {
   }
   return Number(s);
 };
+
+
+export const api_url: string = "http://localhost:1337" 

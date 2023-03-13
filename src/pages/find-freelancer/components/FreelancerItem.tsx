@@ -3,6 +3,7 @@ import { Button, Col, Image, Row } from "antd";
 import "./index.scss";
 import imageDefault from "@assets/images/logo_img.png";
 import { useNavigate } from "react-router";
+import { api_url } from "../../../untils/string";
 
 interface ListFreelancerProps {
   data: any;
@@ -13,14 +14,13 @@ export const FreelancerItem: React.FC<ListFreelancerProps> = ({ data }) => {
   const handleRouteToDetail = () => {
     navigate(systemRoutes.DETAIL_FREELANCERS_ROUTE(data.id));
   };
-  const api_url: string =
-    "http://localhost:1337" + data?.avatar?.formats?.thumbnail.url;
+  const avatar: string = api_url + data?.avatar?.formats?.thumbnail.url;
   return (
     <div className="freelancer-item">
       <Row gutter={24} className="flex">
         <Col className="!flex items-center" span={5}>
           <Image
-            src={data?.avatar ? api_url : imageDefault}
+            src={data?.avatar ? avatar : imageDefault}
             preview={false}
             className="max-w-[180px] max-h-[180px] rounded-lg"
           />

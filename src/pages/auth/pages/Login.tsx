@@ -40,6 +40,18 @@ const Login = () => {
       })
       .catch((error) => {
         console.log(error);
+
+        if (
+          error.response.data.error.message === "Invalid identifier or password"
+        ) {
+          Notification.Error({
+            message: t("login.false", { ns: "notify" }),
+          });
+        } else {
+          Notification.Error({
+            message: t("login.error", { ns: "notify" }),
+          });
+        }
       });
   };
 

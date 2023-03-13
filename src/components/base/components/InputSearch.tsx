@@ -4,10 +4,12 @@ import { useTranslation } from "react-i18next";
 
 interface InputSearchProps {
   placeholderSearch: string;
+  onSearchChange: (e: any) => void;
 }
 
 export const InputSearch: React.FC<InputSearchProps> = ({
   placeholderSearch,
+  onSearchChange,
 }) => {
   const { t } = useTranslation("jobs-online");
   return (
@@ -18,6 +20,9 @@ export const InputSearch: React.FC<InputSearchProps> = ({
           <Input
             className="!border-none focus:!ring-0 "
             placeholder={t(placeholderSearch)}
+            onChange={(e: any) => {
+              onSearchChange(e.target.value);
+            }}
           />
         </div>
       </Form.Item>
