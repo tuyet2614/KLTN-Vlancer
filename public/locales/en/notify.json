@@ -4,7 +4,8 @@
   "error": "Error",
   "login": {
     "false": "False!",
-    "success": "Success!"
+    "success": "Success!",
+    "error": "Have something wrong"
   },
   "forgotPassword": {
     "false": "Update Failure"

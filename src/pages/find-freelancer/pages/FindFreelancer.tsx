@@ -1,5 +1,5 @@
 import { Col, Form, Pagination, PaginationProps, Row, Tabs } from "antd";
-import { Fragment, useState } from "react";
+import { Fragment, useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { InputSearch } from "../../../components/base/components/InputSearch";
 import { ButtonTopSearch } from "../components/button-top-search";
@@ -7,12 +7,15 @@ import FilterLeft from "../components/FilterLeft";
 import ListFreelancer from "../components/ListFreelancer";
 import { getListFreelancer } from "../service/api";
 import qs from "qs";
+import { debounce } from "lodash";
+import axios from "axios";
 
 const FindFreelancer = () => {
   const { t } = useTranslation("");
   const onFilter = () => {};
   const [form] = Form.useForm();
   const [buttonTop, setButtonTop] = useState("all");
+  const [test, setTest] = useState<any>();
   const [pagination, setPagination] = useState({
     page: 1,
     pageSize: 10,
@@ -32,6 +35,12 @@ const FindFreelancer = () => {
   };
 
   const data: any = getListFreelancer(pagination, filters);
+
+  useEffect(() => {
+    axios
+      .get("/users?populate=*&pagination[page]=1&pagination[pageSize]=10")
+      .then((res) => setTest(res.data));
+  }, []);
 
   const onValueChange = (value: any) => {
     let verified = undefined;
@@ -59,6 +68,23 @@ const FindFreelancer = () => {
     setFilters(query);
   };
 
+  const onSearchChange = useCallback(
+    debounce((value) => {
+      setFilters((f: any) => {
+        return {
+          ...f,
+          filters: {
+            ...f.filter,
+            username: {
+              $contains: value,
+            },
+          },
+        };
+      });
+    }, 300),
+    []
+  );
+
   return (
     <Form form={form} onValuesChange={onValueChange}>
       <div className="p-8 overflow-x-scroll flex space-x-8">
@@ -69,7 +95,10 @@ const FindFreelancer = () => {
             buttonTop={buttonTop}
             configsButtonTop={["all", "verified"]}
           />
-          <InputSearch placeholderSearch="placeholder-search-freelancer" />
+          <InputSearch
+            placeholderSearch="placeholder-search-freelancer"
+            onSearchChange={onSearchChange}
+          />
           <ListFreelancer data={data} />
           <div className="flex justify-center mb-6">
             <Pagination

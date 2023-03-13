@@ -12,3 +12,7 @@ export const useLogout = () => {
   };
   return { onLogout };
 };
+
+export const useUploadMedia = () => {
+  
+}

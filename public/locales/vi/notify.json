@@ -1,7 +1,8 @@
 {
   "login": {
     "false": "Thông tin đăng nhập không chính xác!",
-    "success": "Đăng nhập thành công!"
+    "success": "Đăng nhập thành công!",
+    "error": "Có lỗi xảy ra"
   },
   "forgotPassword": {
     "false": "Có lỗi xảy ra"

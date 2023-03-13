@@ -17,6 +17,7 @@ import {
   RouteListJobsOnlinePage,
   routeListJobsOnlinePage,
 } from "../pages/job-online";
+import UpdateUser from "../pages/users/pages/UpdateUser";
 
 const routers: RouteObject[] = [
   {
@@ -42,5 +43,18 @@ export const systemRoutes = {
   ...RoutesUsers,
   ...RouteListJobsOnlinePage,
 };
+
+const updateRouters: RouteObject[] = [
+  {
+    element: <UpdateUser />,
+    children: [...routeUsers],
+  },
+];
+
+export const updateRoutes = {
+  ...RoutesUsers,
+};
+
+export const itemRouters = createBrowserRouter(updateRouters);
 
 export const browserRouters = createBrowserRouter(routers);
