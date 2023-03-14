@@ -1,5 +1,5 @@
 import { Dropdown, Image, MenuProps } from "antd";
-import BELL_IMG from "@assets/images/icon/bell.svg";
+
 import CHAT_IMG from "@assets/images/icon/chat.svg";
 import DEFAULT_IMG from "@assets/images/icon/avatar.jpg";
 import "./styles.scss";
@@ -11,6 +11,7 @@ import { systemRoutes } from "../../../routes";
 import { useLogout } from "../../service/api";
 import { api_url } from "../../../untils/string";
 import { useUserStore } from "../../../store/user";
+import NotificationMenu from "../../menu/menuComponent/NotificationComponent.tsx";
 
 const MenuAuth = () => {
   const { t } = useTranslation("auth");
@@ -54,12 +55,7 @@ const MenuAuth = () => {
   ];
   return (
     <div className="menu-auth">
-      <Image
-        src={BELL_IMG}
-        alt="bell_img"
-        preview={false}
-        className="cursor-pointer"
-      />
+      <NotificationMenu />
       <Image
         src={CHAT_IMG}
         alt="chat_img"
