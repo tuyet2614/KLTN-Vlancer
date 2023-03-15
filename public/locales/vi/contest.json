@@ -25,6 +25,30 @@
     "security": "Giữ bí mật các bài dự thi (cần thanh toán thêm 15% giá trị giải thưởng)",
     "only": "Chỉ mình bạn có quyền được xem tất cả các bài dự thi. Các thí sinh không xem được bài dự thi của nhau. Hạn chế việc sao chép ý tưởng của nhau. Đồng thời đảm bảo được rằng ngoài bạn ra, không một ai khác xem được các mẫu thiết kế tham gia dự thi.",
     "post": "Đăng cuộc thi",
-    "terms": "Khi đăng việc, bạn xác nhận đồng ý các điều khoản sử dụng của vLance.vn"
+    "terms": "Khi đăng việc, bạn xác nhận đồng ý các điều khoản sử dụng của vLance.vn",
+    "placeholder": {
+            "enter_category": "Chọn lĩnh vực",
+            "enter_service": "Chọn dịch vụ",
+            "title": "VD: Thiết kế trang web bán hàng cao cấp",
+            "detail": "Ví dụ: Các giao diện website cần thiết kế như trang chủ, xem hàng, thanh toán...",
+            "skill": "Chọn kĩ năng",
+            "deadline": "Hạn cuối nhận chào giá của freelancer",
+            "location": "Nơi làm việc"
+
+        },
+    "error_messes": {
+        "wrong_format": "Sai định dạng !",
+        "phone_number_required": "Đây là trường bắt buộc !",
+        "username_required": "Đây là trường bắt buộc !",
+        "required": "Đây là trường bắt buộc",
+        "validateCMTCode": "CMT/CCCD phải có 9 hoặc 12 chữ số !",
+        "duplicateDay": "Ngày không được trùng",
+        "error_create": "Thêm thất bại. Mời thử lại !",
+        "DayDuplicate": "Không thể nhập trùng ngày",
+        "CustomerDuplicate": "Một đại lý không thể có 2 lịch trình",
+        "required_code": "Mã nhân viên không được bỏ trống!",
+        "max_200": "Không được quá 200 kí tự!",
+        "password_confirm_must_be_equal_password": "Mật khẩu xác nhận phải giống mật khẩu"
+    }
 
 }

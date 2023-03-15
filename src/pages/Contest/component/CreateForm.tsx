@@ -1,77 +1,90 @@
-import { Button, Checkbox, Form, Radio } from "antd";
+import { Button, Checkbox, Form, Input, Radio, Select } from "antd";
 import TextArea from "antd/lib/input/TextArea";
 import { t } from "i18next";
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import { useTranslation } from "react-i18next";
 import ChooseItem from "../../../components/base/chooseItem";
 import FormInput from "../../../components/base/formInput";
 import { formatNumberStr } from "../../../untils/string";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-const categoriesOption = [
-  { label: t("categories"), value: "categories" },
-  {
-    label: t("it"),
-    options: [
-      { label: t("program.web"), value: "web" },
-      { label: t("program.mobile"), value: "mobile" },
-      { label: t("program.other"), value: "other" },
-      { label: t("program.software"), value: "software" },
-      { label: t("program.engine"), value: "engine" },
-      { label: t("program.consulting"), value: "program-consulting" },
-      { label: t("program.tester"), value: "tester" },
-      { label: t("program.management"), value: "management" },
-    ],
-  },
-  {
-    label: t("sales"),
-    options: [
-      { label: t("marketing.advert"), value: "advert" },
-      { label: t("marketing.associate"), value: "associate" },
-      { label: t("marketing.consulting"), value: "marketing-consulting" },
-      { label: t("marketing.research"), value: "research" },
-      { label: t("marketing.business"), value: "business" },
-      { label: t("marketing.event"), value: "event" },
-      { label: t("marketing.consult"), value: "consult" },
-      { label: t("marketing.face"), value: "face" },
-    ],
-  },
-];
-
-const serviceOptions = [
-  { label: t("service"), value: "service" },
-  { label: t("service-option.2d"), value: "2d" },
-  { label: t("service-option.2d-game"), value: "2d-game" },
-  { label: t("service-option.degree"), value: "degree" },
-  { label: t("service-option.3d"), value: "3d" },
-  { label: t("service-option.3d-design"), value: "3d-design" },
-  { label: t("service-option.3d-jewelry"), value: "3d-jewelry" },
-  { label: t("service-option.adv"), value: "adv" },
-];
+import { categoryData, serviceData } from "../../../components/data/data";
+import { createTest } from "../service/api";
+import { useNavigate } from "react-router";
+import { systemRoutes } from "../../../routes";
 
 const CreateForm = () => {
   const { t } = useTranslation("contest");
+  const navigate = useNavigate();
+  const [form] = Form.useForm();
+  const [isPrivate, setIsPrivate] = useState(false);
+  const routeListDetailContest = () => {
+    // navigate(systemRoutes.CONTEST_DETAIL_ROUTE());
+  };
+  const handleAddNewContest = (value: any) => {
+    // JSON.stringify(addNewPost(value));
+    const data = {
+      ...value,
+      description: {
+        des: value.description,
+      },
+      service: {
+        service: value.services,
+      },
+      field: {
+        category: value.category,
+      },
+      secret: isPrivate,
+    };
+
+    JSON.stringify(createTest(data, routeListDetailContest));
+  };
   return (
     <div className="w-full flex justify-center">
-      <Form className="post-contest" layout="vertical">
+      <Form
+        className="post-contest"
+        layout="vertical"
+        form={form}
+        onFinish={handleAddNewContest}
+      >
         <div className="title">
           <p className="step">{t("step1")}</p>
           <p className="create">{t("create-own")}</p>
         </div>
-        <ChooseItem
+        <Form.Item
+          name="category"
           label={t("categories")}
-          defaultValue={"categories"}
-          options={categoriesOption}
-        />
-        <ChooseItem
-          label={t("service")}
-          defaultValue={"service"}
-          options={serviceOptions}
-        />
-        <Form.Item label={t("gift")} className="prize">
-          <Radio.Group className="list-prize" defaultValue={1}>
-            <Radio value={1}>
+          rules={[{ required: true, message: t("error_messes.required") }]}
+        >
+          <Select
+            tabIndex={3}
+            placeholder={t("placeholder.enter_category")}
+            filterOption={false}
+          >
+            {categoryData?.map((item: any) => (
+              <Select.Option value={item?.name} key={item?.id}>
+                {t(item?.name)}
+              </Select.Option>
+            ))}
+          </Select>
+        </Form.Item>
+
+        <Form.Item name={"services"} label={t("service")}>
+          <Select
+            tabIndex={3}
+            placeholder={t("placeholder.enter_service")}
+            filterOption={false}
+          >
+            {serviceData?.map((item: any) => (
+              <Select.Option value={item?.name} key={item?.id}>
+                {t(item?.name)}
+              </Select.Option>
+            ))}
+          </Select>
+        </Form.Item>
+        <Form.Item label={t("gift")} className="prize" name={"prize"}>
+          <Radio.Group className="list-prize" defaultValue={1000000}>
+            <Radio value={1000000}>
               <div>
                 <div className="money-contain">
                   <span className="money">{formatNumberStr(1000000)}</span>
@@ -84,7 +97,7 @@ const CreateForm = () => {
                 </div>
               </div>
             </Radio>
-            <Radio value={2}>
+            <Radio value={2000000}>
               <div>
                 <div className="money-contain">
                   <span className="money">{formatNumberStr(2000000)}</span>
@@ -102,7 +115,7 @@ const CreateForm = () => {
                 </div>
               </div>
             </Radio>
-            <Radio value={3}>
+            <Radio value={4000000}>
               <div>
                 <div className="money-contain">
                   <span className="money">{formatNumberStr(4000000)}</span>
@@ -127,9 +140,11 @@ const CreateForm = () => {
           <p>* {t("unlimited-product")}</p>
         </div>
 
-        <FormInput label={t("fill-intro")} placeholder={t("title-contest")} />
+        <Form.Item label={t("fill-intro")} name="title">
+          <FormInput placeholder={t("title-contest")} name="title" />
+        </Form.Item>
 
-        <Form.Item>
+        <Form.Item name="description">
           <TextArea placeholder={t("intro-contest")} />
         </Form.Item>
 
@@ -139,14 +154,16 @@ const CreateForm = () => {
 
         <div className="security">
           <Form.Item className="!m-0">
-            <Checkbox>{t("security")}</Checkbox>
+            <Checkbox onClick={() => setIsPrivate(!isPrivate)}>
+              {t("security")}
+            </Checkbox>
           </Form.Item>
 
           <p className="only">{t("only")}</p>
         </div>
 
         <div className="post-submit">
-          <Button>{t("post")}</Button>
+          <Button htmlType="submit">{t("post")}</Button>
           <p className="term">{t("terms")}</p>
         </div>
       </Form>

@@ -29,3 +29,13 @@ export const updateUser = async(id: any, data:any) => {
             console.log(error.response);
         });
 }
+
+export const createProfile = async(data:any) => {
+    await authApi.post('/profiles', {data})
+        .then( (response) =>  {
+            
+        })
+        .catch((error) => {
+            console.log(error.response);
+        });
+}

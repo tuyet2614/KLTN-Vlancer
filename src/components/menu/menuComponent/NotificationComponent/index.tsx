@@ -6,7 +6,7 @@ import PerfectScrollbar from "react-perfect-scrollbar";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Loading from "../../../base/components/loading";
 import { isEmpty } from "lodash";
-import { NoResult } from "../../../base/components/EmptyTable";
+import NoResult from "../../../base/components/EmptyTable/NoResult";
 import EnvelopImg from "@assets/images/envelop.png";
 import { NotificationItem } from "./NotificationItem";
 

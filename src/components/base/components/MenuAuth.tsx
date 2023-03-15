@@ -11,7 +11,7 @@ import { systemRoutes } from "../../../routes";
 import { useLogout } from "../../service/api";
 import { api_url } from "../../../untils/string";
 import { useUserStore } from "../../../store/user";
-import NotificationMenu from "../../menu/menuComponent/NotificationComponent.tsx";
+import NotificationMenu from "../../menu/menuComponent/NotificationComponent/index";
 
 const MenuAuth = () => {
   const { t } = useTranslation("auth");
