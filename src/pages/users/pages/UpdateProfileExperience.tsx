@@ -1,7 +1,7 @@
 import { Button, DatePicker, Form, Image, Input, Select, Upload } from "antd";
 import avatarDefault from "@assets/images/icon/avatar.jpg";
 import { useTranslation } from "react-i18next";
-import { updateUser } from "../services/api";
+import { createProfile, updateUser } from "../services/api";
 import { getMyUser } from "../../auth/service/api";
 import { api_url } from "../../../untils/string";
 import { useEffect, useState } from "react";
@@ -24,12 +24,10 @@ const UpdateProfileExperience = ({ id }: Props) => {
   useEffect(() => form.resetFields(), [dataUser]);
 
   const handleAddNewPost = (value: any) => {
-    // const data = {
-    //   username: value.username,
-    //   email: value.email,
-    //   skype: value.skype,
-    // };
-    JSON.stringify(updateUser(id, value));
+    const data = {
+      ...value,
+    };
+    JSON.stringify(createProfile(data));
   };
 
   return (
@@ -95,7 +93,6 @@ const UpdateProfileExperience = ({ id }: Props) => {
         <Form.Item
           label={t("detail-des")}
           name="description"
-          initialValue={dataUser?.birthDate && moment(dataUser.birthDate)}
           rules={[
             {
               required: true,
@@ -106,11 +103,7 @@ const UpdateProfileExperience = ({ id }: Props) => {
           <TextArea rows={4} placeholder={t("detail-des")} tabIndex={5} />
           <p className="text-[#bbb]">{t("explain-des")}</p>
         </Form.Item>
-        <Form.Item
-          label={t("service")}
-          name="service"
-          initialValue={dataUser?.birthDate && moment(dataUser.birthDate)}
-        >
+        <Form.Item label={t("service")} name="service">
           <Select
             mode="multiple"
             tabIndex={3}

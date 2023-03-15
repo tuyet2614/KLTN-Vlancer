@@ -84,7 +84,21 @@
             "location": "Enter location"
 
         },
-        "success": "Create post job success"
+        "success": "Create post job success",
+        "error_messes": {
+        "wrong_format": "Wrong format !",
+        "phone_number_required": "Please input your phone number!",
+        "username_required": "Please input your username!",
+        "required": "This field is required!",
+        "validateCMTCode": "CMT/CCCD must be 9 or 12 character !",
+        "duplicateDay": "Day can't be duplicate",
+        "error_create": "Add fail. Please try again !",
+        "DayDuplicate": "Day can not duplicate",
+        "CustomerDuplicate": "Customer can't have two schedule",
+        "required_code": "Staff code cannot be empty!",
+        "max_200": "Cannot exceed 200 characters!",
+        "password_confirm_must_be_equal_password": "Password confirm must be equal password"
+    }
     
 
 }

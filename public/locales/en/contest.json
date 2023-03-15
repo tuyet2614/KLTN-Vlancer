@@ -25,5 +25,29 @@
     "security": "Keep the design private (need to pay an additional 15% of the prize value)",
     "only": "Only you is able to view all the designs. Candidates cannot see each other's work to avoid copying each other's ideas. This to ensure the fairness between candidates.",
     "post": "Post a contest",
-    "terms": "When posting a job, you confirm that you agree to vLance.vn's terms of use"
+    "terms": "When posting a job, you confirm that you agree to vLance.vn's terms of use",
+    "placeholder": {
+            "enter_category": "Enter category",
+            "enter_service": "Enter service",
+            "title": "Ex: Design a sale web",
+            "detail": "Ex: Website interfaces that need to be designed such as homepage, view, checkout...",
+            "skill": "Enter skill",
+            "deadline": "Enter deadline",
+            "location": "Enter location"
+
+        },
+        "error_messes": {
+        "wrong_format": "Wrong format !",
+        "phone_number_required": "Please input your phone number!",
+        "username_required": "Please input your username!",
+        "required": "This field is required!",
+        "validateCMTCode": "CMT/CCCD must be 9 or 12 character !",
+        "duplicateDay": "Day can't be duplicate",
+        "error_create": "Add fail. Please try again !",
+        "DayDuplicate": "Day can not duplicate",
+        "CustomerDuplicate": "Customer can't have two schedule",
+        "required_code": "Staff code cannot be empty!",
+        "max_200": "Cannot exceed 200 characters!",
+        "password_confirm_must_be_equal_password": "Password confirm must be equal password"
+    }
 }

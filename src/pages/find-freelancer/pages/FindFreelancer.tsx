@@ -38,7 +38,7 @@ const FindFreelancer = () => {
 
   useEffect(() => {
     axios
-      .get("/users?populate=*&pagination[page]=1&pagination[pageSize]=10")
+      .get("/users?populate=*&start=0&limit=2")
       .then((res) => setTest(res.data));
   }, []);
 
@@ -103,10 +103,10 @@ const FindFreelancer = () => {
           <div className="flex justify-center mb-6">
             <Pagination
               showSizeChanger
-              current={data?.meta?.pagination?.page}
+              current={0}
               onChange={onShowSizeChange}
-              pageSize={pagination.pageSize}
-              total={data?.meta?.pagination?.total || 0}
+              pageSize={10}
+              total={data?.length || 0}
             />
           </div>
         </div>

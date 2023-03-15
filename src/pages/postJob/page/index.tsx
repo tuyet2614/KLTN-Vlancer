@@ -142,7 +142,7 @@ const PostJob = () => {
             <Form.Item
               name="category"
               label={t("select-field")}
-              rules={[{ required: true, message: t("error.required") }]}
+              rules={[{ required: true, message: t("error_messes.required") }]}
             >
               <Select
                 tabIndex={3}

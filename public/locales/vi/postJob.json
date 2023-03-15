@@ -84,6 +84,20 @@
             "location": "Nơi làm việc"
 
         },
-        "success": "Tạo bài đăng công việc thành công"
+        "success": "Tạo bài đăng công việc thành công",
+        "error_messes": {
+        "wrong_format": "Sai định dạng !",
+        "phone_number_required": "Đây là trường bắt buộc !",
+        "username_required": "Đây là trường bắt buộc !",
+        "required": "Đây là trường bắt buộc",
+        "validateCMTCode": "CMT/CCCD phải có 9 hoặc 12 chữ số !",
+        "duplicateDay": "Ngày không được trùng",
+        "error_create": "Thêm thất bại. Mời thử lại !",
+        "DayDuplicate": "Không thể nhập trùng ngày",
+        "CustomerDuplicate": "Một đại lý không thể có 2 lịch trình",
+        "required_code": "Mã nhân viên không được bỏ trống!",
+        "max_200": "Không được quá 200 kí tự!",
+        "password_confirm_must_be_equal_password": "Mật khẩu xác nhận phải giống mật khẩu"
+    }
 
 }
