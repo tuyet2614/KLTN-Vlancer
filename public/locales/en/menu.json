@@ -17,5 +17,12 @@
      "cv": "Post a resume",
      "vlancer-cv": "vLance Profile",
      "product": "Portfolios",
-     "agency": "Register as an Agency"
+     "agency": "Register as an Agency",
+     "customer-manager": "Management for customers",
+     "hired-manager": "Recruitment manager",
+     "oder-manager": "Manage orders",
+     "freelancer-manager": "Manager for freelancer",
+     "job-manager": "Job management",
+     "service-manager": "Manage service packages & orders",
+     "post": "Post a project"
 }
