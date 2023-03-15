@@ -17,5 +17,12 @@
     "cv": "Đăng hồ sơ năng lực",
     "vlancer-cv": "Hồ sơ vLance",
     "product": "Sản phẩm đã làm",
-    "agency": "Đăng ký làm Agency"
+    "agency": "Đăng ký làm Agency",
+    "customer-manager": " Quản lý cho khách hàng",
+    "hired-manager": "Quản lý tin tuyển dụng",
+    "oder-manager": "Quản lý đơn hàng",
+    "freelancer-manager": " Quản lý cho freelancer",
+    "job-manager": "Quản lý việc nhận làm",
+    "service-manager": "Quản lý gói dịch vụ & đơn hàng",
+    "post": "Đăng dự án"
 }

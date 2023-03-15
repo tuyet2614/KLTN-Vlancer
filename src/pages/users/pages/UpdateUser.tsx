@@ -39,7 +39,11 @@ const UpdateUser = () => {
   ];
   return (
     <Fragment>
-      <Tabs defaultActiveKey="1" items={items} tabPosition={"left"} />
+      <Tabs
+        defaultActiveKey="self-information"
+        items={items}
+        tabPosition={"left"}
+      />
     </Fragment>
   );
 };
