@@ -46,6 +46,8 @@
     "react-router-dom": "6.4.1",
     "react-scripts": "^5.0.1",
     "react-slick": "^0.29.0",
+    "react-social-login-buttons": "^3.6.1",
+    "reactjs-social-login": "^2.6.2",
     "reactjs-tailwind": "^0.1.9",
     "sass": "^1.56.1",
     "slick-carousel": "^1.8.1",
