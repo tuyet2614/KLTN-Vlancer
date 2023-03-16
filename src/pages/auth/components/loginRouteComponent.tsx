@@ -52,7 +52,7 @@ const LoginRouteComponent = () => {
                   setProvider(provider);
                   setProfile(data);
                 }}
-                onReject={(err) => {
+                onReject={(err: any) => {
                   console.log(err);
                 }}
               >

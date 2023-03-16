@@ -17,11 +17,10 @@ const FindFreelancer = () => {
   const [buttonTop, setButtonTop] = useState("all");
   const [test, setTest] = useState<any>();
   const [pagination, setPagination] = useState({
-    page: 1,
+    page: 0,
     pageSize: 10,
   });
   const [filters, setFilters] = useState({});
-  const [verified, setVerified] = useState<any>(undefined);
 
   const onShowSizeChange: PaginationProps["onShowSizeChange"] = (
     current,
@@ -29,18 +28,12 @@ const FindFreelancer = () => {
   ) => {
     setPagination((pagination) => ({
       ...pagination,
-      page: current,
+      page: current * pageSize,
       pageSize: pageSize,
     }));
   };
 
   const data: any = getListFreelancer(pagination, filters);
-
-  useEffect(() => {
-    axios
-      .get("/users?populate=*&start=0&limit=2")
-      .then((res) => setTest(res.data));
-  }, []);
 
   const onValueChange = (value: any) => {
     let verified = undefined;
@@ -103,9 +96,11 @@ const FindFreelancer = () => {
           <div className="flex justify-center mb-6">
             <Pagination
               showSizeChanger
-              current={0}
+              current={pagination.page}
+              showQuickJumper
+              showTotal={(total) => `Total ${total} items`}
               onChange={onShowSizeChange}
-              pageSize={10}
+              pageSize={pagination.pageSize}
               total={data?.length || 0}
             />
           </div>

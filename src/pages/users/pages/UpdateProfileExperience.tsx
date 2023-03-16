@@ -27,7 +27,7 @@ const UpdateProfileExperience = ({ id }: Props) => {
     const data = {
       ...value,
     };
-    JSON.stringify(createProfile(data));
+    JSON.stringify(createProfile(id, data));
   };
 
   return (
@@ -90,35 +90,39 @@ const UpdateProfileExperience = ({ id }: Props) => {
             </ol>
           </div>
         </Form.Item>
-        <Form.Item
-          label={t("detail-des")}
-          name="description"
-          rules={[
-            {
-              required: true,
-              message: t("error_messes.require"),
-            },
-          ]}
-        >
-          <TextArea rows={4} placeholder={t("detail-des")} tabIndex={5} />
-          <p className="text-[#bbb]">{t("explain-des")}</p>
-        </Form.Item>
-        <Form.Item label={t("service")} name="service">
-          <Select
-            mode="multiple"
-            tabIndex={3}
-            placeholder={t("placeholder.service")}
-            showSearch
-            filterOption={false}
+        <div>
+          <Form.Item
+            label={t("detail-des")}
+            name="description"
+            rules={[
+              {
+                required: true,
+                message: t("error_messes.require"),
+              },
+            ]}
           >
-            {dataServices?.map((item: any) => (
-              <Select.Option value={item?.id} key={item?.id}>
-                {t(item?.attributes?.name)}
-              </Select.Option>
-            ))}
-          </Select>
-          <p className="text-[#bbb]">{t("find-service")}</p>
-        </Form.Item>
+            <TextArea rows={4} placeholder={t("detail-des")} tabIndex={5} />
+          </Form.Item>
+        </div>
+
+        <div>
+          <Form.Item label={t("service")} name="service">
+            <Select
+              mode="multiple"
+              tabIndex={3}
+              placeholder={t("placeholder.service")}
+              showSearch
+              filterOption={false}
+            >
+              {dataServices?.map((item: any) => (
+                <Select.Option value={item?.attributes?.name} key={item?.id}>
+                  {t(item?.attributes?.name)}
+                </Select.Option>
+              ))}
+            </Select>
+          </Form.Item>
+        </div>
+
         <Form.Item label={t("link-project")} name="website">
           <Input placeholder={t("placeholder-web")} />
         </Form.Item>
