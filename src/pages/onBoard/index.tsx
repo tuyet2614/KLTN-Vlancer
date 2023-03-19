@@ -23,16 +23,19 @@ const OnBoard = () => {
               postData?.map((item: any) => (
                 <JobItemComponent
                   title={item.attributes.title}
-                  type={item.type}
-                  rate={item.rate}
-                  author={item.author}
-                  location={item.location}
-                  level={item.level}
-                  minMoney={item.minMoney}
-                  maxMoney={item.maxMoney}
+                  type={item.attributes.workType}
+                  rate={item.attributes.rate}
+                  author={
+                    item.attributes.users_permissions_user.data.attributes
+                      .username
+                  }
+                  location={item.attributes.attributes}
+                  minMoney={item.attributes.budgetMin}
+                  maxMoney={item.attributes.budgetMax}
                   deadline={item.attributes.deadline}
                   content={item.attributes.description}
                   categories={item.attributes.category}
+                  key={item.id}
                 />
               ))}
           </div>

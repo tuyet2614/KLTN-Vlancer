@@ -9,7 +9,6 @@ interface jobComponent {
   rate: number;
   author: string;
   location: string;
-  level: string;
   minMoney: number;
   maxMoney: number;
   deadline: string;
@@ -24,7 +23,6 @@ const JobItemComponent: React.FC<jobComponent> = (Props) => {
     rate,
     author,
     location,
-    level,
     minMoney,
     maxMoney,
     deadline,
@@ -51,7 +49,7 @@ const JobItemComponent: React.FC<jobComponent> = (Props) => {
       <div className="location">
         <div>
           <span>{location} | </span>
-          <span>{level} | </span>
+          {/* <span>{level} | </span> */}
           <span>
             {minMoney} - {maxMoney}
           </span>

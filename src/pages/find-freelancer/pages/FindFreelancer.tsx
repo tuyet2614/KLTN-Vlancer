@@ -26,6 +26,9 @@ const FindFreelancer = () => {
     current,
     pageSize
   ) => {
+    console.log("current: ", current);
+    console.log("page size: ", pageSize);
+
     setPagination((pagination) => ({
       ...pagination,
       page: current * pageSize,
