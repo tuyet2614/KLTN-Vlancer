@@ -47,9 +47,10 @@ export const getMyUser = () => {
   const header = { authorization: `Bearer ${getAuthToken()}` };
   useEffect(() => {
     axios
-      .get("/users/me?populate=*", {
+      .get("/users/me?populate=deep", {
         baseURL: "http://localhost:1337/api",
         headers: header,
+        
       })
       .then((response) => {
         setData(response.data);
@@ -62,6 +63,7 @@ export const getMyUser = () => {
 
   return data;
 };
+
 
 export const getListRoles = () => {
   const [data, setData] = useState();

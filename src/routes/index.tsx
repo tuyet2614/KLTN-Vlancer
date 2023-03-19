@@ -18,6 +18,10 @@ import {
   routeListJobsOnlinePage,
 } from "../pages/job-online";
 import UpdateUser from "../pages/users/pages/UpdateUser";
+import {
+  routeCustomerManager,
+  RoutesCustomerManager,
+} from "../pages/manager/services/route";
 
 const routers: RouteObject[] = [
   {
@@ -30,6 +34,7 @@ const routers: RouteObject[] = [
       ...routeListJobsOnlinePage,
       ...routeFindFreelancer,
       ...routeUsers,
+      ...routeCustomerManager,
     ],
   },
 ];
@@ -42,6 +47,7 @@ export const systemRoutes = {
   ...RoutesFindFreelancer,
   ...RoutesUsers,
   ...RouteListJobsOnlinePage,
+  ...RoutesCustomerManager,
 };
 
 const updateRouters: RouteObject[] = [

@@ -33,6 +33,8 @@ import "../styles/index.scss";
 import { useNavigate } from "react-router-dom";
 import Notification from "../../../components/base/components/Notification";
 import { systemRoutes } from "../../../routes";
+import { getMyUser } from "../../auth/service/api";
+import { formatNumberStr, numberParser } from "../../../untils/string";
 
 const { Dragger } = Upload;
 export const deriveMediaToFileList = (media: any): UploadFile => {
@@ -70,6 +72,7 @@ const PostJob = () => {
   // let newValue = cloneDeep(dataCategory);
   const [newValue, setNewValue] = useState([]);
   const [filters, setFilter] = useState();
+  const dataUser: any = getMyUser();
 
   const routeListJob = () => {
     navigate(systemRoutes.Jobs_Online_ROUTE);
@@ -87,31 +90,28 @@ const PostJob = () => {
   ];
 
   const handleAddNewPost = (value: any) => {
-    // JSON.stringify(addNewPost(value));
-    const data = {
-      deadline: value.deadline,
+    // const data = {
+    //   deadline: value.deadline,
+    //   place: value.location,
+    //   budgetMin: value.budgetMin,
+    //   budgetMax: value.budgetMax,
+    //   workType: value.workType,
+    //   payType: value.payType,
+    // };
+    const filter = {
+      ...value,
+
+      users_permissions_user: dataUser?.id,
+      status: "draft",
       place: value.location,
-      budgetMin: value.budgetMin,
-      budgetMax: value.budgetMax,
-      workType: value.workType,
-      payType: value.payType,
     };
 
     JSON.stringify(
-      authApi
-        .post("/projects", { data })
-        .then((res) => {
-          const filter = {
-            ...value,
-            project: res.data?.data.id,
-          };
+      // authApi
+      //   .post("/projects", { data })
+      //   .then((res) => {
 
-          addNewPost(filter, routeListJob);
-          Notification.Success({ message: t("success") });
-        })
-        .catch((error) => {
-          console.log(error);
-        })
+      addNewPost(filter, routeListJob)
     );
   };
 
@@ -333,6 +333,8 @@ const PostJob = () => {
               name="budgetMin"
             >
               <InputNumber
+                parser={(value: any) => numberParser(value)}
+                formatter={(value: any) => formatNumberStr(value)}
                 placeholder={t("from")}
                 className="input-calender"
                 controls={false}
@@ -344,6 +346,8 @@ const PostJob = () => {
               name="budgetMax"
             >
               <InputNumber
+                parser={(value: any) => numberParser(value)}
+                formatter={(value: any) => formatNumberStr(value)}
                 placeholder={t("to")}
                 className="input-calender"
                 controls={false}

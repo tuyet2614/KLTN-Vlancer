@@ -16,7 +16,6 @@ export default function DesktopMenu() {
   const { pathname } = useLocation();
   const [defaultSelectedKeys, setDefaultSelectedKeys] = useState([pathname]);
   const isLogin = getAuthToken();
-
   useEffect(() => {
     setDefaultSelectedKeys([
       pathname.split("/").length < 2 || pathname.split("/")[1] === ""

@@ -1,0 +1,26 @@
+.MenuManager {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    background: #4d4d4d;
+    color: white;
+    position: fixed;
+    top: 50;
+    z-index: 9;
+    padding: 10px 0;
+    .menu-left {
+      width: 80%;
+      align-items: center;
+    }
+    .menu-right {
+        width: 16%;
+    }
+    .ant-menu {
+        background-color: #4d4d4d;
+        color: white;
+        
+    }
+    .ant-menu-horizontal {
+            border-bottom: none !important;
+        }
+}

@@ -4,18 +4,17 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { systemRoutes } from "../../../routes/index";
 import { useLocation, useNavigate } from "react-router-dom";
-import HireFreelancer from "../menuComponent/HireFreelancer";
-import "./menuTop.scss";
-import ChangeLanguageComponent from "../menuComponent/ChangeLanguage";
-import { getAuthToken } from "../../../untils/token";
-import MenuAuth from "../../base/components/MenuAuth";
+import "./index.scss";
 
-export default function ManageMenu() {
+interface Props {
+  user: any;
+}
+
+export default function ManageMenu({ user }: Props) {
   const { t } = useTranslation("menu");
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const [defaultSelectedKeys, setDefaultSelectedKeys] = useState([pathname]);
-  const isLogin = getAuthToken();
 
   useEffect(() => {
     setDefaultSelectedKeys([
@@ -29,35 +28,17 @@ export default function ManageMenu() {
     {
       label: t("customer-manager"),
       key: "customer-manager",
-      children: [
-        {
-          label: t("hired-manager"),
-          key: "hired-manager",
-        },
-        {
-          label: t("oder-manager"),
-          key: "oder-manager",
-        },
-      ],
+      onClick: () => navigate(systemRoutes.CUSTOMER_MANAGER_ROUTE(user.id)),
     },
     {
       label: t("freelancer-manager"),
       key: "freelancer-manager",
-      children: [
-        {
-          label: t("job-manager"),
-          key: "job-manager",
-        },
-        {
-          label: t("service-manager"),
-          key: "service-manager",
-        },
-      ],
+      onClick: () => navigate(systemRoutes.FREELANCER_MANAGER_ROUTE(user.id)),
     },
   ];
 
   return (
-    <div className="menuTop">
+    <div className="MenuManager">
       <div className="menu-left">
         <Menu
           mode="horizontal"

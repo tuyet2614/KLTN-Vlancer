@@ -2,21 +2,21 @@ import { Tabs } from "antd";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import { getMyUser } from "../../auth/service/api";
-import Recruiment from "./components/recruiment";
+import FreelancerJobManager from "./components/freelancerJobManager";
 
-const CustomerManager = () => {
+const FreelancerManager = () => {
   const { t } = useTranslation("manager");
   const user: any = getMyUser();
   const { id } = useParams();
   const items = [
     {
-      label: t("recruitment"),
-      key: "recruitment",
-      children: <Recruiment id={id} />,
+      label: t("worked"),
+      key: "worked",
+      children: <FreelancerJobManager id={id} />,
     },
     {
-      label: t("service-order"),
-      key: "service-order",
+      label: t("service"),
+      key: "service_freelancer",
       //   children: <UpdateProfileWork id={id} />,
     },
   ];
@@ -27,4 +27,4 @@ const CustomerManager = () => {
   );
 };
 
-export default CustomerManager;
+export default FreelancerManager;

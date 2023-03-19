@@ -30,10 +30,18 @@ export const updateUser = async(id: any, data:any) => {
         });
 }
 
-export const createProfile = async(data:any) => {
-    await authApi.post('/profiles', {data})
+export const createProfile = async(userId:any, data:any) => {
+    await authApi.post('profiles', {data})
         .then( (response) =>  {
+            console.log("res: ", response?.data?.data.id);
             
+            const data = {
+                profile: response.data.data.id
+            }
+
+            console.log("data profile: ", data);
+            
+            updateUser(userId, data)
         })
         .catch((error) => {
             console.log(error.response);

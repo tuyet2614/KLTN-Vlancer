@@ -19,12 +19,13 @@ export const addNewPost = async(data: any, routeListJob:() => void) => {
 }
 
 
-export const getListPosts = () => {
+export const getListPosts = (params?: any) => {
+    
     const [data, setData] = useState([])
     useEffect( 
         () => {      
         getApi
-        .get("/posts")
+        .get("/posts?populate=deep", {params: params})
         .then((response) => {
         setData(response.data.data)
         })
