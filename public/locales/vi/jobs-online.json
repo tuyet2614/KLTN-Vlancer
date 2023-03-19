@@ -28,6 +28,18 @@
     "ques": "Bạn có những kinh nghiệm và kỹ năng nào phù hợp với dự án này?",
     "send": "Gửi chào giá",
     "messagePrice": "Đề xuất chi phí không được bỏ trống",
-    "messagedescription": "Kinh nghiệm và kỹ năng không được bỏ trống"
+    "messagedescription": "Kinh nghiệm và kỹ năng không được bỏ trống",
+    "seeMore": "Xem Thêm"
+  },
+  "Cmt": {
+    "Cmt_ID": "ID chào giá",
+    "user_name": "Tên người chào giá",
+    "createdAt": "Ngày tạo",
+    "dead_line": "Ngày đến hạn",
+    "price": "Giá đưa ra",
+    "description": "Mô tả",
+    "infoCmt": "Thông tin chào giá của",
+    "infoCmt1": "với bài đăng",
+    "button": "Chọn chào giá này"
   }
 }

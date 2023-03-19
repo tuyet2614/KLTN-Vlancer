@@ -28,6 +28,18 @@
     "ques": "What experience and skills do you have that would be a good fit for this project?",
     "send": "Submit bid",
     "messagePrice": "Proposed cost is required",
-    "messagedescription": "experience and skills are required"
+    "messagedescription": "experience and skills are required",
+    "seeMore": "See More"
+  },
+  "Cmt": {
+    "Cmt_ID": "Bid ID",
+    "user_name": "Bidder's name",
+    "createdAt": "Date created",
+    "dead_line": "Date of maturity",
+    "price": "Price offered",
+    "description": "Describe",
+    "infoCmt": "Bidding information of",
+    "infoCmt1": "with post",
+    "button": "Choose this offer"
   }
 }
