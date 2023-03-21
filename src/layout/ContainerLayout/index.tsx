@@ -1,5 +1,5 @@
 import { Layout } from "antd";
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import ManageMenu from "../../components/menu/manageMenu";
 import MenuTop from "../../components/menu/menuTop";
@@ -13,12 +13,13 @@ import { stepChatbot } from "../../constant/step_chatbot";
 import { api_url } from "../../untils/string";
 import { ThemeProvider } from "styled-components";
 import { UserInput } from "react-simple-chatbot";
+import checkAvatar from "@assets/images/icon/avatar.jpg";
 
 const { Content } = Layout;
 
 const config = {
-  width: "300px",
-  height: "400px",
+  width: "400px",
+  height: "600px",
   floating: true,
 };
 const theme = {
@@ -37,7 +38,14 @@ const ContainerLayout = () => {
   const isLogin = getAuthToken();
   const { user, setUser } = useUserStore();
   const { t } = useTranslation("chatbot");
-  const avatar: string = api_url + user?.avatar?.formats?.thumbnail.url;
+  const [avatar, setAvatar] = useState(
+    api_url + user?.avatar?.formats?.thumbnail.url
+  );
+  // const avatar: string = api_url + user?.avatar?.formats?.thumbnail.url;
+  console.log("avatar: ", avatar);
+  useEffect(() => {
+    setAvatar(api_url + user?.avatar?.formats?.thumbnail.url);
+  }, [user]);
 
   return (
     <Fragment>
@@ -57,11 +65,7 @@ const ContainerLayout = () => {
             // floating={true}
             headerTitle={t("help")}
             recognitionEnable={true}
-            userAvatar={
-              avatar ||
-              user?.result?.picture?.data?.url ||
-              user?.result?.avatar_url
-            }
+            userAvatar={avatar}
             steps={stepChatbot}
             {...config}
           />

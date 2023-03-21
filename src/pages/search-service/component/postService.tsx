@@ -1,4 +1,4 @@
-import { Form, Input, Select, Upload } from "antd";
+import { Button, Form, Input, InputNumber, Select, Upload } from "antd";
 import { useTranslation } from "react-i18next";
 
 const PostService = () => {
@@ -47,6 +47,65 @@ const PostService = () => {
             <Form.Item label={t("post-video")}>
               <Upload />
             </Form.Item>
+          </div>
+        </div>
+
+        <div>
+          <div>{t("detail-service")}</div>
+          <div>
+            <Form.Item label={t("benefit")}>
+              <Input placeholder={t("placeholder.benefit")} />
+            </Form.Item>
+          </div>
+          <div>
+            <Form.Item label={t("detail")}>
+              <Select placeholder={t("placeholder.detail")} />
+            </Form.Item>
+          </div>
+          <div>
+            <Form.Item label={t("process")}>
+              <Input placeholder={t("placeholder.step")} />
+            </Form.Item>
+          </div>
+          <div>
+            <Form.Item label={t("customer")}>
+              <Input placeholder={t("placeholder.customer")} />
+            </Form.Item>
+          </div>
+        </div>
+
+        <div>
+          <div>{t("price-service")}</div>
+
+          <div>
+            <Form.Item label={t("price")}>
+              <InputNumber />
+            </Form.Item>
+          </div>
+          <div>
+            <Form.Item label={t("unit")}>
+              <Select />
+            </Form.Item>
+          </div>
+          <div>
+            <Form.Item label={t("min_quanty")}>
+              <InputNumber />
+            </Form.Item>
+          </div>
+          <div>
+            <Form.Item label={t("deadline_finish")}>
+              <InputNumber />
+            </Form.Item>
+            <Form.Item>
+              <Select />
+            </Form.Item>
+          </div>
+        </div>
+        <div>
+          <div>{t("add_service")}</div>
+
+          <div>
+            <Button>{t("add_service_btn")}</Button>
           </div>
         </div>
       </Form>

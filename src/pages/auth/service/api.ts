@@ -42,7 +42,7 @@ export const CreateUserApi = (user: any, handleFc: () => void) => {
 };
 
 export const getMyUser = () => {
-  const [data, setData] = useState();
+  const [data, setData] = useState<any>();
   const { user, setUser } = useUserStore();
   const header = { authorization: `Bearer ${getAuthToken()}` };
   useEffect(() => {
