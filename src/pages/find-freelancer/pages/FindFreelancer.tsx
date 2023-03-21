@@ -50,7 +50,7 @@ const FindFreelancer = () => {
           id: { $in: value.service },
         },
         category: {
-          id: { $eq: value.category },
+          id: { $in: value.category },
         },
         addresses: {
           id: { $in: value.city },
@@ -100,7 +100,6 @@ const FindFreelancer = () => {
             <Pagination
               showSizeChanger
               current={pagination.page}
-              showQuickJumper
               showTotal={(total) => `Total ${total} items`}
               onChange={onShowSizeChange}
               pageSize={pagination.pageSize}

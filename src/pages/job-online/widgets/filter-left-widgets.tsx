@@ -14,86 +14,46 @@ interface FilterLeftWidgetsProps {
 export const FilterLeftWidgets: React.FC<FilterLeftWidgetsProps> = ({
   buttonTop,
 }) => {
-  const onFilterCategoriesGroup = (value: any) => {
-    console.log("1", value);
-  };
-  const onChangeValue1 = (checkedValues: CheckboxValueType[]) => {
-    console.log("2", checkedValues);
-  };
-  const onChangeValue2 = (checkedValues: CheckboxValueType[]) => {
-    console.log("6", checkedValues);
-  };
-  const onChangeValue3 = (checkedValues: CheckboxValueType[]) => {
-    console.log("7", checkedValues);
-  };
-
-  const onChangeCheckbox1 = (value: RadioChangeEvent) => {
-    console.log("3", value);
-  };
-  const onChangeCheckbox2 = (value: RadioChangeEvent) => {
-    console.log("4", value);
-  };
-  const onChangeCheckbox3 = (value: RadioChangeEvent) => {
-    console.log("5", value);
-  };
   const { t } = useTranslation("filter");
 
   return (
     <div className="space-y-4 w-[250px]">
-      <FilterCategories onFilterCategoriesGroup={onFilterCategoriesGroup} />
+      <FilterCategories header={t("categories")} name="category" />
       {buttonTop !== "contest" && (
         <>
           <FilterService
-            onChangeValue={onChangeValue1}
             autoOpen={true}
             header={t("service")}
-            name="createById_in"
+            name="service"
             placeholder={t("creator", { ns: "import_manager" })}
           />
           <FilterCheckBoxBase
-            onChangeCheckbox={onChangeCheckbox1}
             header="status"
             name="status"
             configsCheckboxs={[
               { name: "all", value: "all" },
-              { name: "accepting", value: "accepting" },
-              { name: "assigned", value: "assigned" },
+              { name: "accepting", value: "requested" },
+              { name: "assigned", value: "pendind" },
             ]}
           />
+
           <FilterCheckBoxBase
-            onChangeCheckbox={onChangeCheckbox2}
-            header="pattern"
-            name="pattern"
-            configsCheckboxs={[
-              { name: "all", value: "all" },
-              { name: "online", value: "online" },
-              { name: "office", value: "office" },
-            ]}
-          />
-          <FilterCheckBoxBase
-            onChangeCheckbox={onChangeCheckbox3}
             header="Payment"
-            name="Payment"
+            name="payment"
             configsCheckboxs={[
               { name: "all", value: "all" },
-              { name: "project", value: "project" },
-              { name: "hour", value: "hour" },
-              { name: "month", value: "month" },
+              { name: "project", value: "Trả theo dự dán" },
+              { name: "hour", value: "Trả theo giờ" },
+              { name: "month", value: "Trả theo tháng" },
             ]}
           />
           <FilterCity
-            onChangeValue={onChangeValue2}
             autoOpen={true}
             header={t("city")}
-            name="filterCity"
+            name="city"
             placeholder={t("creator", { ns: "import_manager" })}
           />
-          <FilterSkill
-            autoOpen={true}
-            header={t("skill")}
-            name="filterCity"
-            onChangeValue={onChangeValue3}
-          />
+          <FilterSkill autoOpen={true} header={t("skill")} name="skill" />
         </>
       )}
     </div>

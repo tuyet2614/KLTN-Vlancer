@@ -21,6 +21,11 @@ const UpdateProfileExperience = ({ id }: Props) => {
   const dataUser: any = getMyUser();
   const [searchService, setSearchService] = useState<any>("");
   const dataServices = getService(searchService);
+  const [files, setFiles] = useState<any>();
+
+  const uploadImage = async () => {
+    //posting logic will go here
+  };
   useEffect(() => form.resetFields(), [dataUser]);
 
   const handleAddNewPost = (value: any) => {
@@ -69,27 +74,29 @@ const UpdateProfileExperience = ({ id }: Props) => {
           <Input placeholder={t("title")} />
         </Form.Item>
         <Form.Item label={t("file")} name="file">
-          <Button />
-          <div className="text-[#bbb]">
-            <ol>
-              <li>1. {t("size-file")}</li>
-              <li>
-                <ul>
-                  2. {t("type-file")}
-                  <li>- {t("doc-type")}</li>
-                  <li>- {t("image-type")}</li>
-                </ul>
-              </li>
-              <li>
-                <ul>
-                  3. {t("image")}
-                  <li>- {t("min-size")}</li>
-                  <li>- {t("max-size")}</li>
-                </ul>
-              </li>
-            </ol>
-          </div>
+          <input type="file" onChange={(e) => setFiles(e.target.files)} />
+          <input type="submit" value="Submit" />
         </Form.Item>
+        <Button />
+        <div className="text-[#bbb]">
+          <ol>
+            <li>1. {t("size-file")}</li>
+            <li>
+              <ul>
+                2. {t("type-file")}
+                <li>- {t("doc-type")}</li>
+                <li>- {t("image-type")}</li>
+              </ul>
+            </li>
+            <li>
+              <ul>
+                3. {t("image")}
+                <li>- {t("min-size")}</li>
+                <li>- {t("max-size")}</li>
+              </ul>
+            </li>
+          </ol>
+        </div>
         <div>
           <Form.Item
             label={t("detail-des")}
