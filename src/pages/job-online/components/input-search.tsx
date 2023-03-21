@@ -2,9 +2,15 @@ import { SearchOutlined } from "@ant-design/icons";
 import { Button, Form, Input } from "antd";
 import { useTranslation } from "react-i18next";
 
-interface InputSearchProps {}
+interface InputSearchProps {
+  placeholderSearch?: string;
+  onSearchChange: (e: any) => void;
+}
 
-export const InputSearch: React.FC<InputSearchProps> = () => {
+export const InputSearch: React.FC<InputSearchProps> = ({
+  placeholderSearch,
+  onSearchChange,
+}) => {
   const { t } = useTranslation("jobs-online");
   return (
     <div className=" py-6 justify-center flex space-x-8  ">
@@ -14,6 +20,9 @@ export const InputSearch: React.FC<InputSearchProps> = () => {
           <Input
             className="!border-none focus:!ring-0 "
             placeholder={t("placeholderSearch")}
+            onChange={(e: any) => {
+              onSearchChange(e.target.value);
+            }}
           />
         </div>
       </Form.Item>

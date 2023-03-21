@@ -49,7 +49,7 @@ export const deriveMediaToFileList = (media: any): UploadFile => {
 };
 
 const PostJob = () => {
-  const { t } = useTranslation("postJob");
+  const { t } = useTranslation(["postJob", "service"]);
   const props: UploadProps = {
     name: "file",
     multiple: true,
@@ -156,7 +156,7 @@ const PostJob = () => {
               >
                 {dataCategory?.map((item: any) => (
                   <Select.Option value={item?.id} key={item?.id}>
-                    {t(item?.attributes?.name)}
+                    {t(item?.attributes?.name, { ns: "service" })}
                   </Select.Option>
                 ))}
               </Select>

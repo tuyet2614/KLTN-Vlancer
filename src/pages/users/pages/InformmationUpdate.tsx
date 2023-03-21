@@ -4,10 +4,13 @@ import { useTranslation } from "react-i18next";
 import { updateUser } from "../services/api";
 import { getMyUser } from "../../auth/service/api";
 import { api_url } from "../../../untils/string";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { DateFormat } from "../../../configs/common";
 import dayjs from "dayjs";
 import moment from "moment";
+import InputFile from "./inputFile";
+import axios from "axios";
+import authApi from "../../../constant/http-auth-common";
 
 interface Props {
   id?: string;
@@ -19,14 +22,51 @@ const InformationUpdate = ({ id }: Props) => {
   const dataUser: any = getMyUser();
   const avatar: string = api_url + dataUser?.avatar?.formats?.thumbnail.url;
   useEffect(() => form.resetFields(), [dataUser]);
+  const token =
+    localStorage?.getItem("auth-token") &&
+    localStorage?.getItem("auth-token")?.replace(/['"]+/g, "");
+
+  const [files, setFiles] = useState<any>();
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFiles(event.target.files);
+  };
 
   const handleAddNewPost = (value: any) => {
-    // const data = {
-    //   username: value.username,
-    //   email: value.email,
-    //   skype: value.skype,
-    // };
-    JSON.stringify(updateUser(id, value));
+    const formData = new FormData();
+
+    formData.append("files", files[0], files[0].name);
+
+    console.log("value: ", formData.get("files"));
+    console.log("value: ", files[0]);
+
+    axios({
+      method: "post",
+      url: "http://localhost:1337/api/upload",
+      data: formData,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => {
+        //after success
+        const imageId = response.data[0].id;
+
+        authApi
+          .put(`http://localhost:1337/users/${id}`, { avatar: imageId })
+          .then((response) => {
+            //handle success
+            console.log("respos: ", response);
+          })
+          .catch((error) => {
+            //handle error
+            console.log("errr: ", error);
+          });
+      })
+      .catch((error) => {
+        console.log("check errr: ", error);
+      });
+    // JSON.stringify(updateUser(id, value));
   };
 
   return (
@@ -42,6 +82,9 @@ const InformationUpdate = ({ id }: Props) => {
             preview={false}
             className="avatar"
           />
+        </Form.Item>
+        <Form.Item name="files">
+          <input type="file" onChange={handleFileChange} />
         </Form.Item>
         <Form.Item
           label={t("full-name")}

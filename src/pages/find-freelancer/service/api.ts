@@ -7,7 +7,7 @@ import getApi from "../../../constant/http-common";
 export const getListFreelancer = (pagination?: any, params?: any) => {
     const [data, setData] = useState([])
     useEffect (() => {
-        axios.get(`/users?populate=*&start=${pagination.page}&limit=${pagination.pageSize}`, {params: params}).then(
+        axios.get(`/users?filters[$and][0][role][name][$eq]=Freelancer&populate=*&start=${pagination.page}&limit=${pagination.pageSize}`, {params: params}).then(
             (response) => {
                 
                 setData(response.data)

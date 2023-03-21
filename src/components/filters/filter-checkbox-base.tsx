@@ -18,7 +18,7 @@ const FilterCheckBoxBase: React.FC<FilterCheckBoxBaseProps> = ({
   return (
     <Collapse defaultActiveKey="1" expandIconPosition="end">
       <Collapse.Panel header={t(header)} key="1">
-        <Form.Item name={name}>
+        <Form.Item name={name} initialValue="all">
           <Radio.Group>
             <Space direction="vertical">
               {configsCheckboxs?.map((item, i) => (

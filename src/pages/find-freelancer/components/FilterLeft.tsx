@@ -18,8 +18,9 @@ const FilterLeft = ({ onValuesChange }: FilterLeftProps) => {
   return (
     <div className="filter-container">
       <FilterCategories
-        onFilterCategoriesGroup={onFilterCategoriesGroup}
+        // onFilterCategoriesGroup={onFilterCategoriesGroup}
         name="category"
+        header={t("categories")}
       />
       <FilterService
         autoOpen={true}

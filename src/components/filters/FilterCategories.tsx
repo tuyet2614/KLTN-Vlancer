@@ -1,128 +1,95 @@
-import { Col, Collapse, Form, Row, Tree } from "antd";
+import {
+  Checkbox,
+  Col,
+  Collapse,
+  Form,
+  Input,
+  Row,
+  Space,
+  Tooltip,
+  Tree,
+} from "antd";
 import { DataNode, TreeProps } from "antd/lib/tree";
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { capitalizeFirstLetter } from "../../untils/string";
+import {
+  capitalizeFirstLetter,
+  toNonAccentVietnamese,
+} from "../../untils/string";
 import getApi from "../../constant/http-common";
 import axios from "axios";
 import { getCategories } from "./api";
 import "./filter.scss";
+import { RiSearchLine } from "react-icons/ri";
 
 interface FilterCategoriesProps {
-  onFilterCategoriesGroup: (values: any) => void;
+  onFilterCategoriesGroup?: (values: any) => void;
   name?: string;
+  header: string;
+
+  placeholder?: string;
+  autoOpen?: boolean;
 }
 
-const FilterCategories: React.FC<FilterCategoriesProps> = ({
-  onFilterCategoriesGroup,
-  name,
-}) => {
-  const { t } = useTranslation("filter");
-  const [expandedKeys, setExpandedKeys] = useState<React.Key[]>([]);
-  const [autoExpandParent, setAutoExpandParent] = useState(true);
-  const [searchValue, setSearchValue] = useState("");
-  const [treeData, setTreeData] = useState<any>([]);
-  const [defaultData, setDefaultData] = useState<any>([]);
-  const [treeDataSelect, setTreeDataSelect] = useState<any>([]);
-  const [searchCate, setSearchCate] = useState("");
+const FilterCategories = memo(
+  ({
+    onFilterCategoriesGroup,
+    name,
+    header,
+    placeholder,
+    autoOpen,
+  }: FilterCategoriesProps) => {
+    const { t } = useTranslation(["filter", "service"]);
 
-  const data = getCategories(searchCate);
+    const [searchCate, setSearchCate] = useState("");
 
-  const loop = (dataNode: DataNode[]): DataNode[] =>
-    dataNode.map((item: any) => {
-      const index = item.attributes?.name.indexOf(searchValue);
-      const title =
-        index > -1 ? (
-          <Row
-            wrap={false}
-            align="middle"
-            justify="space-between"
-            className="group truncate"
-          >
-            <Col className="truncate" title={item.title}>
-              {capitalizeFirstLetter(item.title)}
-            </Col>
-          </Row>
-        ) : (
-          <Row
-            wrap={false}
-            align="middle"
-            justify="space-between"
-            className="group truncate"
-          >
-            <Col className="truncate" title={item.title}>
-              {capitalizeFirstLetter(item.title)}
-            </Col>
-          </Row>
-        );
+    const data = getCategories(searchCate);
+    const changeSearch = (value: string) => {
+      setSearchCate(value.trim());
+    };
 
-      if (item.children) {
-        return { title, key: item.key, children: loop(item.children) };
-      }
-
-      return {
-        title,
-        key: item.key,
-      };
-    });
-
-  const onSelect: TreeProps["onSelect"] = (selectedKeys) => {
-    onFilterCategoriesGroup(selectedKeys);
-  };
-
-  const mapTreeData = (trees: any, parentId?: string) => {
-    return trees?.map((item: any) => ({
-      key: item.id,
-      title: item.attributes.name,
-      parentId,
-      children: item.categoryChilds
-        ? mapTreeData(item.categoryChilds, item.id)
-        : [],
-    }));
-  };
-
-  const mapTreeDataSelect = (trees: any) => {
-    return trees?.map((item: any) => ({
-      value: item.id,
-      title: item.name,
-      children: item.categoryChilds
-        ? mapTreeDataSelect(item.categoryChilds)
-        : [],
-    }));
-  };
-
-  const onExpand = (newExpandedKeys: string[] | any) => {
-    setExpandedKeys(newExpandedKeys);
-    setAutoExpandParent(false);
-  };
-
-  useEffect(() => {
-    const items = data;
-    if (items) {
-      setDefaultData(mapTreeData(items));
-      setTreeData(mapTreeData(items));
-      setTreeDataSelect(mapTreeDataSelect(items));
-    }
-  }, [data]);
-
-  return (
-    <>
-      <Collapse defaultActiveKey="1" expandIconPosition="end">
-        <Collapse.Panel header={t("categories")} key="1">
-          <Form.Item name={name} className="filter-commodity-group">
-            <Tree
-              onExpand={onExpand}
-              expandedKeys={expandedKeys}
-              autoExpandParent={autoExpandParent}
-              treeData={loop(treeData)}
-              onSelect={onSelect}
-              height={200}
-            />
+    return (
+      <Collapse
+        expandIconPosition="end"
+        defaultActiveKey={autoOpen ? "1" : "2"}
+        className="filter-by-creator"
+      >
+        <Collapse.Panel header={header} key="1">
+          <Input
+            placeholder={t("search")}
+            prefix={<RiSearchLine />}
+            className="mb-3"
+            onChange={(e) => changeSearch(e.target.value)}
+          />
+          <Form.Item name={name}>
+            <Checkbox.Group>
+              <Space direction="vertical">
+                {data
+                  .filter((x: any) =>
+                    toNonAccentVietnamese(
+                      x?.attributes?.name
+                        ? x.attributes?.name.toLocaleLowerCase()
+                        : ""
+                    ).includes(
+                      toNonAccentVietnamese(searchCate.toLocaleLowerCase())
+                    )
+                  )
+                  .map((value: any) => (
+                    <Checkbox key={value?.id} value={value?.id}>
+                      <Tooltip placement="right" title={value.attributes?.name}>
+                        <span className="line-clamp line-clamp-1">
+                          {t(value.attributes?.name, { ns: "service" })}
+                        </span>
+                      </Tooltip>
+                    </Checkbox>
+                  ))}
+              </Space>
+            </Checkbox.Group>
           </Form.Item>
         </Collapse.Panel>
       </Collapse>
-    </>
-  );
-};
+    );
+  }
+);
 
 export default FilterCategories;

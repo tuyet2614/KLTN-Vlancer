@@ -1,6 +1,7 @@
 import { Form, Pagination, PaginationProps } from "antd";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { debounce } from "lodash";
+import { useCallback, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { ButtonTopSearch, InputSearch } from "../components";
 import { FilterLeftWidgets, ListJobs } from "../widgets";
@@ -14,17 +15,21 @@ const ListJobsOnlinePage: React.FC<ListJobsOnlinePageProps> = () => {
     page: 1,
     pageSize: 10,
   });
+  const [form] = Form.useForm();
+  const [filters, setFilters] = useState({});
 
   const location = useLocation();
   // const { page } = location?.state;
+  console.log("filter: ", filters);
 
   useEffect(() => {
     axios
       .get(
-        `/posts?populate=*&pagination%5Bpage%5D=${pagination.page}&pagination%5BpageSize%5D=${pagination.pageSize}`
+        `/posts?populate=*&pagination%5Bpage%5D=${pagination.page}&pagination%5BpageSize%5D=${pagination.pageSize}`,
+        { params: filters }
       )
       .then((res) => setDataListJobs(res.data));
-  }, [pagination]);
+  }, [pagination, filters]);
 
   // useEffect(() => {
   //   setButtonTop(page);
@@ -41,8 +46,66 @@ const ListJobsOnlinePage: React.FC<ListJobsOnlinePageProps> = () => {
     }));
   };
 
+  const onValueChange = (value: any) => {
+    let verified = undefined;
+    let payType = undefined;
+    console.log("vla:", value);
+    if (value.status === "all") {
+      verified = undefined;
+    } else {
+      verified = value.status;
+    }
+
+    if (value.payment === "all") {
+      payType = undefined;
+    } else {
+      payType = value.payment;
+    }
+
+    const query = {
+      filters: {
+        service: {
+          id: { $in: value.service },
+        },
+        category: {
+          id: { $in: value.category },
+        },
+        addresses: {
+          id: { $in: value.city },
+        },
+        skills: {
+          id: { $in: value.skill },
+        },
+        status: {
+          $eq: verified,
+        },
+        payType: {
+          $eq: payType,
+        },
+      },
+    };
+    setFilters({ ...filters, ...query });
+  };
+
+  const onSearchChange = useCallback(
+    debounce((value) => {
+      setFilters((f: any) => {
+        return {
+          ...f,
+          filters: {
+            ...f.filter,
+            title: {
+              $contains: value,
+            },
+          },
+        };
+      });
+    }, 300),
+    []
+  );
+
   return (
-    <Form>
+    <Form form={form} onValuesChange={onValueChange}>
       <div className="p-8 overflow-x-scroll flex space-x-8">
         <FilterLeftWidgets buttonTop={buttonTop} />
         <div className="flex-1 flex flex-col border bg-white rounded-lg shadow-lg">
@@ -51,7 +114,7 @@ const ListJobsOnlinePage: React.FC<ListJobsOnlinePageProps> = () => {
             buttonTop={buttonTop}
             configsButtonTop={["all-jobs", "partime", "fulltime", "contest"]}
           />
-          <InputSearch />
+          <InputSearch onSearchChange={onSearchChange} />
           <ListJobs dataListJobs={dataListJobs} />
           <div className="flex justify-center mb-6">
             <Pagination
