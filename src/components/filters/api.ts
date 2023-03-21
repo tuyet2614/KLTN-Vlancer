@@ -5,7 +5,7 @@ export const getCategories = (text?: any) => {
     useEffect( 
         () => {      
         getApi
-        .get(`/categories?filters[name][$contains]=${text}`)
+        .get(`/categories?filters[name][$contains]=${text}&pagination[pageSize]=100`)
         .then((response) => {
         setData(response.data.data)
         })

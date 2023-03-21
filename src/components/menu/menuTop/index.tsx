@@ -34,31 +34,17 @@ export default function DesktopMenu() {
           key: "post",
           children: [
             {
-              label: t("post-price"),
-              key: "post-price",
-              children: [
-                {
-                  label: t("post-project"),
-                  key: "post-project",
-                  onClick: () => navigate(systemRoutes.POSTJOB_ROUTE),
-                },
-                {
-                  label: t("post-part-time"),
-                  key: "post-part-time",
-                  onClick: () => navigate(systemRoutes.POSTJOB_ROUTE),
-                },
-                {
-                  label: t("post-full-time"),
-                  key: "post-full-time",
-                  onClick: () => navigate(systemRoutes.POSTJOB_ROUTE),
-                },
-                {
-                  label: t("create-design-exam"),
-                  key: "create-design-exam",
-                  onClick: () => navigate(systemRoutes.CONTEST_ROUTE),
-                },
-              ],
+              label: t("post-project"),
+              key: "post-project",
+              onClick: () => navigate(systemRoutes.POSTJOB_ROUTE),
             },
+
+            {
+              label: t("create-design-exam"),
+              key: "create-design-exam",
+              onClick: () => navigate(systemRoutes.CONTEST_ROUTE),
+            },
+
             {
               label: t("find-freelancer"),
               key: "find-freelancer",
@@ -73,6 +59,7 @@ export default function DesktopMenu() {
         {
           label: t("find-service"),
           key: "find-service",
+          onClick: () => navigate(systemRoutes.SEARCH_SERVICE_ROUTE),
         },
         {
           label: t("business"),
