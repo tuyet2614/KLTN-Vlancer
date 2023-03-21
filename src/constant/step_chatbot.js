@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export const stepChatbot = [
   {
     id: "Greet",
@@ -42,7 +44,17 @@ export const stepChatbot = [
   {
     id: "Asking for make money",
     message: "Bạn có thể xem hướng dẫn làm việc trên vLance.vn tại đây:",
-    trigger: "Asking for another question",
+    
+    trigger: "link",
+  },
+  {
+    id: 'link',
+    component: (
+      <Link to="/post-a-job" target="_blank">
+        not
+      </Link>
+    ),
+    trigger: 'Asking for another question',
   },
   {
     id: "Asking for another question",

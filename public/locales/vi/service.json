@@ -91,5 +91,24 @@
     "add_service": "Bổ sung dịch vụ phụ",
     "add_service_btn": "Thêm dịch vụ phụ",
     "draft": "Lưu nháp",
-    "accept": "Khi đăng dịch vụ, tôi xác nhận đồng ý các điều khoản sử dụng của vLance.vn, và không để lộ bất kỳ thông tin liên lạc cá nhân nào trong phần mô tả nội dung công việc."
+    "accept": "Khi đăng dịch vụ, tôi xác nhận đồng ý các điều khoản sử dụng của vLance.vn, và không để lộ bất kỳ thông tin liên lạc cá nhân nào trong phần mô tả nội dung công việc.",
+    "counter-service": "Có hơn {{count}} gói dịch vụ {{name}} được cung cấp bởi các chuyên gia",
+    "get-benefit": "Bạn sẽ nhận được",
+    "info-service": "Thông tin gói dịch vụ",
+    "work-process": "Quy trình làm việc",
+    "who-hired": "Ai nên thuê dịch vụ này?",
+    "count-review": "đánh giá",
+    "no-review": "Dịch vụ chưa có đánh giá nào",
+    "author": "Người cung cấp dịch vụ",
+    "money": "Đã kiếm được",
+    "done": "Đã thực hiện xong",
+    "count-order": "{{count}} đơn hàng",
+    "complete-rate": "Tỉ lệ hoàn thành",
+    "info-compact": "Thu gọn thông tin",
+    "prize-service": "Giá dịch vụ",
+    "min-quanty": "Số lượng tối thiểu",
+    "deadline": "Hạn giao sản phẩm",
+    "attach": "Dịch vụ kèm thêm",
+    "contact": "Liên hệ & Đặt hàng dịch vụ"
+
 }

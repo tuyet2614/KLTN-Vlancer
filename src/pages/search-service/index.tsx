@@ -19,7 +19,12 @@ const SearchService = () => {
           <p className="item-title m-0">{t("it")}</p>
         </div>
         <div className="pl-10">
-          <p className="item-service">{t("web")}</p>
+          <p
+            className="item-service"
+            onClick={() => navigate(systemRoutes.LIST_SERVICE_ROUTE("web"))}
+          >
+            {t("web")}
+          </p>
           <p className="item-service">{t("another_program")}</p>
           <p className="item-service">{t("software")}</p>
           <p className="item-service">{t("seo")}</p>

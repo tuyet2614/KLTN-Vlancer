@@ -90,5 +90,22 @@
      "add_service": "Add sub-service",
      "add_service_btn": "Add sub-service",
      "draft": "Save Draft",
-     "accept": "When posting the service, I confirm to agree to the terms of use of vLance.vn, and do not disclose any personal contact information in the job description."
+     "accept": "When posting the service, I confirm to agree to the terms of use of vLance.vn, and do not disclose any personal contact information in the job description.",
+     "get-benefit": "You will get",
+     "info-service": "Service Pack Information",
+     "work-process": "Workflow",
+     "who-hired": "Who should hire this service?",
+     "count-review": "review",
+     "no-review": "Service has no reviews yet",
+     "author": "Service Provider",
+     "money": "Earn",
+     "done": "Completed",
+     "count-order": "{{count}} đơn hàng",
+     "complete-rate": "Complete rate",
+     "info-compact": "Collapse information",
+     "prize-service": "Service price",
+     "min-quanty": "Min-quantity",
+     "deadline": "Product delivery deadline",
+     "attach": "Add-on service",
+     "contact": "Contact & Order Service"
 }
