@@ -1,4 +1,13 @@
-import { Button, DatePicker, Form, Image, Input, Select, Upload } from "antd";
+import {
+  Button,
+  DatePicker,
+  Form,
+  Image,
+  Input,
+  Select,
+  Table,
+  Upload,
+} from "antd";
 import avatarDefault from "@assets/images/icon/avatar.jpg";
 import { useTranslation } from "react-i18next";
 import { createProfile, updateUser } from "../services/api";
@@ -10,6 +19,8 @@ import dayjs from "dayjs";
 import moment from "moment";
 import TextArea from "antd/lib/input/TextArea";
 import { getService } from "../../../components/filters/api";
+import axios from "axios";
+import { DeleteFilled, EditFilled } from "@ant-design/icons";
 
 interface Props {
   id?: string;
@@ -23,17 +34,90 @@ const UpdateProfileExperience = ({ id }: Props) => {
   const dataServices = getService(searchService);
   const [files, setFiles] = useState<any>();
 
-  const uploadImage = async () => {
-    //posting logic will go here
-  };
+  const token =
+    localStorage.getItem("auth-token") &&
+    localStorage.getItem("auth-token")!.replace(/['"]+/g, "");
+  //REQUEST
   useEffect(() => form.resetFields(), [dataUser]);
 
   const handleAddNewPost = (value: any) => {
-    const data = {
-      ...value,
-    };
-    JSON.stringify(createProfile(id, data));
+    const formData = new FormData();
+
+    formData.append("files", files[0], files[0].name);
+
+    axios({
+      method: "post",
+      url: "http://localhost:1337/api/upload",
+      data: formData,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => {
+        const imageId = response.data[0].id;
+
+        const inputValue = {
+          ...value,
+          files: imageId,
+        };
+        JSON.stringify(createProfile(id, inputValue));
+      })
+      .catch((error) => {
+        console.log("check errr: ", error);
+      });
   };
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFiles(event.target.files);
+  };
+
+  const columns = [
+    {
+      title: t("stt"),
+      dataIndex: "stt",
+      width: 60,
+      render: (_: any, __: any, index: number) => {
+        return <div className="flex justify-center">{index + 1}</div>;
+      },
+    },
+    {
+      title: t("profile"),
+      dataIndex: "profile",
+      width: 350,
+      render: (_: any, item: any) => {
+        const avatar: string = api_url + item?.files?.formats?.thumbnail.url;
+
+        return (
+          <div>
+            <Image src={item?.files ? avatar : avatarDefault} preview={false} />
+            <div className="actions">
+              <div className="btn">
+                <EditFilled />
+              </div>
+              <div className="btn">
+                <DeleteFilled />
+              </div>
+            </div>
+          </div>
+        );
+      },
+    },
+    {
+      title: t("profile-info"),
+      dataIndex: "profile-info",
+      render: (_: any, record: any) => {
+        return (
+          <div>
+            <p className="title">{record?.title}</p>
+            <p>{record?.description}</p>
+            {record?.services?.map((item: any) => (
+              <p className="text-[#08c]">{item.name}</p>
+            ))}
+          </div>
+        );
+      },
+    },
+  ];
 
   return (
     <Form form={form} onFinish={handleAddNewPost} className="update-form">
@@ -42,7 +126,7 @@ const UpdateProfileExperience = ({ id }: Props) => {
           <span className="number">1</span>
           <p className="title">{t("cv-capacity")}</p>
         </div>
-        {!dataUser?.profile ? (
+        {dataUser?.profile.length === 0 ? (
           <div>
             <p>{t("describe")}</p>
             <span>
@@ -51,7 +135,13 @@ const UpdateProfileExperience = ({ id }: Props) => {
             <span>{t("has-cv")}</span>
           </div>
         ) : (
-          <div></div>
+          <div>
+            <Table
+              columns={columns}
+              dataSource={dataUser?.profile}
+              pagination={false}
+            />
+          </div>
         )}
       </div>
 
@@ -73,12 +163,21 @@ const UpdateProfileExperience = ({ id }: Props) => {
         >
           <Input placeholder={t("title")} />
         </Form.Item>
-        <Form.Item label={t("file")} name="file">
-          <input type="file" onChange={(e) => setFiles(e.target.files)} />
-          <input type="submit" value="Submit" />
+
+        <Form.Item
+          name="files"
+          label={t("file")}
+          rules={[
+            {
+              required: true,
+              message: t("error_messes.require"),
+            },
+          ]}
+          className="!m-0"
+        >
+          <input type="file" onChange={handleFileChange} />
         </Form.Item>
-        <Button />
-        <div className="text-[#bbb]">
+        <div className="subtitle text-[#bbb]">
           <ol>
             <li>1. {t("size-file")}</li>
             <li>
@@ -113,7 +212,7 @@ const UpdateProfileExperience = ({ id }: Props) => {
         </div>
 
         <div>
-          <Form.Item label={t("service")} name="service">
+          <Form.Item label={t("service")} name="services">
             <Select
               mode="multiple"
               tabIndex={3}
@@ -122,7 +221,7 @@ const UpdateProfileExperience = ({ id }: Props) => {
               filterOption={false}
             >
               {dataServices?.map((item: any) => (
-                <Select.Option value={item?.attributes?.name} key={item?.id}>
+                <Select.Option value={item?.attributes?.id} key={item?.id}>
                   {t(item?.attributes?.name)}
                 </Select.Option>
               ))}

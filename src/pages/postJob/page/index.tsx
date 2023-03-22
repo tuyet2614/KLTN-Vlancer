@@ -127,6 +127,18 @@ const PostJob = () => {
     return newValue;
   };
 
+  const handleChangeAddress = (text: any) => {
+    listAddress.filter((item: any) => {
+      if (text === "") setNewValue(dataCategory);
+      else if (
+        item.attributes.city.toLowerCase().includes(text.toLowerCase())
+      ) {
+        setNewValue({ ...newValue, ...item });
+      }
+    });
+    return newValue;
+  };
+
   return (
     <div className="w-full flex justify-center bg-[#fafafa]">
       <Form className="post-job" layout="vertical" onFinish={handleAddNewPost}>
@@ -281,7 +293,7 @@ const PostJob = () => {
                 placeholder={t("placeholder.location")}
                 showSearch
                 onSearch={(e: any) => {
-                  handleChangeFilter(e);
+                  setSearchAdd(e.toLowerCase());
                 }}
                 filterOption={false}
                 onChange={(item) => setServiceChoosen(item)}
