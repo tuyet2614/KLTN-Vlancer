@@ -90,14 +90,6 @@ const PostJob = () => {
   ];
 
   const handleAddNewPost = (value: any) => {
-    // const data = {
-    //   deadline: value.deadline,
-    //   place: value.location,
-    //   budgetMin: value.budgetMin,
-    //   budgetMax: value.budgetMax,
-    //   workType: value.workType,
-    //   payType: value.payType,
-    // };
     const filter = {
       ...value,
 
@@ -106,13 +98,7 @@ const PostJob = () => {
       place: value.location,
     };
 
-    JSON.stringify(
-      // authApi
-      //   .post("/projects", { data })
-      //   .then((res) => {
-
-      addNewPost(filter, routeListJob)
-    );
+    JSON.stringify(addNewPost(filter, routeListJob));
   };
 
   const handleChangeFilter = (text: any) => {
@@ -120,18 +106,6 @@ const PostJob = () => {
       if (text === "") setNewValue(dataCategory);
       else if (
         item.attributes.name.toLowerCase().includes(text.toLowerCase())
-      ) {
-        setNewValue({ ...newValue, ...item });
-      }
-    });
-    return newValue;
-  };
-
-  const handleChangeAddress = (text: any) => {
-    listAddress.filter((item: any) => {
-      if (text === "") setNewValue(dataCategory);
-      else if (
-        item.attributes.city.toLowerCase().includes(text.toLowerCase())
       ) {
         setNewValue({ ...newValue, ...item });
       }
