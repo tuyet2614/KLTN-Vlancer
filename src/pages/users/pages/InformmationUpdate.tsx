@@ -1,4 +1,4 @@
-import { Button, DatePicker, Form, Image, Input } from "antd";
+import { Button, DatePicker, Form, Image, Input, Select } from "antd";
 import avatarDefault from "@assets/images/icon/avatar.jpg";
 import { useTranslation } from "react-i18next";
 import { updateUser } from "../services/api";
@@ -11,6 +11,7 @@ import moment from "moment";
 import InputFile from "./inputFile";
 import axios from "axios";
 import authApi from "../../../constant/http-auth-common";
+import { getCities } from "../../../components/filters/api";
 
 interface Props {
   id?: string;
@@ -21,12 +22,14 @@ const InformationUpdate = ({ id }: Props) => {
   const [form] = Form.useForm();
   const dataUser: any = getMyUser();
   const avatar: string = api_url + dataUser?.avatar?.formats?.thumbnail.url;
+  const [searchAdd, setSearchAdd] = useState<any>("");
   useEffect(() => form.resetFields(), [dataUser]);
   const token =
     localStorage?.getItem("auth-token") &&
     localStorage?.getItem("auth-token")?.replace(/['"]+/g, "");
 
   const [files, setFiles] = useState<any>();
+  const listAddress = getCities(searchAdd);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFiles(event.target.files);
@@ -37,9 +40,6 @@ const InformationUpdate = ({ id }: Props) => {
 
     formData.append("files", files[0], files[0].name);
 
-    console.log("value: ", formData.get("files"));
-    console.log("value: ", files[0]);
-
     axios({
       method: "post",
       url: "http://localhost:1337/api/upload",
@@ -49,28 +49,34 @@ const InformationUpdate = ({ id }: Props) => {
       },
     })
       .then((response) => {
-        //after success
         const imageId = response.data[0].id;
-
-        authApi
-          .put(`http://localhost:1337/users/${id}`, { avatar: imageId })
-          .then((response) => {
-            //handle success
-            console.log("respos: ", response);
-          })
-          .catch((error) => {
-            //handle error
-            console.log("errr: ", error);
-          });
+        const inputValue = {
+          ...value,
+          avatar: imageId,
+          addresses: {
+            description: value.address,
+          },
+        };
+        JSON.stringify(updateUser(id, inputValue));
       })
       .catch((error) => {
         console.log("check errr: ", error);
       });
-    // JSON.stringify(updateUser(id, value));
+  };
+
+  const handleUploadNoFile = (value: any) => {
+    const inputValue = {
+      ...value,
+    };
+    JSON.stringify(updateUser(id, inputValue));
   };
 
   return (
-    <Form form={form} onFinish={handleAddNewPost} className="update-form">
+    <Form
+      form={form}
+      onFinish={files ? handleAddNewPost : handleUploadNoFile}
+      className="update-form"
+    >
       <div className="flex items-center gap-3 mb-5">
         <span className="number">1</span>
         <p className="title">{t("information")}</p>
@@ -83,7 +89,7 @@ const InformationUpdate = ({ id }: Props) => {
             className="avatar"
           />
         </Form.Item>
-        <Form.Item name="files">
+        <Form.Item name="files" className="upload-file">
           <input type="file" onChange={handleFileChange} />
         </Form.Item>
         <Form.Item
@@ -165,7 +171,7 @@ const InformationUpdate = ({ id }: Props) => {
         <Form.Item
           label={t("city ")}
           name="city"
-          initialValue={dataUser?.addresses?.city}
+          initialValue={dataUser?.city}
           rules={[
             {
               required: true,
@@ -173,17 +179,30 @@ const InformationUpdate = ({ id }: Props) => {
             },
           ]}
         >
-          <Input />
+          <Select
+            tabIndex={3}
+            placeholder={t("placeholder.location")}
+            showSearch
+            onSearch={(e: any) => {
+              setSearchAdd(e.toLowerCase());
+            }}
+            filterOption={false}
+          >
+            {listAddress?.map((item: any) => (
+              <Select.Option
+                value={item?.attributes?.city}
+                key={item?.attributes?.city}
+              >
+                {t(item.attributes?.city)}
+              </Select.Option>
+            ))}
+          </Select>
+          {/* <Input /> */}
         </Form.Item>
         <Form.Item
           label={t("address")}
-          name="address"
-          rules={[
-            {
-              required: true,
-              message: t("error_messes.require"),
-            },
-          ]}
+          name="location"
+          initialValue={dataUser?.location}
         >
           <Input />
         </Form.Item>

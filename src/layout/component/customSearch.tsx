@@ -1,5 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import ChatBot from "react-simple-chatbot";
+import { useUserStore } from "../../store/user";
+import { api_url } from "../../untils/string";
 
 const CustomStep = (props: any) => {
   const [textSearch, setTextSearch] = useState("");
@@ -65,6 +68,32 @@ const steps = [
   },
 ];
 
-const Chatbot = () => <ChatBot steps={steps} />;
+const Chatbot = () => {
+  const { t } = useTranslation("chatbot");
+  const { user, setUser } = useUserStore();
+  const [avatar, setAvatar] = useState(
+    api_url + user?.avatar?.formats?.thumbnail.url
+  );
+  const config = {
+    width: "400px",
+    height: "600px",
+    floating: true,
+  };
+  // const avatar: string = api_url + user?.avatar?.formats?.thumbnail.url;
+  console.log("avatar: ", avatar);
+  useEffect(() => {
+    setAvatar(api_url + user?.avatar?.formats?.thumbnail.url);
+  }, [user]);
+
+  return (
+    <ChatBot
+      steps={steps}
+      headerTitle={t("help")}
+      recognitionEnable={true}
+      userAvatar={avatar}
+      {...config}
+    />
+  );
+};
 
 export default Chatbot;
