@@ -191,3 +191,436 @@
         }
     }
 }
+
+.detail-service {
+    
+    padding-left: 20px;
+    .title {
+        font-style: normal;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 32px;
+        letter-spacing: -.02em;
+        color: #000;
+    }
+    
+    .section-service-content {
+        
+        width: calc(100%/12*7);
+        margin-right: calc(100%/12 + 25px);
+        .information-detail-service {
+            .information {
+                display: flex;
+                margin-bottom: 30px;
+                .information-view {
+                    display: flex;
+                    align-items: center;
+                    p {
+                        margin: 0;
+                        margin-left: 5px;
+                        margin-right: 21.06px;
+                    }
+                }
+                .information-rating {
+                    display: flex;
+                    align-items: center;
+                    p {
+                        margin: 0;
+                        margin-left: 5px;
+                        margin-right: 21.06px;
+                    }
+                }
+                .information-author {
+                    display: flex;
+                    align-items: center;
+                    .author-avatar {
+                        cursor: pointer;
+                        .avatar-img {
+                            border-radius: 50%;
+                            width: 20px;
+                            height: 20px;
+                        }
+                    
+                    }
+                    .profile {
+                        p {
+                            color: #000;
+                            margin: 0;
+                            margin-left: 5px;
+                        }
+                    }
+                }
+            }
+            .slide-img-section {
+                width: 679px;
+                    .slider {
+
+                        .selected  {
+                            img {
+    
+                                height: 330px;
+                                max-height: 350px;
+                            }
+                        }
+                        .previous {
+                            img {
+    
+                                height: 330px;
+                                max-height: 350px;
+                            }
+                        }
+                    }
+
+                .carousel {
+                    display: flex;
+                    .thumbs-wrapper {
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+                    }
+                }
+            }
+
+            .block-you-receive {
+                padding: 33px 0 30px;
+                border-bottom: 1px solid #ccc;
+                .heading {
+                    margin-bottom: 19px;
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 23px;
+                    line-height: 28px;
+                    letter-spacing: -.02em;
+                }
+                .wrapper-list-title .title-item {
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: 9px;
+                    p {
+                        margin: 0;
+                        margin-left: 10.5px;
+                        letter-spacing: 0;
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 16px;
+                        line-height: 20px;
+                    }
+                }
+            }
+            .service-pack-information {
+                padding: 30px 0;
+                .heading-one {
+                    margin-bottom: 22px;
+                    font-style: normal;
+                    font-weight: 800;
+                    font-size: 20px;
+                    line-height: 28px;
+                    letter-spacing: -.02em;
+                }
+                .service-description {
+                    position: relative;
+                    padding-bottom: 25px;
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 16px;
+                    line-height: 20px;
+                    color: #000;
+                    letter-spacing: 0;
+                    ul {
+                        list-style: '- ' inside;
+                    }
+                }
+                .heading-two {
+                    margin-top: 0;
+                    margin-bottom: 19px;
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 18px;
+                    line-height: 24px;
+                    letter-spacing: -.02em;
+                }
+                .process-list {
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: 19px;
+                    .num {
+                        width: 23px;
+                        height: 23px;
+                        border: 1px solid #2db964;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        color: #2db964;
+                        margin-right: 8px;
+                        border-radius: 50%;
+                        margin-bottom: 0;
+                    }
+                    .process-item {
+                        width: 100%;
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 16px;
+                        line-height: 20px;
+                        color: #000;
+                        letter-spacing: 0;
+                        margin-bottom: 0;
+                    }
+                }
+                .block-rating {
+                    padding-bottom: 40px;
+                    padding-top: 40px;
+                    border-top: 1px solid #ccc;
+                    .count-feedback {
+
+                        display: flex;
+                        margin-right: 20px;
+                        font-style: normal;
+                        font-weight: 700;
+                        font-size: 20px;
+                        line-height: 28px;
+                        letter-spacing: -.02em;
+                        color: #000;
+                        gap: 5px;
+                        p {
+                            margin-bottom: 10px;
+                        }
+                    }
+                    .count-start-fb {
+                        color: #999999;
+                    }
+                }
+            }
+        }
+
+        .information-detail-author {
+            padding-top: 20px;
+            padding-bottom: 34.94px;
+            border-top: 1px solid #ccc;
+            .contact-heading {
+                margin-bottom: 20px;
+                font-style: normal;
+                font-weight: 700;
+                font-size: 20px;
+                line-height: 28px;
+                letter-spacing: -.02em;
+                color: #000;
+            }
+            .profile-and-btn {
+                padding: 29px 19px;
+                border: 1px solid #e5e5e5;
+                border-radius: 9px;
+                .information-account {
+                    display: flex;
+                    justify-content: space-between;
+                    padding-bottom: 20px;
+                    border-bottom: 1px solid #e5e5e5;
+                    .warpper-avr-profile {
+                        display: flex;
+                        align-items: center;
+                        .avatar {
+                            margin-right: 10px;
+                            img {
+                                border-radius: 50%;
+                                width: 56px;
+                                height: 56px;
+                            }
+                        }
+                        .profile {
+                            display: flex;
+                            p {
+                                letter-spacing: 0;
+                                margin-right: 8px;
+                                font-style: normal;
+                                font-weight: 400;
+                                font-size: 16px;
+                                line-height: 20px;
+                                color: #000;
+                                margin-bottom: 0;
+                            }
+                        }
+                    }
+                    .btn-contact {
+                        .ant-btn {
+                            margin-top: -1px;
+                            letter-spacing: 0;
+                            color: #fff;
+                            background: #2db964;
+                            border: 1px solid #2db964;
+                            border-radius: 35px;
+                        }
+                    }
+                }
+            }
+            .information-rating {
+                .ant-row {
+                    width: 60%;
+                    padding-top: 20px;
+                    justify-content: space-between;
+                    .ant-col {
+                        
+                        p {
+                            margin: 0;
+                        }
+                        
+                        .col-item {
+                            display: flex;
+                            align-items: center;
+                            gap: 20px;
+                            
+                            
+                        }
+
+                        .item {
+                            margin-bottom: 20px;
+                        }
+                        .important-value {
+                            letter-spacing: 0;
+                            font-style: normal;
+                            font-weight: 700;
+                            font-size: 16px;
+                            line-height: 20px;
+                            color: #000;
+                        }
+                        
+                    }
+
+                    .left-col {
+                        margin-right: 80px;
+                    }
+                    
+                }
+
+            }
+            .information-self-introduce {
+                padding-bottom: 25px;
+                padding-top: 20px;
+                position: relative;
+                .hidden-read-more {
+                    overflow: hidden;
+                }
+                .title {
+                    margin-bottom: 0;
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 16px;
+                    line-height: 20px;
+                    color: #000;
+                }
+                .linear-gradient {
+                    background: linear-gradient(180deg,rgba(255,255,255,0.5) 0%,#FFFFFF 73.84%);
+                }
+                .linear {
+                    display: flex;
+                    justify-content: center;
+                    align-items: flex-end;
+                    position: absolute;
+                    width: 100%;
+                    height: 50%;
+                    
+                    border: 0;
+                    bottom: 0;
+                    opacity: .9;
+                    
+                    p {
+                        text-align: center;
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 14px;
+                        line-height: 20px;
+                        color: #2db964;
+                        width: max-content;
+                        margin: 0;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+
+    .block-order-detail {
+        
+        .detail-contact {
+            position: sticky;
+            top: 210px;
+            transform: unset;
+            width: 331px;
+            padding: 30px 20px;
+            background: #fff;
+            border: 1px solid #e5e5e5;
+            border-radius: 9px;
+            height: max-content;
+            z-index: 1;
+            .service-buy-detail {
+                padding-left: 19px;
+                padding-right: 19px;
+                .ant-row {
+                    margin-bottom: 9px;
+                    justify-content: space-between;
+                    .title {
+                        margin-bottom: 5px;
+                        letter-spacing: 0;
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 16px;
+                        line-height: 20px;
+                        display: flex;
+                        align-items: center;
+                        color: #000;
+                    }
+                    .num {
+                        font-style: normal;
+                        font-weight: 600;
+                        font-size: 20px;
+                        line-height: 28px;
+                        letter-spacing: 0;
+                        margin-bottom: 5px;
+                    }
+                    .ant-input-number-input {
+                        width: 72px;
+                        height: max-content;
+                        padding: 8px 4px;
+                    }
+                    .num-day {
+                        margin-bottom: 5px;
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 16px;
+                        line-height: 20px;
+                    }
+                }
+            }
+            .service-buy-addon {
+                padding: 20px;
+                background: #e8f5e9;
+                border-radius: 5px;
+                margin-bottom: 20px;
+            }
+            .ant-btn {
+                text-align: center;
+                background: #2db964;
+                border-radius: 35px;
+                margin-bottom: 10px;
+                width: 100%;
+            }
+
+            .information-account {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                .avatar {
+                    margin-right: 8px;
+                    .avatar-img {
+                        border-radius: 50%;
+                        width: 32px;
+                        height: 32px;
+                    }
+                }
+                .profile {
+                    p {
+                        margin: 0;
+                    }
+                }
+            }
+        }
+    }
+}

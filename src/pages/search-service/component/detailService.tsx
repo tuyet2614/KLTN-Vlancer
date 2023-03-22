@@ -2,13 +2,14 @@ import { Col, Row } from "antd";
 import DetailContact from "./detailContact";
 import InformationAuthor from "./informationAuthor";
 import InformationService from "./informationService";
+import "../style/index.scss";
 
 const DetailService = () => {
   return (
-    <div>
-      <p>Tool tự động các loại</p>
+    <div className="detail-service">
+      <p className="title">Tool tự động các loại</p>
       <Row>
-        <Col>
+        <Col className="section-service-content">
           <div>
             <InformationService />
           </div>
@@ -17,7 +18,7 @@ const DetailService = () => {
             <InformationAuthor />
           </div>
         </Col>
-        <Col>
+        <Col className="block-order-detail">
           <DetailContact />
         </Col>
       </Row>

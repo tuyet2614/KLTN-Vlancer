@@ -14,6 +14,8 @@ import { api_url } from "../../untils/string";
 import { ThemeProvider } from "styled-components";
 import { UserInput } from "react-simple-chatbot";
 import checkAvatar from "@assets/images/icon/avatar.jpg";
+import CustomSearch from "../component/customSearch";
+import Chatbot from "../component/customSearch";
 
 const { Content } = Layout;
 
@@ -61,14 +63,16 @@ const ContainerLayout = () => {
           </Content>
         </Layout>
         <ThemeProvider theme={theme}>
-          <ChatBot
+          {/* <ChatBot
             // floating={true}
             headerTitle={t("help")}
             recognitionEnable={true}
             userAvatar={avatar}
             steps={stepChatbot}
             {...config}
-          />
+            inputComponent={CustomSearch}
+          /> */}
+          <Chatbot />
         </ThemeProvider>
         <div className="footer">
           <Footer />

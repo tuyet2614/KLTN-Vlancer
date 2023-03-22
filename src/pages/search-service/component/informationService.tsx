@@ -52,58 +52,72 @@ const InformationService = () => {
         </div>
       </div>
 
-      <div>
-        <p>{t("get-benefit")}</p>
-        <div>
-          <div>
-            <CheckCircleFilled />
+      <div className="block-you-receive">
+        <p className="heading">{t("get-benefit")}</p>
+        <div className="wrapper-list-title">
+          <div className="title-item">
+            <CheckCircleFilled style={{ color: "#2db964" }} />
             <p>Giải phóng thời gian</p>
           </div>
-          <div>
-            <CheckCircleFilled />
+          <div className="title-item">
+            <CheckCircleFilled style={{ color: "#2db964" }} />
             <p>Cam kết bảo mật</p>
           </div>
-          <div>
-            <CheckCircleFilled />
+          <div className="title-item">
+            <CheckCircleFilled style={{ color: "#2db964" }} />
             <p>Uy tín, bảo hành ít nhất 1 tháng sử dụng</p>
           </div>
         </div>
       </div>
 
-      <div>
-        <p>{t("info-service")}</p>
-        <ul>
-          <li>Tool game</li>
-          <li>Auto quy trình, thao tác trên PC</li>
-          <li>Auto app trên giả lập</li>
-          <li>Thu thập dữ liệu</li>
-        </ul>
-      </div>
+      <div className="service-pack-information">
+        <p className="heading-one">{t("info-service")}</p>
+        <div className="service-description">
+          <ul>
+            <li>Tool game</li>
+            <li>Auto quy trình, thao tác trên PC</li>
+            <li>Auto app trên giả lập</li>
+            <li>Thu thập dữ liệu</li>
+          </ul>
+        </div>
 
-      <div>
-        <p>{t("work-process")}</p>
-        <ul>
-          <li>Tool game</li>
-          <li>Auto quy trình, thao tác trên PC</li>
-          <li>Auto app trên giả lập</li>
-          <li>Thu thập dữ liệu</li>
-        </ul>
-      </div>
+        <p className="heading-two">{t("work-process")}</p>
+        <div>
+          <div className="process-list">
+            <p className="num">1</p>
+            <p className="process-item">Tool game</p>
+          </div>
+          <div className="process-list">
+            <p className="num">2</p>
+            <p className="process-item">Tool game</p>
+          </div>
+          <div className="process-list">
+            <p className="num">3</p>
+            <p className="process-item">Tool game</p>
+          </div>
+          <div className="process-list">
+            <p className="num">4</p>
+            <p className="process-item">Tool game</p>
+          </div>
+        </div>
 
-      <div>
-        <p>{t("who-hired")}</p>
-        <ul>
-          <li>Tool game</li>
-          <li>Auto quy trình, thao tác trên PC</li>
-          <li>Auto app trên giả lập</li>
-          <li>Thu thập dữ liệu</li>
-        </ul>
-      </div>
+        <p className="heading-two">{t("who-hired")}</p>
+        <div className="service-description">
+          <ul>
+            <li>Tool game</li>
+            <li>Auto quy trình, thao tác trên PC</li>
+            <li>Auto app trên giả lập</li>
+            <li>Thu thập dữ liệu</li>
+          </ul>
+        </div>
 
-      <div>
-        <p>0</p>
-        <p>{t("count-review")}</p>
-        <p>{t("no-review")}</p>
+        <div className="block-rating">
+          <div className="count-feedback">
+            <p>0</p>
+            <p>{t("count-review")}</p>
+          </div>
+          <p className="count-start-fb">{t("no-review")}</p>
+        </div>
       </div>
     </div>
   );

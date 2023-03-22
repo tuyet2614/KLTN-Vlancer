@@ -107,5 +107,7 @@
      "min-quanty": "Min-quantity",
      "deadline": "Product delivery deadline",
      "attach": "Add-on service",
-     "contact": "Contact & Order Service"
+     "contact": "Contact & Order Service",
+     "read-more": "Read more",
+    "read-less": "Read less"
 }
