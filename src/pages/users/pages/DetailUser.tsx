@@ -8,11 +8,14 @@ import { CheckOutlined, MailOutlined, PhoneOutlined } from "@ant-design/icons";
 import { api_url } from "../../../untils/string";
 import { getMyUser } from "../../auth/service/api";
 import { systemRoutes } from "../../../routes";
+import { useState } from "react";
 
 const DetailUser = () => {
   const { t } = useTranslation("user");
   const { id } = useParams();
-  const dataUser: any = id === "me" ? getMyUser() : getDetailUser(id);
+  const [isLoading, setIsLoading] = useState(true);
+  const dataUser: any =
+    id === "me" ? getMyUser(setIsLoading) : getDetailUser(id);
   const avatar: string = api_url + dataUser?.avatar?.formats?.thumbnail.url;
   const navigate = useNavigate();
 

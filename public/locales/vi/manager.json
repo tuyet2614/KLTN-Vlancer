@@ -65,5 +65,17 @@
     "viewed-job": "Đã đánh giá",
     "chosen": "Đang làm",
      "commend": "Đã gửi hồ sơ",
-     "save": "Đã lưu"
+     "save": "Đã lưu",
+     "all": "Tất cả",
+     "show": "Gói dịch vụ đang hiển thị",
+     "pause": "Gói dịch vụ đã tạm dừng",
+     "working": "Đang làm việc",
+     "transaction": "Đã đảm bảo giao dịch",
+     "done": "Đã hoàn thành",
+     "cancel": "Đã hủy",
+     "customer-sell": "Khách hàng",
+     "post-service": "Đăng dịch vụ",
+     "receive": "Nhận đơn hàng",
+     "new-service": "Bạn có muốn cung cấp dịch vụ?",
+     "post-now": "Đăng dịch vụ ngay"
 }

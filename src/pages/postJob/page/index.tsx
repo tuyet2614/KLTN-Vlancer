@@ -56,6 +56,7 @@ const PostJob = () => {
     listType: "text",
     accept: ".doc, .docx, .xlsx, .xls",
   };
+  const [isLoading, setIsLoading] = useState(true);
   const [searchService, setSearchService] = useState<any>("");
   const [searchCategory, setSearchCategory] = useState<any>("");
   const [searchSkill, setSearchSkill] = useState<any>("");
@@ -72,7 +73,7 @@ const PostJob = () => {
   // let newValue = cloneDeep(dataCategory);
   const [newValue, setNewValue] = useState([]);
   const [filters, setFilter] = useState();
-  const dataUser: any = getMyUser();
+  const dataUser: any = getMyUser(setIsLoading);
 
   const routeListJob = () => {
     navigate(systemRoutes.Jobs_Online_ROUTE);

@@ -26,6 +26,10 @@ import {
   routeSearchService,
   RoutesSearchService,
 } from "../pages/search-service/service/route";
+import {
+  routerTopProfile,
+  RoutesTopProfile,
+} from "../pages/topProfile/services/route";
 
 const routers: RouteObject[] = [
   {
@@ -40,6 +44,7 @@ const routers: RouteObject[] = [
       ...routeUsers,
       ...routeCustomerManager,
       ...routeSearchService,
+      ...routerTopProfile,
     ],
   },
 ];
@@ -54,6 +59,7 @@ export const systemRoutes = {
   ...RouteListJobsOnlinePage,
   ...RoutesCustomerManager,
   ...RoutesSearchService,
+  ...RoutesTopProfile,
 };
 
 const updateRouters: RouteObject[] = [

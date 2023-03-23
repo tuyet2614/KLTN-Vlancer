@@ -99,6 +99,20 @@
     
 }
 
+.menu-service {
+    padding-left: 20px;
+    .title {
+        font-size: 24px;
+        line-height: 32px;
+        font-weight: 700;
+        letter-spacing: -.02em;
+    }
+    .counter-service {
+        color: #999999;
+        margin-bottom: 30px;
+    }
+}
+
 .service-list-item {
     width: 275px;
     height: max-content;

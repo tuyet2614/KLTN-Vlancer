@@ -1,12 +1,15 @@
 import { Tabs } from "antd";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 import { getMyUser } from "../../auth/service/api";
 import Recruiment from "./components/recruiment";
+import ServicePackage from "./components/servicePackage";
 
 const CustomerManager = () => {
   const { t } = useTranslation("manager");
-  const user: any = getMyUser();
+  const [isLoading, setIsLoading] = useState(true);
+  const user: any = getMyUser(setIsLoading);
   const { id } = useParams();
   const items = [
     {
@@ -17,11 +20,11 @@ const CustomerManager = () => {
     {
       label: t("service-order"),
       key: "service-order",
-      //   children: <UpdateProfileWork id={id} />,
+      children: <ServicePackage id={id} />,
     },
   ];
   return (
-    <div className="pt-[70px]">
+    <div className="pt-[70px] customer-manager pl-5">
       <Tabs defaultActiveKey="self-information" items={items} />
     </div>
   );

@@ -13,7 +13,9 @@ import UpdateProfileWork from "./UpdateProfileWork";
 const UpdateUser = () => {
   const navigate = useNavigate();
   const { t } = useTranslation("update");
-  const { id } = useParams();
+  const { id, key } = useParams();
+
+  console.log("key: ", key);
 
   const items = [
     {
@@ -43,6 +45,7 @@ const UpdateUser = () => {
         defaultActiveKey="self-information"
         items={items}
         tabPosition={"left"}
+        activeKey={key}
       />
     </Fragment>
   );

@@ -9,11 +9,13 @@ import "./menuTop.scss";
 import ChangeLanguageComponent from "../menuComponent/ChangeLanguage";
 import { getAuthToken } from "../../../untils/token";
 import MenuAuth from "../../base/components/MenuAuth";
+import { useUserStore } from "../../../store/user";
 
 export default function DesktopMenu() {
   const { t } = useTranslation("menu");
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const { user, setUser } = useUserStore();
   const [defaultSelectedKeys, setDefaultSelectedKeys] = useState([pathname]);
   const isLogin = getAuthToken();
   useEffect(() => {
@@ -53,6 +55,7 @@ export default function DesktopMenu() {
             {
               label: t("find-project"),
               key: "find-project",
+              onClick: () => navigate(systemRoutes.TOP_PROFILE_ROUTE),
             },
           ],
         },
@@ -108,10 +111,13 @@ export default function DesktopMenu() {
             {
               label: t("vlancer-cv"),
               key: "vlancer-cv",
+              onClick: () =>
+                navigate(systemRoutes.CREATE_PROFILE_WORK(user.id, "cv-work")),
             },
             {
               label: t("product"),
               key: "product",
+              onClick: () => navigate(systemRoutes.TOP_PROFILE_ROUTE),
             },
           ],
         },

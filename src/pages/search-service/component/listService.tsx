@@ -8,9 +8,11 @@ const ListService = () => {
   console.log("title: ", id);
 
   return (
-    <div>
-      <p>{t(id)}</p>
-      <p>{t("counter-service", { count: 5, name: "web" })}</p>
+    <div className="menu-service">
+      <p className="title">{t(id)}</p>
+      <p className="counter-service">
+        {t("counter-service", { count: 5, name: "web" })}
+      </p>
       <ServiceItem />
     </div>
   );

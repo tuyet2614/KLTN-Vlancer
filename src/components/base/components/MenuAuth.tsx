@@ -5,7 +5,7 @@ import DEFAULT_IMG from "@assets/images/icon/avatar.jpg";
 import "./styles.scss";
 import { useTranslation } from "react-i18next";
 import { getMyUser } from "../../../pages/auth/service/api";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { systemRoutes } from "../../../routes";
 import { useLogout } from "../../service/api";
@@ -16,10 +16,11 @@ import NotificationMenu from "../../menu/menuComponent/NotificationComponent/ind
 const MenuAuth = () => {
   const { t } = useTranslation("auth");
   const { user, setUser } = useUserStore();
+  const [isLoading, setIsLoading] = useState(true);
 
   const { onLogout } = useLogout();
 
-  const userData: any = getMyUser();
+  const userData: any = getMyUser(setIsLoading);
 
   const avatar: string = api_url + userData?.avatar?.formats?.thumbnail.url;
 
