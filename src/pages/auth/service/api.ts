@@ -41,7 +41,7 @@ export const CreateUserApi = (user: any, handleFc: () => void) => {
     });
 };
 
-export const getMyUser = () => {
+export const getMyUser = (setIsLoading: (item:boolean) => void) => {
   const [data, setData] = useState<any>();
   const { user, setUser } = useUserStore();
   const header = { authorization: `Bearer ${getAuthToken()}` };
@@ -53,6 +53,7 @@ export const getMyUser = () => {
         
       })
       .then((response) => {
+        setIsLoading(false)
         setData(response.data);
         setUser(response.data);
       })

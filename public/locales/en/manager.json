@@ -64,5 +64,16 @@
      "viewed-job": "Evaluated",
      "chosen": "Working",
       "commend": "Resume submitted",
-      "save": "Saved"
+      "save": "Saved",
+      "all": "All",
+      "working": "Working",
+      "transaction": "Transaction guaranteed",
+      "done": "Done",
+      "cancel": "Canceled",
+      "customer-sell": "Customer",
+      "post-service": "Post service",
+      "receive": "Receive order",
+      "new-service": "You have more than 3 years of experience and want to provide a service?", 
+      "post-now": "Post a service now"
+      
 }

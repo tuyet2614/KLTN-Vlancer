@@ -29,7 +29,8 @@ interface Props {
 const UpdateProfileExperience = ({ id }: Props) => {
   const { t } = useTranslation("update");
   const [form] = Form.useForm();
-  const dataUser: any = getMyUser();
+  const [isLoading, setIsLoading] = useState(true);
+  const dataUser: any = getMyUser(setIsLoading);
   const [searchService, setSearchService] = useState<any>("");
   const dataServices = getService(searchService);
   const [files, setFiles] = useState<any>();

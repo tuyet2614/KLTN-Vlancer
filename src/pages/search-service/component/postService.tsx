@@ -12,7 +12,8 @@ const PostService = () => {
   const { t } = useTranslation("service");
   const [form] = Form.useForm();
   const navigate = useNavigate();
-  const dataUser: any = getMyUser();
+  const [isLoading, setIsLoading] = useState(true);
+  const dataUser: any = getMyUser(setIsLoading);
   const [searchService, setSearchService] = useState<any>("");
   const [searchCategory, setSearchCategory] = useState<any>("");
   const [useUpload, setUseUpload] = useState(false);

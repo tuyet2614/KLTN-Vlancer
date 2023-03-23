@@ -23,6 +23,7 @@ const UpdateProfileWork = ({ id }: Props) => {
   const dataCategory = getCategories(searchCategory);
   const dataSkills = getSkills(searchSkill);
   const dataServices = getService(searchService);
+  const [isLoading, setIsLoading] = useState(false);
   const handleUpdateUser = (value: any) => {
     const data = {
       ...value,
@@ -71,7 +72,7 @@ const UpdateProfileWork = ({ id }: Props) => {
     },
   ];
 
-  const dataUser: any = getMyUser();
+  const dataUser: any = getMyUser(setIsLoading);
   useEffect(() => form.resetFields(), [dataUser]);
 
   return (
