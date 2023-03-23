@@ -20,7 +20,7 @@ export const addNewPost = async(data: any, routeListJob:() => void) => {
 
 
 export const getListPosts = (params?: any) => {
-    
+    const [isLoading, setIsLoading] = useState(true)
     const [data, setData] = useState([])
     useEffect( 
         () => {      
@@ -28,13 +28,15 @@ export const getListPosts = (params?: any) => {
         .get("/posts?populate=deep", {params: params})
         .then((response) => {
         setData(response.data.data)
+        setIsLoading(false)
         })
         .catch((error) => {
         console.log(error);
+        setIsLoading(false)
         });
             }, []
         )
     
-    return data
+    return {data, isLoading}
 }
 

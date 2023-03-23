@@ -8,8 +8,7 @@ import ServicePackage from "./components/servicePackage";
 
 const CustomerManager = () => {
   const { t } = useTranslation("manager");
-  const [isLoading, setIsLoading] = useState(true);
-  const user: any = getMyUser(setIsLoading);
+  const user: any = getMyUser();
   const { id } = useParams();
   const items = [
     {

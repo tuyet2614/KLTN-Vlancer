@@ -20,11 +20,7 @@ export const ListJobs: React.FC<ListJobsProps> = ({ dataListJobs }) => {
           key={item.id}
         >
           <h2
-            onClick={() =>
-              navigate(systemRoutes.Detail_Job_ROUTE, {
-                state: { id: item.id },
-              })
-            }
+            onClick={() => navigate(systemRoutes.CONTEST_DETAIL_ROUTE(item.id))}
             className="text-blue-500 m-0 p-0 cursor-pointer"
           >
             {item.attributes.title}
@@ -64,7 +60,7 @@ export const ListJobs: React.FC<ListJobsProps> = ({ dataListJobs }) => {
               </p>
             </div>
           </div>
-          <span className="line-clamp-2">{item.attributes.description}</span>
+          {/* <span className="line-clamp-2">{item.attributes.description}</span> */}
           {/* <div className="flex space-x-2">
             {item.image.map((img, i) => (
               <Image src={img} key={i} width={80} height={80} />

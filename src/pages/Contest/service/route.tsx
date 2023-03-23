@@ -1,6 +1,5 @@
 import { lazy } from "react";
 import type { RouteObject } from "react-router-dom";
-import DetailJobPage from "../../job-online/pages/detail-job-page";
 import DetailTest from "../component/DetailTest";
 const ContestPage = lazy(() => import("../page/index"));
 
@@ -16,6 +15,6 @@ export const routePostContest: RouteObject[] = [
   },
   {
     path: "/contest/:id",
-    element: <DetailJobPage />,
+    element: <DetailTest />,
   },
 ];

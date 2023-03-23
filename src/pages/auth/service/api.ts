@@ -41,8 +41,9 @@ export const CreateUserApi = (user: any, handleFc: () => void) => {
     });
 };
 
-export const getMyUser = (setIsLoading: (item:boolean) => void) => {
+export const getMyUser = () => {
   const [data, setData] = useState<any>();
+  const [isLoading, setIsLoading] = useState<boolean>(true) 
   const { user, setUser } = useUserStore();
   const header = { authorization: `Bearer ${getAuthToken()}` };
   useEffect(() => {
@@ -62,7 +63,7 @@ export const getMyUser = (setIsLoading: (item:boolean) => void) => {
       });
   }, []);
 
-  return data;
+  return {data, isLoading};
 };
 
 

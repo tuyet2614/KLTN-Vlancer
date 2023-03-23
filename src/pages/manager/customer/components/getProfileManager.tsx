@@ -24,7 +24,7 @@ const GetProfileManager = ({ id }: Props) => {
     },
   };
 
-  const data: any = getListPosts(query);
+  const { data, isLoading } = getListPosts(query);
 
   const columns = [
     {
@@ -89,6 +89,7 @@ const GetProfileManager = ({ id }: Props) => {
         columns={columns}
         dataSource={data}
         pagination={false}
+        loading={isLoading}
         showSorterTooltip={false}
       />
     </div>

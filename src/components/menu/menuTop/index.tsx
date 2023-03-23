@@ -89,10 +89,7 @@ export default function DesktopMenu() {
             {
               label: t("design-exam"),
               key: "design-exam",
-              onClick: () =>
-                navigate(systemRoutes.Jobs_Online_ROUTE, {
-                  state: { page: "contest" },
-                }),
+              onClick: () => navigate(systemRoutes.LIST_CONTEST_ROUTE),
             },
             {
               label: t("full-time"),
