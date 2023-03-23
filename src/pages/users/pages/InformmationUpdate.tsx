@@ -20,8 +20,7 @@ interface Props {
 const InformationUpdate = ({ id }: Props) => {
   const { t } = useTranslation("update");
   const [form] = Form.useForm();
-  const [isLoading, setIsLoading] = useState(true);
-  const dataUser: any = getMyUser(setIsLoading);
+  const dataUser: any = getMyUser();
   const avatar: string = api_url + dataUser?.avatar?.formats?.thumbnail.url;
   const [searchAdd, setSearchAdd] = useState<any>("");
   useEffect(() => form.resetFields(), [dataUser]);

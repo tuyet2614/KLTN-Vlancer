@@ -12,8 +12,7 @@ const PostService = () => {
   const { t } = useTranslation("service");
   const [form] = Form.useForm();
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(true);
-  const dataUser: any = getMyUser(setIsLoading);
+  const { data, isLoading } = getMyUser();
   const [searchService, setSearchService] = useState<any>("");
   const [searchCategory, setSearchCategory] = useState<any>("");
   const [useUpload, setUseUpload] = useState(false);
@@ -29,7 +28,7 @@ const PostService = () => {
     const filter = {
       ...value,
 
-      users_permissions_user: dataUser?.id,
+      users_permissions_user: data?.id,
       status: "sell",
     };
 

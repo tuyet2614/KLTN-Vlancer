@@ -49,6 +49,30 @@
         "required_code": "Mã nhân viên không được bỏ trống!",
         "max_200": "Không được quá 200 kí tự!",
         "password_confirm_must_be_equal_password": "Mật khẩu xác nhận phải giống mật khẩu"
+    },
+    "detail": {
+        "Project_ID": "ID dự án",
+        "Project_info": "Thông tin dự án",
+        "address": "Địa điểm",
+        "created_at": "Ngày đăng",
+        "workType": "Hình thức làm việc",
+        "payType": "Hình thức trả lương",
+        "priceMax": "Ngân sách",
+        "users_info": "Thông tin khách hàng",
+        "name": "Tên khách hàng",
+        "invite_at": "Tham gia",
+        "info_price": "THÔNG TIN CHÀO GIÁ",
+        "want_price": "ĐỀ XUẤT CHI PHÍ",
+        "price_want": "Bạn muốn nhận (mức phí thực nhận cho dự án)",
+        "deadline": "NGÀY DỰ KIẾN HOÀN THÀNH",
+        "PROPOSED": "ĐỀ XUẤT THUYẾT PHỤC KHÁCH HÀNG",
+        "ques": "Bạn có những kinh nghiệm và kỹ năng nào phù hợp với dự án này?",
+        "send": "Gửi chào giá",
+        "messagePrice": "Đề xuất chi phí không được bỏ trống",
+        "messagedescription": "Kinh nghiệm và kỹ năng không được bỏ trống",
+        "seeMore": "Xem Thêm",
+        "need-service": "Dịch vụ cần thuê",
+        "nation": "Toàn Quốc"
     }
 
 }

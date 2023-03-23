@@ -72,7 +72,7 @@ const UpdateProfileWork = ({ id }: Props) => {
     },
   ];
 
-  const dataUser: any = getMyUser(setIsLoading);
+  const dataUser: any = getMyUser();
   useEffect(() => form.resetFields(), [dataUser]);
 
   return (

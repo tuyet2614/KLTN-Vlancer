@@ -12,33 +12,83 @@ import { categoryData, serviceData } from "../../../components/data/data";
 import { createTest } from "../service/api";
 import { useNavigate } from "react-router";
 import { systemRoutes } from "../../../routes";
+import axios from "axios";
+import { useUserStore } from "../../../store/user";
 
 const CreateForm = () => {
   const { t } = useTranslation("contest");
   const navigate = useNavigate();
   const [form] = Form.useForm();
   const [isPrivate, setIsPrivate] = useState(false);
-  const routeListDetailContest = () => {
-    // navigate(systemRoutes.CONTEST_DETAIL_ROUTE());
+  const [files, setFiles] = useState<any>();
+  const user = useUserStore();
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFiles(event.target.files);
   };
-  const handleAddNewContest = (value: any) => {
-    // JSON.stringify(addNewPost(value));
-    const data = {
-      ...value,
-      description: {
-        des: value.description,
-      },
-      service: {
-        service: value.services,
-      },
-      field: {
-        category: value.category,
-      },
-      secret: isPrivate,
-    };
 
-    JSON.stringify(createTest(data, routeListDetailContest));
+  console.log("user: ", user);
+
+  const token =
+    localStorage?.getItem("auth-token") &&
+    localStorage?.getItem("auth-token")?.replace(/['"]+/g, "");
+  // const routeListDetailContest = () => {
+  //   navigate(systemRoutes.CONTEST_DETAIL_ROUTE());
+  // };
+  const handleAddNewContest = (value: any) => {
+    const formData = new FormData();
+
+    files && formData.append("files", files[0], files[0].name);
+
+    axios({
+      method: "post",
+      url: "http://localhost:1337/api/upload",
+      data: formData,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => {
+        const imageId = response.data[0].id;
+
+        const data = {
+          ...value,
+          description: {
+            des: value.description,
+          },
+          service: {
+            service: value.services,
+          },
+          field: {
+            category: value.category,
+          },
+          secret: isPrivate,
+          file: imageId,
+          user: user.user.id,
+        };
+
+        JSON.stringify(createTest(data, navigate));
+      })
+      .catch((error) => {
+        const data = {
+          ...value,
+          description: {
+            des: value.description,
+          },
+          service: {
+            service: value.services,
+          },
+          field: {
+            category: value.category,
+          },
+          secret: isPrivate,
+          user: user.user.id,
+        };
+
+        JSON.stringify(createTest(data, navigate));
+        console.log("check errr: ", error);
+      });
   };
+
   return (
     <div className="w-full flex justify-center">
       <Form
@@ -148,9 +198,9 @@ const CreateForm = () => {
           <TextArea placeholder={t("intro-contest")} />
         </Form.Item>
 
-        <div>
-          <a>{t("attach")}</a>
-        </div>
+        <Form.Item name="files" className="upload-file">
+          <input type="file" onChange={handleFileChange} />
+        </Form.Item>
 
         <div className="security">
           <Form.Item className="!m-0">

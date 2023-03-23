@@ -20,7 +20,7 @@ const ReviewManager = ({ id }: Props) => {
     },
   };
 
-  const data: any = getListPosts(query);
+  const { data, isLoading } = getListPosts(query);
   console.log("data: ", data);
 
   const columns = [
@@ -97,6 +97,7 @@ const ReviewManager = ({ id }: Props) => {
         columns={columns}
         dataSource={data}
         pagination={false}
+        loading={isLoading}
         showSorterTooltip={false}
       />
     </div>

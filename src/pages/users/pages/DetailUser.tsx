@@ -13,9 +13,7 @@ import { useState } from "react";
 const DetailUser = () => {
   const { t } = useTranslation("user");
   const { id } = useParams();
-  const [isLoading, setIsLoading] = useState(true);
-  const dataUser: any =
-    id === "me" ? getMyUser(setIsLoading) : getDetailUser(id);
+  const dataUser: any = id === "me" ? getMyUser() : getDetailUser(id);
   const avatar: string = api_url + dataUser?.avatar?.formats?.thumbnail.url;
   const navigate = useNavigate();
 

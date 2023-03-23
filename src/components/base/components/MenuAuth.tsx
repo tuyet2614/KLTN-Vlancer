@@ -16,11 +16,10 @@ import NotificationMenu from "../../menu/menuComponent/NotificationComponent/ind
 const MenuAuth = () => {
   const { t } = useTranslation("auth");
   const { user, setUser } = useUserStore();
-  const [isLoading, setIsLoading] = useState(true);
 
   const { onLogout } = useLogout();
 
-  const userData: any = getMyUser(setIsLoading);
+  const { data: userData, isLoading } = getMyUser();
 
   const avatar: string = api_url + userData?.avatar?.formats?.thumbnail.url;
 
