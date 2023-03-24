@@ -1,0 +1,85 @@
+.top-profile {
+    .menu-title {
+        background: #f0fdf5;
+        padding: 50px 0 20px;
+        .title {
+            font-weight: 600;
+            font-size: 36px;
+            line-height: 40px;
+            text-align: center;
+            letter-spacing: -.02em;
+            margin: 0;
+            margin-bottom: 50px;
+            color: #000;
+        }
+        .filters {
+            text-align: center;
+        }
+    }
+    .container {
+        padding-left: 20px;
+        .portfolio {
+            width: calc(25% - 40px);
+            float: left;
+            margin: 0 20px 40px;
+            .p-img {
+                cursor: pointer;
+                .lazyloaded {
+                    border-radius: 5px;
+                    max-width: 100%;
+                    height: auto;
+                    vertical-align: middle;
+                    border: 0;
+                }
+            }
+            .p-about-m {
+                height: 86px;
+                margin-top: 10px;
+                overflow: hidden;
+                .title {
+                    cursor: pointer;
+                    line-height: 20px;
+                    width: 100%;
+                    display: inline-block;
+                    color: #000;
+                }
+                .author {
+                    color: #999;
+                    display: block;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    line-height: 16px;
+                    font-size: 13px;
+                }
+                .review {
+                    width: 100%;
+                    color: #999;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: flex;
+                    gap: 20px;
+                    .review-eye {
+                        font-size: 13px;
+                        display: flex;
+                        align-items: center;
+                        gap: 5px;
+                        p {
+                            margin: 0;
+                        }
+                    }
+                    .review-like {
+                        font-size: 13px;
+                        display: flex; 
+                        align-items: center;
+                        gap: 5px;
+                        p {
+                            margin: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

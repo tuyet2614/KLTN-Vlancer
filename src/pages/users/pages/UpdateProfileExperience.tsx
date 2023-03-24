@@ -126,7 +126,7 @@ const UpdateProfileExperience = ({ id }: Props) => {
           <span className="number">1</span>
           <p className="title">{t("cv-capacity")}</p>
         </div>
-        {dataUser?.profile.length === 0 ? (
+        {dataUser?.profile?.length === 0 ? (
           <div>
             <p>{t("describe")}</p>
             <span>
