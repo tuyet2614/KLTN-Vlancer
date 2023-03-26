@@ -1,4 +1,4 @@
-import { Button, Checkbox, Form, Input, Radio, Select } from "antd";
+import { Button, Checkbox, DatePicker, Form, Input, Radio, Select } from "antd";
 import TextArea from "antd/lib/input/TextArea";
 import { t } from "i18next";
 import { Fragment, useState } from "react";
@@ -26,8 +26,6 @@ const CreateForm = () => {
     setFiles(event.target.files);
   };
 
-  console.log("user: ", user);
-
   const token =
     localStorage?.getItem("auth-token") &&
     localStorage?.getItem("auth-token")?.replace(/['"]+/g, "");
@@ -52,9 +50,8 @@ const CreateForm = () => {
 
         const data = {
           ...value,
-          description: {
-            des: value.description,
-          },
+          description: value.description,
+
           service: {
             service: value.services,
           },
@@ -196,6 +193,9 @@ const CreateForm = () => {
 
         <Form.Item name="description">
           <TextArea placeholder={t("intro-contest")} />
+        </Form.Item>
+        <Form.Item label={t("deadline")} name="deadline">
+          <DatePicker />
         </Form.Item>
 
         <Form.Item name="files" className="upload-file">

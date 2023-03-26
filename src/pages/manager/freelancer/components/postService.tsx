@@ -24,7 +24,6 @@ const PostService = ({ id }: Props) => {
   };
 
   const data: any = getListPosts(query);
-  console.log("data: ", data);
 
   const columns = [
     {

@@ -16,17 +16,20 @@ export const CustomStep = (props: any) => {
     );
   };
 
+  const handleChange = (value: string) => {
+    setSelected(value);
+  };
+
   return (
     <div>
       <h3>{props.question}</h3>
 
       <Select
         showSearch
-        defaultActiveFirstOption={false}
         className="w-[250px]"
         showArrow={false}
-        filterOption={false}
         onSearch={handleSearch}
+        onChange={handleChange}
       >
         {data.map((item: any) => (
           <Select.Option value={item?.id} key={item?.id}>

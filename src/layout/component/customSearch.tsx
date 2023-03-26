@@ -17,8 +17,6 @@ const Chatbot = () => {
     height: "600px",
     floating: true,
   };
-  // const avatar: string = api_url + user?.avatar?.formats?.thumbnail.url;
-  console.log("avatar: ", avatar);
   useEffect(() => {
     setAvatar(api_url + user?.avatar?.formats?.thumbnail.url);
   }, [user]);

@@ -11,7 +11,6 @@ interface Props {
 
 const FreelancerJobManager = ({ id }: Props) => {
   const { t } = useTranslation("manager");
-  console.log("id: ", id);
 
   const items = [
     {

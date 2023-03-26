@@ -20,6 +20,7 @@ export const useLoginApi = (user: any) => {
       Notification.Success({ message: t("login.success") });
       navigate(systemRoutes.ONBOARD_ROUTE);
       localStorage.getItem("auth-token");
+      getAuthToken()
     })
     .catch((error) => {
       console.log(error);

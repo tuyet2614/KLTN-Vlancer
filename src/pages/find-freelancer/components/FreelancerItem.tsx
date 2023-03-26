@@ -4,12 +4,14 @@ import "./index.scss";
 import imageDefault from "@assets/images/logo_img.png";
 import { useNavigate } from "react-router";
 import { api_url } from "../../../untils/string";
+import { useTranslation } from "react-i18next";
 
 interface ListFreelancerProps {
   data: any;
 }
 
 export const FreelancerItem: React.FC<ListFreelancerProps> = ({ data }) => {
+  const { t } = useTranslation("service");
   const navigate = useNavigate();
   const handleRouteToDetail = () => {
     navigate(systemRoutes.DETAIL_FREELANCERS_ROUTE(data.id));
@@ -37,10 +39,10 @@ export const FreelancerItem: React.FC<ListFreelancerProps> = ({ data }) => {
           </Row>
 
           <p>{data?.workTitle}</p>
-          <div className="address">
-            <p className="m-0">
-              {data?.addresses && data.addresses[0]?.city} | {}
-            </p>
+          <div className="address flex gap-2">
+            <span>{data?.city}</span>
+            {data?.city && <span>|</span>}
+            <span>{t(data?.category?.name)}</span>
           </div>
 
           <div className="flex gap-2">

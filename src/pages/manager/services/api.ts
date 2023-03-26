@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import getApi from "../../../constant/http-auth-common";
 
 export const getListComments = (params?: any) => {
-    console.log("params: ", params);
     
     const [data, setData] = useState([])
     useEffect( 

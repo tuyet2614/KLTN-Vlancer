@@ -36,9 +36,7 @@ const LoginRouteComponent = () => {
             <Form.Item className="login-item">
               <GoogleOAuthProvider clientId={clientId}>
                 <GoogleLogin
-                  onSuccess={(credentialResponse) => {
-                    console.log(credentialResponse);
-                  }}
+                  onSuccess={(credentialResponse) => {}}
                   onError={() => {
                     console.log("Login Failed");
                   }}

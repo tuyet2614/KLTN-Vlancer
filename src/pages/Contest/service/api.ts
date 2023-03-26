@@ -8,8 +8,9 @@ export const createTest = (data: any, navigate:NavigateFunction) => {
     
     authApi.post('/tests', {data})
         .then( (response) =>  {
-            
-            navigate(systemRoutes.CONTEST_DETAIL_ROUTE(response?.data?.data?.id))
+            navigate(systemRoutes.Detail_Job_ROUTE, {
+                  state: { id: response?.data?.data?.id, type: "contest" },
+                })
             
         })
         .catch((error) => {

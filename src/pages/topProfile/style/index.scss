@@ -83,3 +83,123 @@
         }
     }
 }
+
+.profile-container {
+    width: 1400px;
+    display: flex;
+    justify-content: space-between;
+    .portfolio-left-desktop {
+        box-shadow: 0 0 6px rgba(0,0,0,.2);
+        border-radius: 5px;
+        background: #fff;
+        width: 360px;
+        .avata-right {
+            text-align: center;
+            
+            .ant-image {
+                margin-top: 40px;
+                margin-bottom: 25px;
+            }
+            .ant-image-img {
+                width: 100%;
+                height: auto;
+                vertical-align: middle;
+                border-radius: 50%;
+                width: 160px;
+                height: 160px;
+                margin: 0 auto;
+            }
+        }
+
+        .freelancer-name {
+                text-align: center;
+                p {
+                        font-size: 20px;
+                        font-weight: 700;
+                        display: inline;
+                }
+        }
+        .freelancer-title {
+            text-align: center;
+            color: #999;
+            margin-top: 13px!important;
+            margin-bottom: 9px!important;
+        }
+        .pf-city {
+            text-align: center;
+        }
+        .freelancer-skill {
+            text-align: center;
+            span {
+                border: 1px solid #0fe19b;
+                box-sizing: border-box;
+                border-radius: 3px;
+                font-size: 13px;
+                line-height: 24px;
+                color: #0fe19b;
+                padding: 2px 8px;
+                cursor: pointer;
+            }
+        }
+        .show-freelancer {
+            text-align: center;
+            padding-bottom: 25px;
+            padding-top: 20px;
+            .ant-btn {
+                background: #2db964;
+                color: #fff;
+                text-shadow: none;
+                font-size: 16px;
+                border: none;
+                padding: 11px 26px;
+            }
+        }
+    }
+    .right-portfolio {
+        width: 66%;
+        margin-top: 30px;
+        .main_content {
+            .portfolio-title {
+                p {
+                    margin-bottom: 0;
+                    font-size: 24px;
+                    margin-top: 4px;
+                    font-weight: 600;
+                    white-space: normal;
+                    overflow: hidden;
+                    width: 100%;
+                    display: inline-block;
+                }
+                .view {
+                    display: flex;
+                    gap: 30px;
+                    margin-bottom: 20px;
+                    .p-view {
+                        display: flex;
+                        align-items: center;
+                        p {
+                            margin: 0;
+                        }
+                    }
+                    .p-like {
+                        display: flex;
+                        align-items: center;
+                        p {
+                            margin: 0;
+                        }
+                    }
+                }
+            }
+            .p-react {
+                .ant-btn {
+                    background: #2db964;
+                color: #fff;
+                text-shadow: none;
+                font-size: 16px;
+                border: none;
+                padding: 11px 26px;
+                }
+            }
+        }
+    }
+}

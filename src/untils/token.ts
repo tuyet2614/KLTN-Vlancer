@@ -22,6 +22,7 @@ export const parseTokenString = (str: string) => {
 
 export const getAuthToken = () => {
   const data = localStorage.getItem(env.tokenKey);
+  
   if (data) {
     try {
       return JSON.parse(data);

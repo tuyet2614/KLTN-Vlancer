@@ -22,7 +22,6 @@ const SaveJobFreelancer = ({ id }: Props) => {
   };
 
   const data: any = getListComments(query);
-  console.log("data: ", data);
 
   const columns = [
     {

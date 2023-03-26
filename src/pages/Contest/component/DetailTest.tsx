@@ -12,18 +12,10 @@ const DetailTest = () => {
   const { id } = useParams();
   const { data, isLoading } = getDetailTest(id);
 
-  console.log(
-    "url: ",
-    data?.data?.attributes?.user?.data?.attributes?.avatar?.data?.attributes
-      ?.formats
-  );
-
   const avatar: string =
     api_url +
     data?.data?.attributes?.user?.data?.attributes?.avatar?.data?.attributes
       ?.formats?.thumbnail.url;
-
-  console.log("avatar: ", avatar);
 
   const configsInfosProject = [
     {

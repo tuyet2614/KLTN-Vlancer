@@ -2,7 +2,8 @@ import { Button, Divider } from "antd";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { systemRoutes } from "../../../routes";
 import { formatNumber } from "../../../untils/string";
 import { getBasicTimeFromTimeStamp } from "../../../untils/time";
 
@@ -12,6 +13,7 @@ const DetailCmtPage: React.FC<DetailCmtPageProps> = ({}) => {
   const location = useLocation();
   const { t } = useTranslation("jobs-online");
   const { id } = location.state;
+  const navigate = useNavigate();
   const [detailCmt, setDetailCmt] = useState<any>();
   useEffect(() => {
     axios
@@ -28,6 +30,7 @@ const DetailCmtPage: React.FC<DetailCmtPageProps> = ({}) => {
     const post_id = detailCmt?.attributes?.post?.data?.id;
 
     axios.put(`/posts/${post_id}`, { data: dataUpdate });
+    navigate(systemRoutes.Detail_Job_ROUTE);
   };
 
   const configsInfoCmt = [
@@ -37,8 +40,9 @@ const DetailCmtPage: React.FC<DetailCmtPageProps> = ({}) => {
     },
     {
       name: t("Cmt.user_name"),
-      info: detailCmt?.attributes?.users_permissions_user?.data?.attributes
-        ?.username,
+      info:
+        detailCmt?.attributes?.users_permissions_user?.data?.attributes
+          ?.username,
     },
     {
       name: t("Cmt.createdAt"),

@@ -26,6 +26,11 @@
     "only": "Chỉ mình bạn có quyền được xem tất cả các bài dự thi. Các thí sinh không xem được bài dự thi của nhau. Hạn chế việc sao chép ý tưởng của nhau. Đồng thời đảm bảo được rằng ngoài bạn ra, không một ai khác xem được các mẫu thiết kế tham gia dự thi.",
     "post": "Đăng cuộc thi",
     "terms": "Khi đăng việc, bạn xác nhận đồng ý các điều khoản sử dụng của vLance.vn",
+    "deadline": "Hạn nộp mẫu thiết kế ",
+    "send": "Hãy gửi mẫu thiết kế của bạn ",
+    "author": "Tác giả",
+    "description": "Mô tả ",
+    "submit": "Chọn thiết kế này",
     "placeholder": {
             "enter_category": "Chọn lĩnh vực",
             "enter_service": "Chọn dịch vụ",
@@ -72,7 +77,10 @@
         "messagedescription": "Kinh nghiệm và kỹ năng không được bỏ trống",
         "seeMore": "Xem Thêm",
         "need-service": "Dịch vụ cần thuê",
-        "nation": "Toàn Quốc"
+        "nation": "Toàn Quốc",
+        "des": "Mô tả bài dự thi",
+        "intro-contest": "Hãy giải thích thiết kế của bạn",
+        "submit": "Nộp thiết kế"
     }
 
 }
