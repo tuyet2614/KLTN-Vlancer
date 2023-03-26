@@ -5,7 +5,6 @@ import ServiceItem from "./serviceItem";
 const ListService = () => {
   const { t } = useTranslation("service");
   const { id }: any = useParams();
-  console.log("title: ", id);
 
   return (
     <div className="menu-service">

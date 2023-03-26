@@ -1,6 +1,5 @@
-import { Col, Form, Layout, Menu, MenuProps, Tabs } from "antd";
-import { Content } from "antd/lib/layout/layout";
-import Sider from "antd/lib/layout/Sider";
+import { Tabs } from "antd";
+
 import { Fragment } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
@@ -14,8 +13,6 @@ const UpdateUser = () => {
   const navigate = useNavigate();
   const { t } = useTranslation("update");
   const { id, key } = useParams();
-
-  console.log("key: ", key);
 
   const items = [
     {

@@ -1,0 +1,49 @@
+.detail-job-contest {
+    .list-answer {
+        .answer-item {
+            .ant-image {
+                width: 100% !important;
+            }
+        }
+    }
+}
+
+.answer-modal {
+    .ant-modal-body {
+        .modal-detail-answer {
+            display: flex;
+            justify-content: space-between;
+            .file-design {
+                width: 50%;
+                .ant-image {
+                    width: 100%;
+                }
+            }
+ 
+            .author {
+                width: 40%;
+                .label {
+                    font-size: 18px;
+                    font-weight: 700;
+                    line-height: 1.2;
+                }
+                .user {
+                    font-size: 22px;
+                    font-weight: 700;
+                    line-height: 1.2;
+                    color: #08c;
+                }
+            }
+
+            .btn-submit {
+                padding-top: 20px;
+                display: flex;
+                justify-content: center;
+                width: 100%;
+                .ant-btn {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}

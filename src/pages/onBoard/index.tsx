@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import JobItemComponent from "../../components/job/jobItemComponent";
 import Footer from "../../layout/component/Footer";
 import { getListPosts } from "../postJob/service/api";
+import Loading from "../../components/base/components/loading";
 
 const OnBoard = () => {
   const { t } = useTranslation("onBoard");
@@ -19,25 +20,28 @@ const OnBoard = () => {
         <div className="onBoard-body">
           <div className="title-onboard">{t("popular-job")}</div>
           <div className="list-job">
-            {postData &&
+            {isLoading ? (
+              <Loading />
+            ) : (
               postData?.map((item: any) => (
                 <JobItemComponent
-                  title={item.attributes.title}
-                  type={item.attributes.workType}
-                  rate={item.attributes.rate}
+                  title={item?.attributes?.title}
+                  type={item?.attributes?.workType}
+                  rate={item?.attributes?.rate}
                   author={
-                    item.attributes.users_permissions_user.data.attributes
-                      .username
+                    item?.attributes?.users_permissions_user?.data?.attributes
+                      ?.username
                   }
-                  location={item.attributes.attributes}
-                  minMoney={item.attributes.budgetMin}
-                  maxMoney={item.attributes.budgetMax}
-                  deadline={item.attributes.deadline}
-                  content={item.attributes.description}
-                  categories={item.attributes.category}
-                  key={item.id}
+                  location={item?.attributes?.attributes}
+                  minMoney={item?.attributes?.budgetMin}
+                  maxMoney={item?.attributes?.budgetMax}
+                  deadline={item?.attributes?.deadline}
+                  content={item?.attributes?.description}
+                  categories={item?.attributes?.category}
+                  key={item?.id}
                 />
-              ))}
+              ))
+            )}
           </div>
           <div className="flex justify-center py-10 ">
             <Button className="!bg-[#08c]">Xem tất cả 54.878 công việc </Button>

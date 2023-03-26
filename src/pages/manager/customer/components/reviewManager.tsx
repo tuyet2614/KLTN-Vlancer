@@ -21,7 +21,6 @@ const ReviewManager = ({ id }: Props) => {
   };
 
   const { data, isLoading } = getListPosts(query);
-  console.log("data: ", data);
 
   const columns = [
     {

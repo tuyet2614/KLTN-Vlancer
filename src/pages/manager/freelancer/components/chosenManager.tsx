@@ -12,7 +12,6 @@ interface Props {
 
 const ChosenManager = ({ id }: Props) => {
   const { t } = useTranslation("manager");
-  console.log("id: ", id);
 
   const query = {
     filters: {
@@ -26,8 +25,6 @@ const ChosenManager = ({ id }: Props) => {
   };
 
   const data: any = getListComments(query);
-
-  console.log("comment: ", data);
 
   const columns = [
     {

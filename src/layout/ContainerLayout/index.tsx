@@ -43,8 +43,6 @@ const ContainerLayout = () => {
   const [avatar, setAvatar] = useState(
     api_url + user?.avatar?.formats?.thumbnail.url
   );
-  // const avatar: string = api_url + user?.avatar?.formats?.thumbnail.url;
-  console.log("avatar: ", avatar);
   useEffect(() => {
     setAvatar(api_url + user?.avatar?.formats?.thumbnail.url);
   }, [user]);

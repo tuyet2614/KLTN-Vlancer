@@ -11,7 +11,6 @@ interface Props {
 
 const GetProfileManager = ({ id }: Props) => {
   const { t } = useTranslation("manager");
-  console.log("id: ", id);
 
   const query = {
     filters: {

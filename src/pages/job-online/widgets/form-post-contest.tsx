@@ -13,7 +13,10 @@ interface FormPostProps {
   setLoading: Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const FormPost: React.FC<FormPostProps> = ({ postId, setLoading }) => {
+export const FormPostContest: React.FC<FormPostProps> = ({
+  postId,
+  setLoading,
+}) => {
   const nowDay = new Date();
   const customDay = dayjs(nowDay).format("YYYY/MM/DD HH:mm");
   const { t } = useTranslation("jobs-online");

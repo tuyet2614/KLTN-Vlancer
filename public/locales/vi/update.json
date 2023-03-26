@@ -80,6 +80,7 @@
     "part-time": "Bán thời gian (dưới 40h/tuần)",
     "full-time": "Toàn thời gian (trên 40h/tuần)",
     "Authenticated": "Người dùng",
+    "update-success": "Cập nhập người dùng thành công",
     "error_messes": {
         "wrong_format": "Sai định dạng !",
         "phone_number_required": "Đây là trường bắt buộc !",

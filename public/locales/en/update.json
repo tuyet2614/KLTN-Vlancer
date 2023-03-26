@@ -79,6 +79,7 @@
      "tax-code": "Verify tax code (Optional)",
      "part-time": "Part-time (less than 40 hours/week)",
      "full-time": "Full time (over 40 hours/week)",
+     "update-success": "Update user successfully",
      "error_messes": {
         "wrong_format": "Wrong format !",
         "phone_number_required": "Please input your phone number!",

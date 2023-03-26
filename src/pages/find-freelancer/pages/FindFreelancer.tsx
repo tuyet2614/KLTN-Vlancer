@@ -5,10 +5,11 @@ import { InputSearch } from "../../../components/base/components/InputSearch";
 import { ButtonTopSearch } from "../components/button-top-search";
 import FilterLeft from "../components/FilterLeft";
 import ListFreelancer from "../components/ListFreelancer";
-import { getListFreelancer } from "../service/api";
+import { getListFreelancer, getListFreelancerNoPag } from "../service/api";
 import qs from "qs";
 import { debounce } from "lodash";
 import axios from "axios";
+import Loading from "../../../components/base/components/loading";
 
 const FindFreelancer = () => {
   const { t } = useTranslation("");
@@ -26,17 +27,16 @@ const FindFreelancer = () => {
     current,
     pageSize
   ) => {
-    console.log("current: ", current);
-    console.log("page size: ", pageSize);
-
     setPagination((pagination) => ({
       ...pagination,
-      page: current * pageSize,
+      page: (current - 1) * pageSize,
       pageSize: pageSize,
     }));
   };
 
-  const data: any = getListFreelancer(pagination, filters);
+  const { data, isLoading } = getListFreelancer(pagination, filters);
+
+  const { data: getlist } = getListFreelancerNoPag(filters);
 
   const onValueChange = (value: any) => {
     let verified = undefined;
@@ -83,31 +83,35 @@ const FindFreelancer = () => {
 
   return (
     <Form form={form} onValuesChange={onValueChange}>
-      <div className="p-8 overflow-x-scroll flex space-x-8">
-        <FilterLeft onValuesChange={onFilter} />
-        <div className="flex-1 flex flex-col border bg-white rounded-lg shadow-lg">
-          <ButtonTopSearch
-            SetButtonTop={setButtonTop}
-            buttonTop={buttonTop}
-            configsButtonTop={["all", "verified"]}
-          />
-          <InputSearch
-            placeholderSearch="placeholder-search-freelancer"
-            onSearchChange={onSearchChange}
-          />
-          <ListFreelancer data={data} />
-          <div className="flex justify-center mb-6">
-            <Pagination
-              showSizeChanger
-              current={pagination.page}
-              showTotal={(total) => `Total ${total} items`}
-              onChange={onShowSizeChange}
-              pageSize={pagination.pageSize}
-              total={data?.length || 0}
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <div className="p-8 overflow-x-scroll flex space-x-8">
+          <FilterLeft onValuesChange={onFilter} />
+          <div className="flex-1 flex flex-col border bg-white rounded-lg shadow-lg">
+            <ButtonTopSearch
+              SetButtonTop={setButtonTop}
+              buttonTop={buttonTop}
+              configsButtonTop={["all", "verified"]}
             />
+            <InputSearch
+              placeholderSearch="placeholder-search-freelancer"
+              onSearchChange={onSearchChange}
+            />
+            <ListFreelancer data={data} />
+            <div className="flex justify-center mb-6">
+              <Pagination
+                showSizeChanger
+                current={pagination.page}
+                showTotal={(total) => `Total ${total} items`}
+                onChange={onShowSizeChange}
+                pageSize={pagination.pageSize}
+                total={getlist?.length || 0}
+              />
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </Form>
   );
 };

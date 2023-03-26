@@ -26,6 +26,11 @@
     "only": "Only you is able to view all the designs. Candidates cannot see each other's work to avoid copying each other's ideas. This to ensure the fairness between candidates.",
     "post": "Post a contest",
     "terms": "When posting a job, you confirm that you agree to vLance.vn's terms of use",
+    "deadline": "Deadline",
+    "send": "Please submit your design",
+    "author": "Author",
+    "description": "Description",
+    "submit": "Choose this design",
     "placeholder": {
             "enter_category": "Enter category",
             "enter_service": "Enter service",
@@ -72,6 +77,9 @@
     "messagedescription": "experience and skills are required",
     "seeMore": "See More",
     "need-service": "Service to hire",
-    "nation": "nationwide"
+    "nation": "nationwide",
+    "des": "Description of the entry",
+    "intro-contest": "Explain your design",
+    "submit": "Submit design"
   }
 }

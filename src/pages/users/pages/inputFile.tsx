@@ -28,10 +28,7 @@ const InputFile = ({ id }: Props) => {
 
         authApi
           .put(`http://localhost:1337/users/${id}`, { avatar: imageId })
-          .then((response) => {
-            //handle success
-            console.log("respos: ", response);
-          })
+          .then((response) => {})
           .catch((error) => {
             //handle error
             console.log("errr: ", error);

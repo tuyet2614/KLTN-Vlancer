@@ -18,6 +18,10 @@ export const routeUsers: RouteObject[] = [
     element: <DetailUser />,
   },
   {
+    path: "/users/update/:id",
+    element: <UpdateUser />,
+  },
+  {
     path: "/users/update/:id/:key",
     element: <UpdateUser />,
   },

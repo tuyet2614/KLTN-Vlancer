@@ -20,8 +20,6 @@ const ListContest: React.FC<ListJobsOnlinePageProps> = () => {
   const [filters, setFilters] = useState({});
 
   const location = useLocation();
-  //   const { page } = location?.state;
-  console.log("filter: ", filters);
 
   useEffect(() => {
     authApi
@@ -50,7 +48,6 @@ const ListContest: React.FC<ListJobsOnlinePageProps> = () => {
   const onValueChange = (value: any) => {
     let verified = undefined;
     let payType = undefined;
-    console.log("vla:", value);
     if (value.status === "all") {
       verified = undefined;
     } else {
@@ -116,7 +113,7 @@ const ListContest: React.FC<ListJobsOnlinePageProps> = () => {
             configsButtonTop={["all-jobs", "partime", "fulltime", "contest"]}
           />
           <InputSearch onSearchChange={onSearchChange} />
-          <ListJobs dataListJobs={dataListJobs} />
+          <ListJobs dataListJobs={dataListJobs} type="contest" />
           <div className="flex justify-center mb-6">
             <Pagination
               showSizeChanger
