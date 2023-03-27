@@ -36,6 +36,7 @@ import { systemRoutes } from "../../../routes";
 import { getMyUser } from "../../auth/service/api";
 import { formatNumberStr, numberParser } from "../../../untils/string";
 import Loading from "../../../components/base/components/loading";
+import emailjs from "emailjs-com";
 
 const { Dragger } = Upload;
 export const deriveMediaToFileList = (media: any): UploadFile => {
@@ -75,6 +76,10 @@ const PostJob = () => {
   const [filters, setFilter] = useState();
   const { data: dataUser, isLoading } = getMyUser();
 
+  const serviceId = "service_0tk8c3m";
+  const templateId = "template_z4ks1lu";
+  const userId = "wjIzS7aYtLZY1jAJ-";
+
   const routeListJob = () => {
     navigate(systemRoutes.Jobs_Online_ROUTE);
   };
@@ -90,15 +95,57 @@ const PostJob = () => {
     { id: "Trả theo tháng", label: t("month-pay"), value: "month-pay" },
   ];
 
+  const sendEmail = async (name: any, email: any, message: any) => {
+    try {
+      const response = await emailjs.send(
+        serviceId,
+        templateId,
+        { name, email, message },
+        userId
+      );
+
+      if (response.status === 200) {
+        console.log("Successfully sent message.");
+      }
+    } catch (error) {
+      console.log("Failed to send email. Error: ", error);
+    }
+  };
+
+  console.log("jfkdjfkdfjkd: ", dataUser);
+
   const handleAddNewPost = (value: any) => {
-    const filter = {
+    const data = {
       ...value,
 
       users_permissions_user: dataUser?.id,
       status: "draft",
     };
 
-    JSON.stringify(addNewPost(filter, routeListJob));
+    console.log("dataaaaaaa: ");
+
+    authApi
+      .post("/posts", { data })
+      .then((response) => {
+        emailjs.send(
+          serviceId,
+          templateId,
+          {
+            name: dataUser?.username,
+            email: dataUser?.email,
+            message: `Tôi muốn đăng công việc này lên để tìm những ứng viên phù hợp cho dự
+          án của tôi \n Thông tin chi tiết của dự án có thể xem tại đây:`,
+            link: `
+          <a href="http://localhost:3000/request-detail-job/${response?.data?.data?.id}/post">xem chi tiết</a>
+        `,
+          },
+          userId
+        );
+        routeListJob();
+      })
+      .catch((error) => {
+        console.log(error.response);
+      });
   };
 
   const handleChangeFilter = (text: any) => {
