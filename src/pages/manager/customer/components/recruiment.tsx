@@ -1,6 +1,8 @@
 import { Tabs } from "antd";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { getMyUser } from "../../../auth/service/api";
+import { getListPosts } from "../../../postJob/service/api";
 import AssignManager from "./assignManager";
 import GetProfileManager from "./getProfileManager";
 import PostJobManager from "./postJobManager";

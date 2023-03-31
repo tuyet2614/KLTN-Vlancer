@@ -44,6 +44,8 @@ const InformationUpdate = ({ id }: Props) => {
   };
 
   const handleAddNewPost = (value: any) => {
+    console.log("upload file");
+
     const formData = new FormData();
 
     formData.append("files", files[0], files[0].name);
@@ -64,6 +66,7 @@ const InformationUpdate = ({ id }: Props) => {
           addresses: {
             description: value.address,
           },
+          password: value?.changePassword && value?.changePassword,
         };
         JSON.stringify(updateUser(id, inputValue, handleDetailUser));
       })
@@ -75,6 +78,7 @@ const InformationUpdate = ({ id }: Props) => {
   const handleUploadNoFile = (value: any) => {
     const inputValue = {
       ...value,
+      password: value?.changePassword && value?.changePassword,
     };
     JSON.stringify(updateUser(id, inputValue, handleDetailUser));
   };
@@ -137,8 +141,11 @@ const InformationUpdate = ({ id }: Props) => {
             >
               <Input />
             </Form.Item>
-            <Form.Item label={t("change-pass")} name="password">
-              <Input.Password />
+            <Form.Item label={t("change-pass")} name="changePassword">
+              <Input.Password
+                placeholder={t("enter_password")}
+                autoComplete="new-password"
+              />
             </Form.Item>
             <Form.Item
               label={t("re-change-pass")}
@@ -146,7 +153,7 @@ const InformationUpdate = ({ id }: Props) => {
               rules={[
                 ({ getFieldValue }) => ({
                   validator: async (_, value) => {
-                    if (!value && getFieldValue("password")) {
+                    if (!value && getFieldValue("changePassword")) {
                       return Promise.reject(
                         new Error(
                           t(
@@ -155,7 +162,7 @@ const InformationUpdate = ({ id }: Props) => {
                         )
                       );
                     }
-                    if (value && value !== getFieldValue("password")) {
+                    if (value && value !== getFieldValue("changePassword")) {
                       return Promise.reject(
                         new Error(
                           t(

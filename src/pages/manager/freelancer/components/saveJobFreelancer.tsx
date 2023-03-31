@@ -1,5 +1,7 @@
 import { Table } from "antd";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+import { systemRoutes } from "../../../../routes";
 import { formatNumberStr, stringToNumber } from "../../../../untils/string";
 import { getMyUser } from "../../../auth/service/api";
 import { getListPosts } from "../../../postJob/service/api";
@@ -10,6 +12,7 @@ interface Props {
 }
 const SaveJobFreelancer = ({ id }: Props) => {
   const { t } = useTranslation("manager");
+  const navigate = useNavigate();
   const query = {
     filters: {
       users_permissions_user: {
@@ -21,7 +24,16 @@ const SaveJobFreelancer = ({ id }: Props) => {
     },
   };
 
-  const data: any = getListComments(query);
+  const { data, isLoading } = getListComments(query);
+
+  const handleDetailPost = (id: any) => {
+    navigate(systemRoutes.Detail_Job_ROUTE, {
+      state: {
+        id: id,
+        type: "post",
+      },
+    });
+  };
 
   const columns = [
     {
@@ -37,7 +49,14 @@ const SaveJobFreelancer = ({ id }: Props) => {
       key: "job-name",
       dataIndex: "job-name",
       render: (_: any, record: any) => {
-        return <p>{record?.attributes?.post?.data?.attributes?.title}</p>;
+        return (
+          <p
+            onClick={() => handleDetailPost(record?.attributes?.post?.data?.id)}
+            className="cursor-pointer"
+          >
+            {record?.attributes?.post?.data?.attributes?.title}
+          </p>
+        );
       },
     },
     {

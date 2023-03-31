@@ -5,6 +5,10 @@
     },
     "remember": "Ghi nhớ tôi",
     "forgot": "Quên mật khẩu?",
+    "forget": "Quên mật khẩu",
+    "registered": "Vui lòng nhập địa chỉ email bạn đã đăng ký",
+    "your-email": "Email của bạn",
+    "send-request": "Gửi yêu cầu",
     "login": "Đăng nhập",
     "already": "Bạn chưa có tài khoản?",
     "sign-up": "Đăng ký",
@@ -47,5 +51,14 @@
   "enter_positions": "Nhập chức vụ",
   "enter_birthday": "Nhập ngày sinh",
   "enter_email": "Nhập email",
-  "enter_phone_number": "Nhập số điện thoại"
+  "enter_phone_number": "Nhập số điện thoại",
+  "send-success": "Gửi thành công!",
+  "send-email": "Chúng tôi vừa gửi hướng dẫn khôi phục mật khẩu vào hòm thư ",
+  "another-email": "Email này chưa đăng kí tài khoản tại vLance",
+  "not_empty": "Nhập email để lấy lại mật khẩu",
+  "create-new": "Tạo mật khẩu mới",
+  "enter-pass": "Vui lòng nhập vào mật khẩu mới.",
+  "new-pass": "Mật khẩu mới",
+  "re-pass": "Nhập lại mật khẩu mới",
+  "request": "Gửi yêu cầu"
 }

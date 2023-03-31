@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 import { systemRoutes } from "../../../routes";
 import { formatNumber } from "../../../untils/string";
+import "../style/index.scss";
 
 interface ListJobsProps {
   dataListJobs: any;
@@ -14,20 +15,20 @@ export const ListJobs: React.FC<ListJobsProps> = ({ dataListJobs, type }) => {
   const { t } = useTranslation(["jobs-online", "service"]);
   const navigate = useNavigate();
   return (
-    <div className="flex-1">
-      {dataListJobs?.data.map((item: any) => (
+    <div className="flex-1 w-[80%]">
+      {dataListJobs?.data?.map((item: any) => (
         <div
-          className="border-t space-y-3 flex flex-col  py-6 px-4"
+          className="border-t space-y-3 flex flex-col  py-6 px-4 tag-job"
           key={item.id}
         >
-          <div className="flex gap-5 items-center">
+          <div className="flex gap-5 items-center content">
             <h2
               onClick={() =>
                 navigate(systemRoutes.Detail_Job_ROUTE, {
                   state: { id: item.id, type: type },
                 })
               }
-              className="text-blue-500 text-xl m-0 p-0 cursor-pointer"
+              className="text-blue-500 text-xl m-0 p-0 cursor-pointer title"
             >
               {item.attributes.title}
             </h2>
@@ -53,7 +54,7 @@ export const ListJobs: React.FC<ListJobsProps> = ({ dataListJobs, type }) => {
                   <p className=" m-0 p-0">
                     {item?.attributes?.addresses?.data[0]?.attributes?.city}
                   </p>
-                  <Divider type="vertical" className="bg-black" />
+                  <span className="px-3">|</span>
                 </div>
               )) ||
                 item?.attributes?.field?.category}
@@ -64,7 +65,6 @@ export const ListJobs: React.FC<ListJobsProps> = ({ dataListJobs, type }) => {
                       ns: "service",
                     })}
                   </p>
-                  <Divider type="vertical" className="bg-black" />
                 </div>
               )}
               <span className="px-3">|</span>

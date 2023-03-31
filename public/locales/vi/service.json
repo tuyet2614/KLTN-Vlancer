@@ -90,7 +90,7 @@
     "deadline_finish": "Thời hạn hoàn thành",
     "add_service": "Bổ sung dịch vụ phụ",
     "add_service_btn": "Thêm dịch vụ phụ",
-    "draft": "Lưu nháp",
+    "draft": "Chờ duyệt",
     "accept": "Khi đăng dịch vụ, tôi xác nhận đồng ý các điều khoản sử dụng của vLance.vn, và không để lộ bất kỳ thông tin liên lạc cá nhân nào trong phần mô tả nội dung công việc.",
     "counter-service": "Có hơn {{count}} gói dịch vụ {{name}} được cung cấp bởi các chuyên gia",
     "get-benefit": "Bạn sẽ nhận được",

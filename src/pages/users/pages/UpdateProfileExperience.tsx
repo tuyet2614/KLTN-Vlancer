@@ -4,13 +4,14 @@ import {
   Form,
   Image,
   Input,
+  Modal,
   Select,
   Table,
   Upload,
 } from "antd";
 import avatarDefault from "@assets/images/icon/avatar.jpg";
 import { useTranslation } from "react-i18next";
-import { createProfile, updateUser } from "../services/api";
+import { createProfile, getDetailProfile, updateUser } from "../services/api";
 import { getMyUser } from "../../auth/service/api";
 import { api_url } from "../../../untils/string";
 import { useEffect, useState } from "react";
@@ -19,9 +20,14 @@ import dayjs from "dayjs";
 import moment from "moment";
 import TextArea from "antd/lib/input/TextArea";
 import { getService } from "../../../components/filters/api";
+import authApi from "../../../constant/http-auth-common";
 import axios from "axios";
 import { DeleteFilled, EditFilled } from "@ant-design/icons";
 import Loading from "../../../components/base/components/loading";
+import Notification from "../../../components/base/components/Notification";
+import ModalEditProfile from "./modalEditProfile";
+import { useNavigate } from "react-router-dom";
+import { systemRoutes } from "../../../routes";
 
 interface Props {
   id?: string;
@@ -30,23 +36,48 @@ interface Props {
 const UpdateProfileExperience = ({ id }: Props) => {
   const { t } = useTranslation("update");
   const [form] = Form.useForm();
-  const { data: dataUser, isLoading } = getMyUser();
+  const [isLoading, setIsLoading] = useState(false);
   const [searchService, setSearchService] = useState<any>("");
   const dataServices = getService(searchService);
   const [files, setFiles] = useState<any>();
-  const dataProfile = dataUser?.profile;
+  const [dataDetailProfile, setDataDetailProfile] = useState<any>();
+  const [dataProfile, setDataProfile] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [isOpenEdit, setIsOpenEdit] = useState(false);
+  const [isOpenDelete, setIsOpenDelete] = useState(false);
+  const [loadingModal, setLoadingModal] = useState(true);
+  const navigate = useNavigate();
+
+  const [idProfile, setIdProfile] = useState("");
+
+  console.log("idddd: ", idProfile);
+
+  useEffect(() => {
+    setIsLoading(true);
+    authApi
+      .get("/users/me?populate[profile][populate][0]=files")
+      .then((response) => {
+        setDataProfile(response?.data?.profile);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        console.log(error);
+      });
+  }, [loading]);
 
   const token =
     localStorage.getItem("auth-token") &&
     localStorage.getItem("auth-token")!.replace(/['"]+/g, "");
   //REQUEST
-  useEffect(() => form.resetFields(), [dataUser]);
+  useEffect(() => form.resetFields(), [loading]);
+  // const dataProfilesds = getDetailProfile(idProfile);
+  // console.log("checkkkk: ", dataProfilesds);
 
   const handleAddNewPost = (value: any) => {
     const formData = new FormData();
-
     formData.append("files", files[0]);
-
+    setLoading(true);
     axios({
       method: "post",
       url: "http://localhost:1337/api/upload",
@@ -62,15 +93,50 @@ const UpdateProfileExperience = ({ id }: Props) => {
           ...value,
           files: imageId,
         };
-        JSON.stringify(createProfile(id, inputValue, dataProfile));
+        JSON.stringify(createProfile(id, inputValue, dataProfile, setLoading));
       })
       .catch((error) => {
+        setLoading(false);
         console.log("check errr: ", error);
       });
   };
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFiles(event.target.files);
+  };
+
+  const handleOpenEditProfile = (id: string) => {
+    setIdProfile(id);
+    setIsOpenEdit(true);
+  };
+  const handleOpenDeleteProfile = (id: string) => {
+    setIdProfile(id);
+    setIsOpenDelete(true);
+  };
+  const handleCloseEditProfile = () => {
+    setIsOpenEdit(false);
+  };
+  const handleCloseDeleteProfile = () => {
+    setIsOpenDelete(false);
+  };
+
+  const onDeleteProfile = () => {
+    setLoading(true);
+    authApi
+      .delete(`/profiles/${idProfile}`)
+      .then((respons: any) => {
+        Notification.Success({ message: t("delete-success") });
+        handleCloseDeleteProfile();
+        setLoading(false);
+      })
+      .catch((error: any) => {
+        console.log(error);
+        Notification.Error({ message: t("delete-error") });
+        setLoading(false);
+      });
+  };
+  const handleDetailProfile = (id: any) => {
+    navigate(systemRoutes?.DETAIL_PROFILE_ROUTE(id));
   };
 
   const columns = [
@@ -90,13 +156,22 @@ const UpdateProfileExperience = ({ id }: Props) => {
         const avatar: string = api_url + item?.files?.formats?.thumbnail.url;
 
         return (
-          <div>
+          <div
+            onClick={() => handleDetailProfile(item?.id)}
+            className="cursor-pointer"
+          >
             <Image src={item?.files ? avatar : avatarDefault} preview={false} />
             <div className="actions">
-              <div className="btn">
+              <div
+                className="btn"
+                onClick={() => handleOpenEditProfile(item.id)}
+              >
                 <EditFilled />
               </div>
-              <div className="btn">
+              <div
+                className="btn"
+                onClick={() => handleOpenDeleteProfile(item.id)}
+              >
                 <DeleteFilled />
               </div>
             </div>
@@ -132,7 +207,7 @@ const UpdateProfileExperience = ({ id }: Props) => {
               <span className="number">1</span>
               <p className="title">{t("cv-capacity")}</p>
             </div>
-            {dataUser?.profile?.length === 0 ? (
+            {dataProfile.length === 0 ? (
               <div>
                 <p>{t("describe")}</p>
                 <span>
@@ -144,7 +219,7 @@ const UpdateProfileExperience = ({ id }: Props) => {
               <div>
                 <Table
                   columns={columns}
-                  dataSource={dataUser?.profile}
+                  dataSource={dataProfile}
                   pagination={false}
                 />
               </div>
@@ -220,14 +295,13 @@ const UpdateProfileExperience = ({ id }: Props) => {
             <div>
               <Form.Item label={t("service")} name="services">
                 <Select
-                  mode="multiple"
                   tabIndex={3}
                   placeholder={t("placeholder.service")}
                   showSearch
                   filterOption={false}
                 >
                   {dataServices?.map((item: any) => (
-                    <Select.Option value={item?.attributes?.id} key={item?.id}>
+                    <Select.Option value={item?.id} key={item?.id}>
                       {t(item?.attributes?.name)}
                     </Select.Option>
                   ))}
@@ -248,6 +322,30 @@ const UpdateProfileExperience = ({ id }: Props) => {
             </div>
           </div>
         </Form>
+      )}
+      <Modal
+        open={isOpenDelete}
+        title={t("delete")}
+        onCancel={handleCloseDeleteProfile}
+        footer={[
+          <Button className="btn btn-cancel" onClick={handleCloseDeleteProfile}>
+            {t("Cancel")}
+          </Button>,
+          <Button className="btn btn-ok" onClick={onDeleteProfile}>
+            {t("yes")}
+          </Button>,
+        ]}
+      >
+        <p>{t("sure-delete")}</p>
+      </Modal>
+
+      {isOpenEdit && (
+        <ModalEditProfile
+          isOpen={isOpenEdit}
+          handleCloseModal={handleCloseEditProfile}
+          setLoading={setLoading}
+          profileId={idProfile}
+        />
       )}
     </>
   );

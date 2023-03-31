@@ -96,7 +96,7 @@ const FindService = ({ id }: Props) => {
         }}
         className="table-payment-history-content"
         columns={columns}
-        dataSource={data}
+        dataSource={data?.data}
         pagination={false}
         showSorterTooltip={false}
       />

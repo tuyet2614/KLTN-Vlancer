@@ -23,6 +23,10 @@ const DetailUser = () => {
     navigate(systemRoutes.UPDATE_USER_ROUTE(dataUser.id));
   };
 
+  const handleRoteDetailProfile = (profileId: string) => {
+    navigate(systemRoutes.DETAIL_PROFILE_ROUTE(profileId));
+  };
+
   return (
     <div className="detail-user">
       {isLoading ? (
@@ -80,6 +84,20 @@ const DetailUser = () => {
             </div>
             <div className="intro-item">
               <p className="title">{t("profile")}</p>
+              <div className="grid grid-cols-4 gap-4">
+                {dataUser?.profile?.map((item: any) => (
+                  <div
+                    className="cursor-pointer"
+                    onClick={() => handleRoteDetailProfile(item?.id)}
+                  >
+                    <Image
+                      src={api_url + item?.files?.formats?.thumbnail?.url}
+                      preview={false}
+                    />
+                    <p>{item?.title}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </Col>
           <Col>

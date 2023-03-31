@@ -6,10 +6,21 @@ import JobItemComponent from "../../components/job/jobItemComponent";
 import Footer from "../../layout/component/Footer";
 import { getListPosts } from "../postJob/service/api";
 import Loading from "../../components/base/components/loading";
+import { ListJobs } from "../job-online/widgets";
 
 const OnBoard = () => {
   const { t } = useTranslation("onBoard");
-  const { data: postData, isLoading } = getListPosts();
+  const query = {
+    filters: {
+      status: {
+        $in: ["requested"],
+      },
+    },
+    pagination: {
+      limit: 10,
+    },
+  };
+  const { data: postData, isLoading } = getListPosts(query);
 
   return (
     <Fragment>
@@ -23,28 +34,8 @@ const OnBoard = () => {
             {isLoading ? (
               <Loading />
             ) : (
-              postData?.map((item: any) => (
-                <JobItemComponent
-                  title={item?.attributes?.title}
-                  type={item?.attributes?.workType}
-                  rate={item?.attributes?.rate}
-                  author={
-                    item?.attributes?.users_permissions_user?.data?.attributes
-                      ?.username
-                  }
-                  location={item?.attributes?.attributes}
-                  minMoney={item?.attributes?.budgetMin}
-                  maxMoney={item?.attributes?.budgetMax}
-                  deadline={item?.attributes?.deadline}
-                  content={item?.attributes?.description}
-                  categories={item?.attributes?.category}
-                  key={item?.id}
-                />
-              ))
+              <ListJobs dataListJobs={postData} type="post" />
             )}
-          </div>
-          <div className="flex justify-center py-10 ">
-            <Button className="!bg-[#08c]">Xem tất cả 54.878 công việc </Button>
           </div>
         </div>
       </div>

@@ -32,6 +32,7 @@ function DetailJobPage() {
   const [form] = Form.useForm();
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [answerItem, setAnswerItem] = useState<any>();
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFiles(event.target.files);
@@ -80,14 +81,17 @@ function DetailJobPage() {
   };
 
   useEffect(() => {
+    setIsLoading(true);
     type === "post"
       ? axios.get(`/posts/${id}?populate=deep`).then((res) => {
-          setDataRecmt(res.data);
-          setDataJobs(res.data);
+          setDataRecmt(res?.data);
+          setDataJobs(res?.data);
+          setIsLoading(false);
         })
-      : axios.get(`/tests/${id}?populate=deep`).then((res) => {
-          setDataRecmt(res.data);
-          setDataJobs(res.data);
+      : axios.get(`/tests/${id}?populate=*`).then((res) => {
+          setDataRecmt(res?.data);
+          setDataJobs(res?.data);
+          setIsLoading(false);
         });
   }, [loading]);
   const postId: any = dataJob?.data?.id;
@@ -167,7 +171,7 @@ function DetailJobPage() {
 
   return (
     <>
-      {loading ? (
+      {isLoading ? (
         <Loading />
       ) : (
         <div className="detail-job-contest">
@@ -375,7 +379,7 @@ function DetailJobPage() {
                             </p>
                             <div className="flex gap-2">
                               <span>{t("skill")}: </span>
-                              {recmt?.attributes?.users_permissions_user?.data?.attributes?.skills.data.map(
+                              {recmt?.attributes?.users_permissions_user?.data?.attributes?.skills?.data.map(
                                 (skill: any) => (
                                   <div>
                                     <span className="cursor-pointer text-[#08c]">

@@ -1,5 +1,7 @@
-import { Table } from "antd";
+import { Table, Progress } from "antd";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+import { systemRoutes } from "../../../../routes";
 import { formatNumberStr, stringToNumber } from "../../../../untils/string";
 import { getMyUser } from "../../../auth/service/api";
 import { getListPosts } from "../../../postJob/service/api";
@@ -9,6 +11,7 @@ interface Props {
 }
 const AssignManager = ({ id }: Props) => {
   const { t } = useTranslation("manager");
+  const navigate = useNavigate();
   const query = {
     filters: {
       users_permissions_user: {
@@ -18,6 +21,15 @@ const AssignManager = ({ id }: Props) => {
         $in: ["pendind"],
       },
     },
+  };
+
+  const handleDetailPost = (id: any) => {
+    navigate(systemRoutes.Detail_Job_ROUTE, {
+      state: {
+        id: id,
+        type: "post",
+      },
+    });
   };
 
   const { data, isLoading } = getListPosts(query);
@@ -36,7 +48,14 @@ const AssignManager = ({ id }: Props) => {
       key: "job-name",
       dataIndex: "job-name",
       render: (_: any, record: any) => {
-        return <p>{record?.attributes?.title}</p>;
+        return (
+          <p
+            onClick={() => handleDetailPost(record?.id)}
+            className="cursor-pointer"
+          >
+            {record?.attributes?.title}
+          </p>
+        );
       },
     },
     {
@@ -79,7 +98,12 @@ const AssignManager = ({ id }: Props) => {
       key: "process",
       render: (_: any, record: any) => {
         return (
-          <p className="w-content-200 m-0">{t(record?.attributes?.status)}</p>
+          <Progress
+            percent={
+              record?.attributes?.progess ? record?.attributes?.progess : 0
+            }
+            size="small"
+          />
         );
       },
       width: 250,
@@ -94,7 +118,7 @@ const AssignManager = ({ id }: Props) => {
         }}
         className="table-payment-history-content"
         columns={columns}
-        dataSource={data}
+        dataSource={data?.data}
         pagination={false}
         loading={isLoading}
         showSorterTooltip={false}

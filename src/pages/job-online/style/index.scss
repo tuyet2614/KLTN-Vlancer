@@ -64,3 +64,57 @@
         }
     }
     }
+
+.tag-job {
+    width: 100%;
+    border: 1px solid black;
+    padding: 20px;
+    margin-bottom: 20px;
+    
+    .content {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 30px;
+        margin-bottom: 10px;
+        .title {
+            color: var(--neutra19);
+        }
+        .type {
+            background-color: var(--colorType);
+            color: white;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    }
+
+    .location {
+        display: flex;
+        background-color: #f5f5f5;
+        justify-content: space-between;
+        padding: 10px;
+        margin-top: 20px;
+    }
+
+    .list-type {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        padding-top: 30px;
+        .ant-btn {
+            padding: 5px;
+            background-color: #f7f7f7;
+            border-radius: 5px;
+            color: #adadad;
+            height: 25px;
+            display: flex;
+            align-items: center;
+        }
+        .ant-btn:first-child {
+            background-color: #08c;
+            color: white;
+        }
+            
+        
+    }
+    
+}

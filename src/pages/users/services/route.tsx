@@ -1,5 +1,6 @@
 import { lazy } from "react";
 import type { RouteObject } from "react-router-dom";
+import DetailProfile from "../pages/DetailProfile";
 import DetailUser from "../pages/DetailUser";
 import InformationUpdate from "../pages/InformmationUpdate";
 import UpdateProfileExperience from "../pages/UpdateProfileExperience";
@@ -10,6 +11,7 @@ export const RoutesUsers = {
   UPDATE_USER_ROUTE: (userId: string) => "/users/update/" + userId,
   INFORMATION_USER_UPDATE: "/user/update/information",
   CREATE_PROFILE_WORK : (userId: string, key?: string) => "/users/update/" + userId + "/" + key,
+  DETAIL_PROFILE_ROUTE: (profileId: string) => "/user/profile/" + profileId,
 };
 
 export const routeUsers: RouteObject[] = [
@@ -29,5 +31,9 @@ export const routeUsers: RouteObject[] = [
     path: "/user/update/information",
     element: <InformationUpdate />,
   },
+  {
+    path: "/user/profile/:id",
+    element: <DetailProfile />,
+  }
   
 ];

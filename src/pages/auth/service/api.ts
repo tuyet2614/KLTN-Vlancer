@@ -49,7 +49,7 @@ export const getMyUser = () => {
   const header = { authorization: `Bearer ${getAuthToken()}` };
   useEffect(() => {
     axios
-      .get("/users/me?populate=deep", {
+      .get("/users/me?populate=deep,3", {
         baseURL: "http://localhost:1337/api",
         headers: header,
         
@@ -83,3 +83,10 @@ export const getListRoles = () => {
 
   return data;
 };
+
+
+export const forgotMyPasswords = (email: any) => {
+  authApi.post("/auth/forgot-password", {email})
+  .then((respons: any) => console.log("ressss: ", respons))
+  .catch((error: any) => console.log("error: ", error))
+}

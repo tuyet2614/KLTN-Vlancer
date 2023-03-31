@@ -101,6 +101,13 @@
          "why": "What purpose do you join vLance.vn for?",
          "level": "Select the appropriate experience level",
          "service": "Name of service (eg: Designing facebook banner,...)"
-     }
+     },
+     "delete": "Delete profile",
+     "sure-delete": "Are you sure you want to delete this profile?",
+     "yes-btn" : "Agree",
+     "cancel": "Cancel",
+     "delete-success": "Delete successful record",
+     "delete-error": "Delete record failed",
+     "edit-profile": "Edit profile"
 
 }

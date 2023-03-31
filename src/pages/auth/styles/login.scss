@@ -53,3 +53,53 @@
     }
     
 }
+
+.form-forgot {
+    padding: 50px;
+    width: 460px;
+    .title {
+        margin-bottom: 20px;
+        font-size: 20px;
+        font-weight: 400;
+    }
+}
+.form-send-email {
+    margin: 30px;
+    .jumbotext {
+        .lead {
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 600;
+        }
+        .info-send {
+            font-size: 16px;
+            font-weight: 400;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+    }
+    .confirm-image {
+        width: 620px;
+        height: 510px;
+       text-align: center;
+        margin: 0 auto;
+        .ant-image {
+            width: 100%;
+        }
+    }
+}
+.form-reset {
+    margin: 30px;
+    width: 460px;
+    .title-create {
+       margin-bottom: 20px;
+            
+        font-size: 24px;
+        font-weight: 600; 
+    }
+    .label-pass {
+        margin-bottom: 10px;
+    }
+    
+}

@@ -23,15 +23,11 @@ const ListJobsOnlinePage: React.FC<ListJobsOnlinePageProps> = () => {
   useEffect(() => {
     axios
       .get(
-        `/posts?populate=*&filters[status][$notIn][0]=Draft&filters[status][$notIn][1]=reject&sort[id]=desc&pagination%5Bpage%5D=${pagination.page}&pagination%5BpageSize%5D=${pagination.pageSize}`,
+        `/posts?populate=*&filters[status][$notIn][0]=draft&filters[status][$notIn][1]=reject&sort[id]=desc&pagination%5Bpage%5D=${pagination.page}&pagination%5BpageSize%5D=${pagination.pageSize}`,
         { params: filters }
       )
       .then((res) => setDataListJobs(res.data));
   }, [pagination, filters]);
-
-  // useEffect(() => {
-  //   setButtonTop(page);
-  // }, [page]);
 
   const onShowSizeChange: PaginationProps["onShowSizeChange"] = (
     current,
