@@ -28,8 +28,10 @@
     "hour-pay": "Trả theo giờ",
     "month-pay": "Trả theo tháng",
     "maximum": "Số tiền tối đa tôi có thể trả trong khoảng",
+    "minimum": "Số tiền tối thiểu tôi có thể trả trong khoảng",
     "from": "Từ",
     "to": "Đến",
+    
     "display": "Tùy chọn hiển thị cho công việc này (không bắt buộc)",
     "type": "Định dạng được hỗ trợ: png, jpg, gif, pdf, psd, xls, xlsx, doc, docx, ppt, pptx, ods, odt, zip, rar",
     "size": "Kích thước tối đa: 10MB",
@@ -82,7 +84,7 @@
             "skill": "Chọn kĩ năng",
             "deadline": "Hạn cuối nhận chào giá của freelancer",
             "location": "Nơi làm việc"
-
+            
         },
         "success": "Tạo bài đăng công việc thành công",
         "error_messes": {
@@ -99,5 +101,6 @@
         "max_200": "Không được quá 200 kí tự!",
         "password_confirm_must_be_equal_password": "Mật khẩu xác nhận phải giống mật khẩu"
     }
+    
 
 }

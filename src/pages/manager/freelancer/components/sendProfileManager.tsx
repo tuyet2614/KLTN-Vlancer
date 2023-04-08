@@ -64,7 +64,7 @@ const SendProfileManager = ({ id }: Props) => {
       key: "type-job",
       dataIndex: "type-job",
       render: (_: any, record: any) => {
-        return <p>{record?.attributes?.post?.data?.attributes?.workType}</p>;
+        return <p>{t(record?.attributes?.post?.data?.attributes?.workType)}</p>;
       },
     },
 

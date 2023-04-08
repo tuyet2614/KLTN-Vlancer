@@ -17,6 +17,7 @@ import Notification from "../../../components/base/components/Notification";
 import TextArea from "antd/lib/input/TextArea";
 import "../style/index.scss";
 import ModalDetailAnswer from "./modalDetailAnswer";
+import { log } from "console";
 
 function DetailJobPage() {
   const [dataJob, setDataJobs] = useState<any>();
@@ -33,9 +34,18 @@ function DetailJobPage() {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [answerItem, setAnswerItem] = useState<any>();
   const [isLoading, setIsLoading] = useState(false);
+  const [isOpenEdit, setIsOpenEdit] = useState(false);
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = (event: any) => {
     setFiles(event.target.files);
+  };
+
+  const handleOpenModalEdit = () => {
+    setIsOpenEdit(true);
+  };
+
+  const handlecloseModalEdit = () => {
+    setIsOpenEdit(false);
   };
 
   const handleOpenModalComment = (item: any) => {
@@ -49,7 +59,7 @@ function DetailJobPage() {
   const handleAddNewAnswer = (value: any) => {
     const formData = new FormData();
     setLoading(true);
-    formData.append("files", files[0], files[0].name);
+    files && formData.append("files", files[0], files[0].name);
 
     axios({
       method: "post",
@@ -71,6 +81,7 @@ function DetailJobPage() {
           .post("/answers", { data: inputValue })
           .then((response: any) => {
             Notification.Success({ message: "Đăng bài dự thi thành công" });
+            form.resetFields();
             setLoading(false);
           })
           .catch((error: any) => console.log("error post: ", error));
@@ -88,7 +99,7 @@ function DetailJobPage() {
           setDataJobs(res?.data);
           setIsLoading(false);
         })
-      : axios.get(`/tests/${id}?populate=*`).then((res) => {
+      : axios.get(`/tests/${id}?populate=deep`).then((res) => {
           setDataRecmt(res?.data);
           setDataJobs(res?.data);
           setIsLoading(false);
@@ -116,7 +127,7 @@ function DetailJobPage() {
   const checkAnswer = () => {
     const check = dataJob?.data?.attributes?.answers?.data?.findIndex(
       (item: any) =>
-        item?.attributes?.users_permissions_users?.data[0].id === user?.id
+        item?.attributes?.users_permissions_users?.data?.id === user?.id
     );
     return check;
   };
@@ -153,11 +164,11 @@ function DetailJobPage() {
 
         {
           name: t("detail.workType"),
-          info: dataJob?.data?.attributes?.workType,
+          info: t(dataJob?.data?.attributes?.workType),
         },
         {
           name: t("detail.payType"),
-          info: dataJob?.data?.attributes?.payType,
+          info: t(dataJob?.data?.attributes?.payType),
         },
       ],
     },
@@ -168,6 +179,8 @@ function DetailJobPage() {
       dataJob?.data?.attributes?.idRecommendRecieved == id && "bg-yellow-100"
     );
   }
+
+  console.log("data job: ", dataJob);
 
   return (
     <>
@@ -339,6 +352,7 @@ function DetailJobPage() {
             <div className="space-y-5 w-[63%]">
               {dataRecmt?.data?.attributes?.recommends?.data?.map(
                 (recmt: any) => {
+                  console.log("recmt: ", recmt?.id);
                   return (
                     <div
                       key={recmt.id}
@@ -377,7 +391,7 @@ function DetailJobPage() {
                                   ?.attributes?.workTitle
                               }
                             </p>
-                            <div className="flex gap-2">
+                            <div className="">
                               <span>{t("skill")}: </span>
                               {recmt?.attributes?.users_permissions_user?.data?.attributes?.skills?.data.map(
                                 (skill: any) => (
@@ -386,6 +400,7 @@ function DetailJobPage() {
                                       {skill?.attributes?.name}
                                     </span>
                                     <span>,</span>
+                                    <span> </span>
                                   </div>
                                 )
                               )}
@@ -397,7 +412,9 @@ function DetailJobPage() {
                               <Button
                                 onClick={() =>
                                   navigate(systemRoutes.Detail_Cmt_ROUTE, {
-                                    state: { id: recmt.id },
+                                    state: {
+                                      id: recmt?.id,
+                                    },
                                   })
                                 }
                                 type="primary"
@@ -405,19 +422,16 @@ function DetailJobPage() {
                                 {t("show-more")}
                               </Button>
                             )}
-                            {recmt.attributes?.users_permissions_user?.data
+                            {/* {recmt.attributes?.users_permissions_user?.data
                               ?.id === user?.id && (
                               <Button
-                                onClick={() =>
-                                  navigate(systemRoutes.Detail_Cmt_ROUTE, {
-                                    state: { id: recmt.id },
-                                  })
+                                onClick={handleOpenModalEdit
                                 }
                                 type="primary"
                               >
                                 {t("edit")}
                               </Button>
-                            )}
+                            )} */}
                           </div>
                         </div>
                         <div className="">
@@ -465,13 +479,15 @@ function DetailJobPage() {
                 {type === "contest" &&
                   dataRecmt?.data?.attributes?.answers?.data.map(
                     (recmt: any) => {
+                      console.log("recomment: ", recmt);
+
                       return (
                         <div
                           key={recmt.id}
                           className="answer-item mb-[20px] w-[25%] bg-white border border-solid border-[#e6e6e6] shadow-[0_0_2px_1px_#e6e6e6]"
                         >
                           <div
-                            className="!w-full cursor-pointer"
+                            className={`!w-full cursor-pointer `}
                             onClick={() => handleOpenModalComment(recmt)}
                           >
                             <Image
@@ -487,14 +503,16 @@ function DetailJobPage() {
                             />
                           </div>
 
-                          <div className="w-full p-3">
+                          <div
+                            className={`w-full p-3 ${recmt?.attributes
+                              ?.choosen && "bg-yellow-100"}`}
+                          >
                             <h2 className="text-blue-500 ">
                               {
-                                recmt?.attributes?.users_permissions_users
-                                  ?.data[0]?.attributes?.username
+                                recmt?.attributes?.users_permissions_users?.data
+                                  ?.attributes?.username
                               }
                             </h2>
-                            {recmt?.attributes?.choosen && <p>duoc nhan</p>}
                           </div>
                         </div>
                       );

@@ -33,6 +33,7 @@ export const FormPost: React.FC<FormPostProps> = ({ postId, setLoading }) => {
           users_permissions_user: user?.id,
           post: postId,
           file: [],
+          status: "comment",
         },
       })
       .finally(() => setLoading(false));

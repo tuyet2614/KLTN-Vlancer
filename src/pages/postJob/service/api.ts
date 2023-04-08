@@ -19,7 +19,7 @@ export const addNewPost = async(data: any, routeListJob:() => void) => {
 }
 
 
-export const getListPosts = (params?: any) => {
+export const getListPosts = (params?: any, reRender?:any) => {
     const [isLoading, setIsLoading] = useState(true)
     const [data, setData] = useState<any>([])
     useEffect( 
@@ -34,9 +34,31 @@ export const getListPosts = (params?: any) => {
         console.log(error);
         setIsLoading(false)
         });
+            }, [reRender]
+        )
+    
+    return {data, isLoading}
+}
+
+export const getListContest = (params?: any) => {
+    const [isLoading, setIsLoading] = useState(true)
+    const [data, setData] = useState<any>([])
+    useEffect( 
+        () => {      
+        getApi
+        .get("/tests?populate=*", {params: params})
+        .then((response) => {
+        setData(response.data)
+        setIsLoading(false)
+        })
+        .catch((error) => {
+        console.log(error);
+        setIsLoading(false)
+        });
             }, []
         )
     
     return {data, isLoading}
 }
+
 

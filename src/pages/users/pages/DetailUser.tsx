@@ -1,10 +1,15 @@
-import { Button, Col, Image, Row } from "antd";
+import { Button, Col, Image, Progress, Rate, Row } from "antd";
 import avatarDefault from "@assets/images/icon/avatar.jpg";
 import "../styles/index.scss";
 import { getDetailUser } from "../services/api";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { CheckOutlined, MailOutlined, PhoneOutlined } from "@ant-design/icons";
+import {
+  CheckOutlined,
+  MailOutlined,
+  PhoneOutlined,
+  SendOutlined,
+} from "@ant-design/icons";
 import { api_url } from "../../../untils/string";
 import { getMyUser } from "../../auth/service/api";
 import { systemRoutes } from "../../../routes";
@@ -27,13 +32,14 @@ const DetailUser = () => {
     navigate(systemRoutes.DETAIL_PROFILE_ROUTE(profileId));
   };
 
+  console.log("data user: ", dataUser);
   return (
     <div className="detail-user">
       {isLoading ? (
         <Loading />
       ) : (
         <Row className="justify-between">
-          <Col className="w-3/5">
+          <Col className="w-[50%]">
             <div className="flex gap-4">
               <div>
                 <Image
@@ -134,11 +140,41 @@ const DetailUser = () => {
             </div>
             <div className="intro-item pt-10">
               <p className="title">{t("summary")}</p>
-              <p>{dataUser?.summary ? "" : t("no-comment")}</p>
+              <p>
+                {dataUser?.answers?.length > 0 ? (
+                  <div>
+                    {dataUser?.answers?.map((item: any) => (
+                      <div>
+                        <Rate
+                          allowHalf
+                          disabled
+                          defaultValue={item?.post?.star}
+                        />
+                        <p>{item?.post?.content}</p>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  t("no-comment")
+                )}
+              </p>
             </div>
             <div className="intro-item">
               <p className="title">{t("work")}</p>
-              <p>{dataUser?.summary?.level ? "" : t("no-comment")}</p>
+              <p>
+                {dataUser?.answers?.length > 0 ? (
+                  <div>
+                    {dataUser?.answers?.map((item: any) => (
+                      <div className="flex items-center gap-2">
+                        <SendOutlined />
+                        <span>{item?.post?.title}</span>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  t("no-comment")
+                )}
+              </p>
             </div>
           </Col>
         </Row>

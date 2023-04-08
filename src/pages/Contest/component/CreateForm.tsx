@@ -14,6 +14,7 @@ import { useNavigate } from "react-router";
 import { systemRoutes } from "../../../routes";
 import axios from "axios";
 import { useUserStore } from "../../../store/user";
+import { getMyUser } from "../../auth/service/api";
 
 const CreateForm = () => {
   const { t } = useTranslation("contest");
@@ -61,16 +62,16 @@ const CreateForm = () => {
           secret: isPrivate,
           file: imageId,
           user: user.user.id,
+          status: "draft",
         };
 
-        JSON.stringify(createTest(data, navigate));
+        JSON.stringify(createTest(data, navigate, user));
       })
       .catch((error) => {
         const data = {
           ...value,
-          description: {
-            des: value.description,
-          },
+          description: value.description,
+
           service: {
             service: value.services,
           },
@@ -79,9 +80,10 @@ const CreateForm = () => {
           },
           secret: isPrivate,
           user: user.user.id,
+          status: "draft",
         };
 
-        JSON.stringify(createTest(data, navigate));
+        JSON.stringify(createTest(data, navigate, user));
         console.log("check errr: ", error);
       });
   };

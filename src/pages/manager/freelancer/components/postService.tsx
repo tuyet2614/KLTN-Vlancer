@@ -5,6 +5,7 @@ import { systemRoutes } from "../../../../routes";
 import { formatNumberStr, stringToNumber } from "../../../../untils/string";
 import { getMyUser } from "../../../auth/service/api";
 import { getListPosts } from "../../../postJob/service/api";
+import { getListAnswers } from "../../services/api";
 
 interface Props {
   id: any;
@@ -14,16 +15,13 @@ const PostService = ({ id }: Props) => {
   const navigate = useNavigate();
   const query = {
     filters: {
-      users_permissions_user: {
+      users_permissions_users: {
         id: { $eq: id },
-      },
-      status: {
-        $in: ["draft"],
       },
     },
   };
 
-  const data: any = getListPosts(query);
+  const data: any = getListAnswers(query);
 
   const columns = [
     {
@@ -31,7 +29,7 @@ const PostService = ({ id }: Props) => {
       dataIndex: "stt",
       width: 60,
       render: (_: any, __: any, index: number) => {
-        return <div className="flex justify-center">{index + 1}</div>;
+        return <p className="flex justify-center">{index + 1}</p>;
       },
     },
     {
@@ -39,7 +37,7 @@ const PostService = ({ id }: Props) => {
       key: "service-name",
       dataIndex: "service-name",
       render: (_: any, record: any) => {
-        return <p>{record?.attributes?.title}</p>;
+        return <p>{record?.attributes?.test?.data?.attributes?.title}</p>;
       },
     },
     {
@@ -47,7 +45,7 @@ const PostService = ({ id }: Props) => {
       key: "Provider",
       dataIndex: "Provider",
       render: (_: any, record: any) => {
-        return <p>{record?.attributes?.workType}</p>;
+        return <p>{t("contest")}</p>;
       },
     },
 
@@ -58,8 +56,7 @@ const PostService = ({ id }: Props) => {
       render: (_: any, record: any) => {
         return (
           <p className="w-content-300 m-0">
-            {formatNumberStr(record?.attributes?.budgetMin)} -{" "}
-            {formatNumberStr(record?.attributes?.budgetMax)}
+            {formatNumberStr(record?.attributes?.test?.data?.attributes?.prize)}
           </p>
         );
       },
@@ -71,7 +68,9 @@ const PostService = ({ id }: Props) => {
       key: "package-status",
       render: (_: any, record: any) => {
         return (
-          <p className="w-content-200 m-0">{t(record?.attributes?.status)}</p>
+          <p className="w-content-200 m-0">
+            {record?.attributes?.choosen ? t("send-test") : t("win")}
+          </p>
         );
       },
       width: 250,
@@ -79,42 +78,17 @@ const PostService = ({ id }: Props) => {
   ];
   return (
     <div>
-      <div className="block-service">
-        <Select>
-          <Select.Option value="all" key="all">
-            {t("all")}
-          </Select.Option>
-          <Select.Option value="show" key="show">
-            {t("show")}
-          </Select.Option>
-          <Select.Option value="pause" key="pause">
-            {t("pause")}
-          </Select.Option>
-        </Select>
-      </div>
-      {data.length ? (
-        <Table
-          scroll={{
-            x: 1100,
-            y: 210,
-          }}
-          className="table-payment-history-content"
-          columns={columns}
-          dataSource={data?.data}
-          pagination={false}
-          showSorterTooltip={false}
-        />
-      ) : (
-        <div>
-          <p>{t("new-service")}</p>
-          <Button
-            type="primary"
-            onClick={() => navigate(systemRoutes.POST_SERVICE_ROUTE)}
-          >
-            {t("post-now")}
-          </Button>
-        </div>
-      )}
+      <Table
+        scroll={{
+          x: 1100,
+          y: 210,
+        }}
+        className="table-payment-history-content"
+        columns={columns}
+        dataSource={data?.data}
+        pagination={false}
+        showSorterTooltip={false}
+      />
     </div>
   );
 };

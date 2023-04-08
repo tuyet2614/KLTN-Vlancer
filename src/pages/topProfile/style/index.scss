@@ -14,6 +14,10 @@
         }
         .filters {
             text-align: center;
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            align-items: center;
         }
     }
     .container {
@@ -22,8 +26,16 @@
             width: calc(25% - 40px);
             float: left;
             margin: 0 20px 40px;
+            box-shadow: 0px 0px 20px rgba(63, 36, 6, 0.15);
+            background: #FFFFFF;
+            display: flex;
+            flex-direction: column;
+            
+            border-radius: 5px;
+            
             .p-img {
                 cursor: pointer;
+                width: 100%;
                 .lazyloaded {
                     border-radius: 5px;
                     max-width: 100%;
@@ -31,17 +43,26 @@
                     vertical-align: middle;
                     border: 0;
                 }
+                .ant-image {
+                    width: 100%;
+                   .ant-image-img {
+                    height: 250px;
+                   }
+                }
             }
             .p-about-m {
-                height: 86px;
+                
                 margin-top: 10px;
                 overflow: hidden;
+                padding-left: 10px;
                 .title {
                     cursor: pointer;
                     line-height: 20px;
                     width: 100%;
                     display: inline-block;
                     color: #000;
+                    font-size: 20px;
+                    font-weight: 700;
                 }
                 .author {
                     color: #999;
@@ -49,8 +70,7 @@
                     white-space: nowrap;
                     overflow: hidden;
                     text-overflow: ellipsis;
-                    line-height: 16px;
-                    font-size: 13px;
+                    font-size: 16px;
                 }
                 .review {
                     width: 100%;

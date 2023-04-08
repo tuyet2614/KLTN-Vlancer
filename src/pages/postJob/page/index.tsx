@@ -97,8 +97,6 @@ const PostJob = () => {
     { id: "byMonth", label: t("month-pay"), value: "byMonth" },
   ];
 
-  console.log("jfkdjfkdfjkd: ", dataUser);
-
   const handleAddNewPost = (value: any) => {
     const data = {
       ...value,
@@ -106,8 +104,6 @@ const PostJob = () => {
       users_permissions_user: dataUser?.id,
       status: "draft",
     };
-
-    console.log("dataaaaaaa: ");
 
     authApi
       .post("/posts", { data })

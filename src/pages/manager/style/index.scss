@@ -5,3 +5,20 @@
             width: 250px;
         }
     }
+
+.modal-confirm-request {
+        .ant-modal-content {
+        .ant-modal-footer {
+            
+            .btn-ok {
+                background-color: #50c77b;
+                color: white;
+            }
+            .btn-reject {
+                background-color: red;
+                    
+                    color: white;
+            }
+        }
+    }
+    }

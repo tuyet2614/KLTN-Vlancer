@@ -56,18 +56,31 @@ function DetailRequestPage() {
   };
 
   const handleConfirmPost = () => {
+    setLoading(true);
     const data = {
       status: "requested",
     };
-    authApi
-      .put(`/posts/${id}`, { data })
-      .then((respon: any) => {
-        handlecloseModalComfirm;
-        Notification.Success({ message: t("success-confirm") });
-      })
-      .catch((error: any) =>
-        Notification.Error({ message: t("error-confirm") })
-      );
+    type === "post"
+      ? authApi
+          .put(`/posts/${id}`, { data })
+          .then((respon: any) => {
+            handlecloseModalComfirm();
+            setLoading(false);
+            Notification.Success({ message: t("success-confirm") });
+          })
+          .catch((error: any) =>
+            Notification.Error({ message: t("error-confirm") })
+          )
+      : authApi
+          .put(`/tests/${id}`, { data })
+          .then((respon: any) => {
+            handlecloseModalComfirm();
+            setLoading(false);
+            Notification.Success({ message: t("success-confirm") });
+          })
+          .catch((error: any) =>
+            Notification.Error({ message: t("error-confirm") })
+          );
   };
 
   const handleRejectPost = () => {
@@ -77,7 +90,7 @@ function DetailRequestPage() {
     authApi
       .put(`/posts/${id}`, { data })
       .then((respon: any) => {
-        handlecloseModalComfirm;
+        handlecloseModalComfirm();
         Notification.Success({ message: t("success-reject") });
       })
       .catch((error: any) =>
@@ -117,11 +130,11 @@ function DetailRequestPage() {
 
         {
           name: t("detail.workType"),
-          info: dataJob?.data?.attributes?.workType,
+          info: t(dataJob?.data?.attributes?.workType),
         },
         {
           name: t("detail.payType"),
-          info: dataJob?.data?.attributes?.payType,
+          info: t(dataJob?.data?.attributes?.payType),
         },
       ],
     },
@@ -263,7 +276,7 @@ function DetailRequestPage() {
                   onClick={handlecloseModalComfirm}
                   className="btn btn-cancel"
                 >
-                  {t("Cancel")}
+                  {t("cancel")}
                 </Button>,
                 <Button onClick={handleRejectPost} className="btn btn-reject">
                   {t("reject")}

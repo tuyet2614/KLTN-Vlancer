@@ -9,6 +9,8 @@ import authApi from "../../../../constant/http-auth-common";
 import Notification from "../../../../components/base/components/Notification";
 import { useNavigate } from "react-router-dom";
 import { systemRoutes } from "../../../../routes";
+import axios from "axios";
+import { useUserStore } from "../../../../store/user";
 
 interface Props {
   id: any;
@@ -23,6 +25,65 @@ const ChosenManager = ({ id }: Props) => {
   const [data, setData] = useState<any>([]);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const [percent, setPercent] = useState(0);
+  const [files, setFiles] = useState<any>();
+  const { user } = useUserStore();
+  const token = localStorage.getItem("auth-token");
+
+  const handleFileChange = (event: any) => {
+    setFiles(event.target.files);
+  };
+
+  const handleConfirmPost = (value: any) => {
+    if (files) {
+      const formData = new FormData();
+      setLoading(true);
+      formData.append("files", files[0], files[0].name);
+
+      axios({
+        method: "post",
+        url: "http://localhost:1337/api/upload",
+        data: formData,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((response) => {
+        const imageId = response.data[0].id;
+        console.log("image id: ", imageId);
+
+        const data = {
+          ...value,
+          answerFiles: imageId,
+        };
+        authApi
+          .put(`/posts/${idPost}`, { data })
+          .then((respon: any) => {
+            handleCloseModal();
+            Notification.Success({ message: t("success-confirm") });
+            setLoading(true);
+          })
+          .catch((error: any) => {
+            Notification.Error({ message: t("error-confirm") });
+            setLoading(true);
+          });
+      });
+    } else {
+      const data = {
+        ...value,
+      };
+      authApi
+        .put(`/posts/${idPost}`, { data })
+        .then((respon: any) => {
+          handleCloseModal();
+          Notification.Success({ message: t("success-confirm") });
+          setLoading(true);
+        })
+        .catch((error: any) => {
+          Notification.Error({ message: t("error-confirm") });
+          setLoading(true);
+        });
+    }
+  };
 
   const handleOpenModal = (value: any) => {
     setIsOpen(true);
@@ -33,22 +94,22 @@ const ChosenManager = ({ id }: Props) => {
     setIsOpen(false);
   };
 
-  const handleConfirmPost = (values: any) => {
-    const data = {
-      ...values,
-    };
-    authApi
-      .put(`/posts/${idPost}`, { data })
-      .then((respon: any) => {
-        handleCloseModal();
-        Notification.Success({ message: t("success-confirm") });
-        setLoading(true);
-      })
-      .catch((error: any) => {
-        Notification.Error({ message: t("error-confirm") });
-        setLoading(true);
-      });
-  };
+  // const handleConfirmPost = (values: any) => {
+  //   const data = {
+  //     ...values,
+  //   };
+  //   authApi
+  //     .put(`/posts/${idPost}`, { data })
+  //     .then((respon: any) => {
+  //       handleCloseModal();
+  //       Notification.Success({ message: t("success-confirm") });
+  //       setLoading(true);
+  //     })
+  //     .catch((error: any) => {
+  //       Notification.Error({ message: t("error-confirm") });
+  //       setLoading(true);
+  //     });
+  // };
 
   const query = {
     filters: {
@@ -72,6 +133,7 @@ const ChosenManager = ({ id }: Props) => {
 
   useEffect(() => {
     setIsLoading(true);
+    form.resetFields();
     authApi
       .get("/recommends?populate=*", { params: query })
       .then((response) => {
@@ -115,7 +177,7 @@ const ChosenManager = ({ id }: Props) => {
       render: (_: any, record: any) => {
         return (
           <p className="w-content-300 m-0">
-            {record?.attributes?.post?.data?.attributes?.workType}
+            {t(record?.attributes?.post?.data?.attributes?.workType)}
           </p>
         );
       },
@@ -181,6 +243,8 @@ const ChosenManager = ({ id }: Props) => {
       width: 250,
     },
   ];
+
+  console.log("percent: ", percent);
   return (
     <div>
       <Table
@@ -203,11 +267,22 @@ const ChosenManager = ({ id }: Props) => {
       >
         <Form form={form} onFinish={handleConfirmPost}>
           <Form.Item name="progess" label={t("progess")} className="w-full">
-            <InputNumber placeholder={t("percent")} className="!w-[50%]" />
+            <InputNumber
+              placeholder={t("percent")}
+              className="!w-[50%]"
+              onChange={(e: any) => setPercent(e)}
+            />
           </Form.Item>
-          <Form.Item name="workDone" label={t("work-done")}>
+          <Form.Item name="descriptionStatus" label={t("work-done")}>
             <Input placeholder={t("work-placeholder")} className="w-full" />
           </Form.Item>
+          {percent === 100 && (
+            <div>
+              <Form.Item label={t("link-project")} name="websites">
+                <Input placeholder={t("placeholder-web")} />
+              </Form.Item>
+            </div>
+          )}
           <div className="flex justify-end gap-7">
             <Button htmlType="submit" className="btn" type="primary">
               {t("confirm")}

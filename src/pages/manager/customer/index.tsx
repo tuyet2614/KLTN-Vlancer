@@ -16,8 +16,8 @@ const CustomerManager = () => {
       children: <Recruiment id={id} />,
     },
     {
-      label: t("service-order"),
-      key: "service-order",
+      label: t("contest"),
+      key: "contest",
       children: <ServicePackage id={id} />,
     },
   ];

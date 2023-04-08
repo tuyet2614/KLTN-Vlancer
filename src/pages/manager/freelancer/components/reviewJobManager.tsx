@@ -1,4 +1,4 @@
-import { Button, Table } from "antd";
+import { Button, Modal, Rate, Table } from "antd";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { systemRoutes } from "../../../../routes";
@@ -6,6 +6,7 @@ import { formatNumberStr, stringToNumber } from "../../../../untils/string";
 import { getMyUser } from "../../../auth/service/api";
 import { getListPosts } from "../../../postJob/service/api";
 import { getListComments } from "../../services/api";
+import { useState } from "react";
 
 interface Props {
   id: any;
@@ -13,6 +14,8 @@ interface Props {
 const ReviewJobManager = ({ id }: Props) => {
   const { t } = useTranslation("manager");
   const navigate = useNavigate();
+  const [showDetail, setShowDetail] = useState(false);
+  const [current, setCurrent] = useState<any>();
   const query = {
     filters: {
       users_permissions_user: {
@@ -32,6 +35,14 @@ const ReviewJobManager = ({ id }: Props) => {
         type: "post",
       },
     });
+  };
+
+  const handleOpenShowDetail = (item: any) => {
+    setShowDetail(true);
+    setCurrent(item);
+  };
+  const handleCloseShowDetail = () => {
+    setShowDetail(false);
   };
 
   const columns = [
@@ -63,7 +74,7 @@ const ReviewJobManager = ({ id }: Props) => {
       key: "type-job",
       dataIndex: "type-job",
       render: (_: any, record: any) => {
-        return <p>{record?.attributes?.post?.data?.attributes?.workType}</p>;
+        return <p>{t(record?.attributes?.post?.data?.attributes?.workType)}</p>;
       },
     },
 
@@ -102,8 +113,16 @@ const ReviewJobManager = ({ id }: Props) => {
       dataIndex: "review",
       key: "review",
       render: (_: any, record: any) => {
-        return (
-          <p className="w-content-200 m-0">{t(record?.attributes?.status)}</p>
+        console.log("check review: ", record);
+        return record?.attributes?.post?.data?.attributes?.star ? (
+          <p
+            className="w-content-200 m-0 cursor-pointer !text-[#1A0DAB]"
+            onClick={() => handleOpenShowDetail(record?.attributes?.post?.data)}
+          >
+            {t(record?.attributes?.status)}
+          </p>
+        ) : (
+          <p>{t("wait-review")}</p>
         );
       },
       width: 250,
@@ -123,6 +142,21 @@ const ReviewJobManager = ({ id }: Props) => {
         loading={isLoading}
         showSorterTooltip={false}
       />
+      <Modal
+        open={showDetail}
+        onCancel={handleCloseShowDetail}
+        title={t("show-comment")}
+        onOk={handleCloseShowDetail}
+      >
+        <div className="flex gap-3">
+          <span>{t("star")}: </span>
+          <Rate allowHalf disabled defaultValue={current?.attributes?.star} />
+        </div>
+        <div className="flex gap-3">
+          <span>{t("content")}: </span>
+          <span>{current?.attributes?.content}</span>
+        </div>
+      </Modal>
     </div>
   );
 };

@@ -64,7 +64,7 @@ const ModalDetailAnswer = ({
             <span className="label ">{t("author")}:</span>
             <span className="user">
               {
-                data?.attributes?.users_permissions_users?.data[0]?.attributes
+                data?.attributes?.users_permissions_users?.data?.attributes
                   ?.username
               }
             </span>

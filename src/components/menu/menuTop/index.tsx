@@ -1,4 +1,4 @@
-import logo from "@assets/images/icon/Logo-vlance.svg";
+import logo from "@assets/images/icon/logo_vlancer.svg";
 import { Button, Image, Menu, MenuProps } from "antd";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -46,27 +46,17 @@ export default function DesktopMenu() {
               key: "create-design-exam",
               onClick: () => navigate(systemRoutes.CONTEST_ROUTE),
             },
-
-            {
-              label: t("find-freelancer"),
-              key: "find-freelancer",
-              onClick: () => navigate(systemRoutes.FREELANCERS_ROUTE),
-            },
-            {
-              label: t("find-project"),
-              key: "find-project",
-              onClick: () => navigate(systemRoutes.TOP_PROFILE_ROUTE),
-            },
           ],
         },
         {
-          label: t("find-service"),
-          key: "find-service",
-          onClick: () => navigate(systemRoutes.SEARCH_SERVICE_ROUTE),
+          label: t("find-freelancer"),
+          key: "find-freelancer",
+          onClick: () => navigate(systemRoutes.FREELANCERS_ROUTE),
         },
         {
-          label: t("business"),
-          key: "business",
+          label: t("find-project"),
+          key: "find-project",
+          onClick: () => navigate(systemRoutes.TOP_PROFILE_ROUTE),
         },
       ],
     },
@@ -118,10 +108,6 @@ export default function DesktopMenu() {
             },
           ],
         },
-        {
-          label: t("agency"),
-          key: "agency",
-        },
       ],
     },
   ];
@@ -135,7 +121,7 @@ export default function DesktopMenu() {
         <Menu
           mode="horizontal"
           items={items}
-          className="min-w-[300px]"
+          className="min-w-[380px]"
           subMenuOpenDelay={0.2}
           defaultSelectedKeys={defaultSelectedKeys}
           selectedKeys={defaultSelectedKeys}

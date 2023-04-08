@@ -12,7 +12,8 @@ interface DetailCmtPageProps {}
 const DetailCmtPage: React.FC<DetailCmtPageProps> = ({}) => {
   const location = useLocation();
   const { t } = useTranslation("jobs-online");
-  const { id } = location.state;
+  const { id } = location?.state;
+  console.log("iddddd: ", id);
   const navigate = useNavigate();
   const [detailCmt, setDetailCmt] = useState<any>();
   useEffect(() => {
@@ -24,13 +25,25 @@ const DetailCmtPage: React.FC<DetailCmtPageProps> = ({}) => {
   const handleChoose = () => {
     const dataUpdate = {
       ...detailCmt?.attributes?.post?.data?.attributes,
-
+      status: "pendind",
       idRecommendRecieved: id,
     };
     const post_id = detailCmt?.attributes?.post?.data?.id;
 
-    axios.put(`/posts/${post_id}`, { data: dataUpdate });
-    navigate(systemRoutes.Detail_Job_ROUTE);
+    const updateComment = {
+      ...detailCmt?.attributes,
+      status: "chosen",
+    };
+
+    axios
+      .put(`/posts/${post_id}`, { data: dataUpdate })
+      .then((resss: any) => {
+        axios.put(`/recommends/${id}`, { data: updateComment });
+        navigate(systemRoutes.Detail_Job_ROUTE, {
+          state: { id: post_id, type: "post" },
+        });
+      })
+      .catch((err: any) => console.log(err));
   };
 
   const configsInfoCmt = [

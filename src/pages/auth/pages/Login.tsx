@@ -10,7 +10,7 @@ import {
   Select,
   Space,
 } from "antd";
-import { Fragment, useCallback, useEffect } from "react";
+import { Fragment, useCallback, useEffect, useState } from "react";
 import authApi from "../../../constant/http-common";
 
 import "../styles/login.scss";
@@ -20,15 +20,19 @@ import { Link, useNavigate } from "react-router-dom";
 import { systemRoutes } from "../../../routes";
 import { useLoginApi } from "../service/api";
 import axios from "axios";
+import socketIO from "socket.io-client";
 import { LocalStorageKey } from "../../../configs/common";
 import { setAuthData } from "../../../untils/token";
 import Notification from "../../../components/base/components/Notification";
+import { Socket } from "socket.io-client";
 
 const Login = () => {
   const { t } = useTranslation(["login", "notify"]);
   const [form] = Form.useForm();
   const navigate = useNavigate();
   // const {loginUser} = useLoginApi;
+  const [userName, setUserName] = useState("");
+  const socket = socketIO("http://localhost:1337");
 
   const onSubmit = (value: any) => {
     authApi
@@ -36,7 +40,12 @@ const Login = () => {
       .then((response) => {
         setAuthData(response.data.jwt);
         Notification.Success({ message: t("login.success", { ns: "notify" }) });
+
+        localStorage.setItem("userName", value.identifier);
+        //sends the username and socket ID to the Node.js server
+        socket.emit("newUser", { userName, socketID: socket.id });
         navigate(systemRoutes.ONBOARD_ROUTE);
+        form.resetFields();
       })
       .catch((error) => {
         console.log(error);

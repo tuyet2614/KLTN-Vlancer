@@ -15,15 +15,11 @@ const ServicePackage = ({ id }: Props) => {
 
   const items = [
     {
-      label: t("find-service"),
-      key: "find-service",
+      label: t("list-contest"),
+      key: "list-contest",
       children: <FindService id={id} />,
     },
-    {
-      label: t("package"),
-      key: "package",
-      children: <FindService id={id} />,
-    },
+
     {
       label: t("order-job"),
       key: "order-job",
@@ -33,11 +29,6 @@ const ServicePackage = ({ id }: Props) => {
       label: t("finish"),
       key: "finish",
       children: <FinishOrderService id={id} />,
-    },
-    {
-      label: t("review"),
-      key: "review",
-      children: <ReviewService id={id} />,
     },
   ];
   return (

@@ -6,16 +6,18 @@ import "./styles.scss";
 import { useTranslation } from "react-i18next";
 import { getMyUser } from "../../../pages/auth/service/api";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { systemRoutes } from "../../../routes";
 import { useLogout } from "../../service/api";
 import { api_url } from "../../../untils/string";
 import { useUserStore } from "../../../store/user";
 import NotificationMenu from "../../menu/menuComponent/NotificationComponent/index";
+import { log } from "console";
 
 const MenuAuth = () => {
   const { t } = useTranslation("auth");
   const { user, setUser } = useUserStore();
+  const navigate = useNavigate();
 
   const { onLogout } = useLogout();
 
@@ -53,14 +55,24 @@ const MenuAuth = () => {
       ),
     },
   ];
+
   return (
     <div className="menu-auth">
       <NotificationMenu />
+
       <Image
         src={CHAT_IMG}
         alt="chat_img"
         preview={false}
         className="cursor-pointer"
+        onClick={() =>
+          navigate(systemRoutes.CHAT_ROUTE, {
+            state: {
+              id: userData?.id,
+              userData: userData,
+            },
+          })
+        }
       />
       <Dropdown menu={{ items }} placement="bottom" trigger={["click"]}>
         <div className="account-menu">

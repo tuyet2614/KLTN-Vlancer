@@ -5,12 +5,12 @@ import Notification from "../../../components/base/components/Notification";
 import { useTranslation } from "react-i18next";
 
 export const getDetailUser = (id?: string) => {
-    const [data, setData] = useState()
+    const [data, setData] = useState<any>()
     const [isLoading, setIsLoading] = useState(true)
     useEffect( 
         () => {      
         getApi
-        .get(`/users/${id}?populate=*`)
+        .get(`/users/${id}?populate=deep,3`)
         .then((response) => {
             setIsLoading(false)
         setData(response.data)

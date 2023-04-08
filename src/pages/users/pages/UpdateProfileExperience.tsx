@@ -71,8 +71,6 @@ const UpdateProfileExperience = ({ id }: Props) => {
     localStorage.getItem("auth-token")!.replace(/['"]+/g, "");
   //REQUEST
   useEffect(() => form.resetFields(), [loading]);
-  // const dataProfilesds = getDetailProfile(idProfile);
-  // console.log("checkkkk: ", dataProfilesds);
 
   const handleAddNewPost = (value: any) => {
     const formData = new FormData();
@@ -156,11 +154,16 @@ const UpdateProfileExperience = ({ id }: Props) => {
         const avatar: string = api_url + item?.files?.formats?.thumbnail.url;
 
         return (
-          <div
-            onClick={() => handleDetailProfile(item?.id)}
-            className="cursor-pointer"
-          >
-            <Image src={item?.files ? avatar : avatarDefault} preview={false} />
+          <div>
+            <div
+              className="cursor-pointer"
+              onClick={() => handleDetailProfile(item?.id)}
+            >
+              <Image
+                src={item?.files ? avatar : avatarDefault}
+                preview={false}
+              />
+            </div>
             <div className="actions">
               <div
                 className="btn"
@@ -184,7 +187,10 @@ const UpdateProfileExperience = ({ id }: Props) => {
       dataIndex: "profile-info",
       render: (_: any, record: any) => {
         return (
-          <div>
+          <div
+            onClick={() => handleDetailProfile(record?.id)}
+            className="cursor-pointer"
+          >
             <p className="title">{record?.title}</p>
             <p>{record?.description}</p>
             {record?.services?.map((item: any) => (
@@ -327,11 +333,12 @@ const UpdateProfileExperience = ({ id }: Props) => {
         open={isOpenDelete}
         title={t("delete")}
         onCancel={handleCloseDeleteProfile}
+        className="modal-confirm-delete"
         footer={[
           <Button className="btn btn-cancel" onClick={handleCloseDeleteProfile}>
             {t("Cancel")}
           </Button>,
-          <Button className="btn btn-ok" onClick={onDeleteProfile}>
+          <Button className="btn btn-reject" onClick={onDeleteProfile}>
             {t("yes")}
           </Button>,
         ]}

@@ -4,37 +4,44 @@ import { EyeOutlined, HeartFilled } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { systemRoutes } from "../../../routes";
+import { api_url } from "../../../untils/string";
 
-const ExperienceItem = () => {
+interface Props {
+  items: any;
+}
+
+const ExperienceItem = ({ items }: Props) => {
   const { t } = useTranslation("service");
+  console.log("iteeeemm: ", items);
   const navigate = useNavigate();
   return (
     <div className="portfolio">
       <div
         className="p-img"
-        onClick={() => navigate(systemRoutes.TOP_PROFILE_DETAIL_ROUTE)}
+        onClick={() => navigate(systemRoutes.DETAIL_PROFILE_ROUTE(items.id))}
       >
-        <Image className="lazyloaded" src={avatarDefault} preview={false} />
+        <Image
+          className="lazyloaded"
+          src={
+            api_url +
+            items?.attributes?.files?.data?.attributes?.formats?.thumbnail?.url
+          }
+          preview={false}
+        />
       </div>
       <div className="p-about-m">
         <p
           className="title"
-          onClick={() => navigate(systemRoutes.TOP_PROFILE_DETAIL_ROUTE)}
+          onClick={() => navigate(systemRoutes.DETAIL_PROFILE_ROUTE(items.id))}
         >
-          Ngược Photography logo
+          {items?.attributes?.title}
         </p>
-        <p className="author">Ngược Photography logo</p>
-        <div className="review">
-          <div className="review-eye">
-            <EyeOutlined />
-            <p>7.8k</p>
-          </div>
-          <div className="review-like">
-            <HeartFilled />
-            <p>18</p>
-            <p>thich boi</p>
-          </div>
-        </div>
+        <p className="author">
+          {
+            items?.attributes?.users_permissions_users?.data[0]?.attributes
+              ?.username
+          }
+        </p>
       </div>
     </div>
   );

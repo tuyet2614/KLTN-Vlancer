@@ -5,6 +5,7 @@ import ForgetPassword from "./components/forgetPassword";
 import { ResetPassword } from "./components/resetPassword";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
+import ChatApp from "../../components/chat/chatApp";
 
 export const RoutesAuth = {
   AUTH: "/auth",
@@ -15,7 +16,8 @@ export const RoutesAuth = {
   PHONE_FORGOT_PASS_ROUTE: "/auth/forgot-password-phone-number",
   NEW_PASS_ROUTE: "/auth/new-password",
   CHECK_EMAIL_ROUTE: "/reset/check-email",
-  RESET_PASSWORD_ROUTE: "/reset/reset-password"
+  RESET_PASSWORD_ROUTE: "/reset/reset-password",
+  CHAT_ROUTE: "/chat/message"
 };
 
 export const routerAuth: RouteObject[] = [
@@ -43,5 +45,9 @@ export const routerAuth: RouteObject[] = [
   {
         path: "/reset/reset-password",
         element: <ResetPassword />,
+  },
+  {
+        path: "/chat/message",
+        element: <ChatApp  />,
   },
 ];

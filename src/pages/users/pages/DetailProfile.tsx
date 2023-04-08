@@ -3,15 +3,24 @@ import avatarDefault from "@assets/images/icon/avatar.jpg";
 import "../styles/index.scss";
 import { EnvironmentOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { getDetailProfile } from "../services/api";
 import Loading from "../../../components/base/components/loading";
 import { api_url } from "../../../untils/string";
+import { systemRoutes } from "../../../routes";
 
 const DetailProfile = () => {
   const { t } = useTranslation("user");
   const { id } = useParams();
   const { data, isLoading } = getDetailProfile(id);
+  const navigate = useNavigate();
+  const handleDetailUser = () => {
+    navigate(
+      systemRoutes.DETAIL_FREELANCERS_ROUTE(
+        data?.attributes?.users_permissions_users?.data[0]?.id
+      )
+    );
+  };
   const avatar: string =
     api_url +
     data?.attributes?.users_permissions_users?.data[0]?.attributes?.avatar?.data
@@ -69,7 +78,7 @@ const DetailProfile = () => {
               )}
             </div>
             <div className="contact-btn">
-              <Button>{t("show-profile")}</Button>
+              <Button onClick={handleDetailUser}>{t("show-profile")}</Button>
             </div>
           </Col>
           <Col className="layer-right">

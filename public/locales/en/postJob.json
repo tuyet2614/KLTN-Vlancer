@@ -27,6 +27,7 @@
     "pay-project": "Pay by project",
     "hour-pay": "Hourly pay",
     "month-pay": "Monthly pay",
+    "minimum": "The min amount I can pay for is",
     "maximum": "The maximum amount I can pay for is",
     "from": "From",
     "to": "To",

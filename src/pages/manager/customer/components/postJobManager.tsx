@@ -19,7 +19,7 @@ const PostJobManager = ({ id }: Props) => {
         id: { $eq: id },
       },
       status: {
-        $in: ["draft"],
+        $in: ["draft", "reject"],
       },
     },
   };
@@ -64,6 +64,7 @@ const PostJobManager = ({ id }: Props) => {
       key: "type-job",
       dataIndex: "type-job",
       render: (_: any, record: any) => {
+        console.log("recordddd: ", record);
         return <p>{record?.attributes?.workType}</p>;
       },
     },

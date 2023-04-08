@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { formatNumberStr, stringToNumber } from "../../../../untils/string";
 import { getMyUser } from "../../../auth/service/api";
 import { getListPosts } from "../../../postJob/service/api";
+import { getListAnswers } from "../../services/api";
 
 interface Props {
   id: any;
@@ -11,16 +12,14 @@ const FinishOrderService = ({ id }: Props) => {
   const { t } = useTranslation("manager");
   const query = {
     filters: {
-      users_permissions_user: {
+      users_permissions_users: {
         id: { $eq: id },
       },
-      status: {
-        $in: ["draft"],
-      },
+      choosen: true,
     },
   };
 
-  const data: any = getListPosts(query);
+  const data: any = getListAnswers(query);
 
   const columns = [
     {
@@ -28,7 +27,7 @@ const FinishOrderService = ({ id }: Props) => {
       dataIndex: "stt",
       width: 60,
       render: (_: any, __: any, index: number) => {
-        return <div className="flex justify-center">{index + 1}</div>;
+        return <p className="flex justify-center">{index + 1}</p>;
       },
     },
     {
@@ -36,23 +35,20 @@ const FinishOrderService = ({ id }: Props) => {
       key: "service-name",
       dataIndex: "service-name",
       render: (_: any, record: any) => {
-        return <p>{record?.attributes?.title}</p>;
+        return <p>{record?.attributes?.test?.data?.attributes?.title}</p>;
       },
     },
-    {
-      title: t("code-order"),
-      key: "code-order",
-      dataIndex: "code-order",
-      render: (_: any, record: any) => {
-        return <p>{record?.attributes?.workType}</p>;
-      },
-    },
+
     {
       title: t("service-prize"),
       key: "service-prize",
       dataIndex: "service-prize",
       render: (_: any, record: any) => {
-        return <p>{record?.attributes?.workType}</p>;
+        return (
+          <p>
+            {formatNumberStr(record?.attributes?.test?.data?.attributes?.prize)}
+          </p>
+        );
       },
     },
 
@@ -61,30 +57,12 @@ const FinishOrderService = ({ id }: Props) => {
       dataIndex: "job-status",
       key: "job-status",
       render: (_: any, record: any) => {
-        return (
-          <p className="w-content-300 m-0">
-            {formatNumberStr(record?.attributes?.budgetMin)} -{" "}
-            {formatNumberStr(record?.attributes?.budgetMax)}
-          </p>
-        );
+        return <p className="w-content-300 m-0">{t("win")}</p>;
       },
     },
   ];
   return (
     <div>
-      <div className="block-service">
-        <Select>
-          <Select.Option value="all" key="all">
-            {t("all")}
-          </Select.Option>
-          <Select.Option value="done" key="done">
-            {t("done")}
-          </Select.Option>
-          <Select.Option value="cancel" key="cancel">
-            {t("cancel")}
-          </Select.Option>
-        </Select>
-      </div>
       <Table
         scroll={{
           x: 1100,

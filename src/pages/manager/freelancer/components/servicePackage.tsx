@@ -20,11 +20,7 @@ const ServicePackage = ({ id }: Props) => {
       key: "post-service",
       children: <PostService id={id} />,
     },
-    {
-      label: t("package"),
-      key: "package",
-      children: <TransactionPackage id={id} />,
-    },
+
     {
       label: t("receive"),
       key: "receive",
@@ -34,11 +30,6 @@ const ServicePackage = ({ id }: Props) => {
       label: t("finish"),
       key: "finish",
       children: <FinishOrderService id={id} />,
-    },
-    {
-      label: t("review"),
-      key: "review",
-      children: <ReviewService id={id} />,
     },
   ];
   return (

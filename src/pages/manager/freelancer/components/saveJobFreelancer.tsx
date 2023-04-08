@@ -18,9 +18,6 @@ const SaveJobFreelancer = ({ id }: Props) => {
       users_permissions_user: {
         id: { $eq: id },
       },
-      status: {
-        $in: ["comment"],
-      },
     },
   };
 
@@ -49,6 +46,8 @@ const SaveJobFreelancer = ({ id }: Props) => {
       key: "job-name",
       dataIndex: "job-name",
       render: (_: any, record: any) => {
+        console.log("recoooo: ", record);
+
         return (
           <p
             onClick={() => handleDetailPost(record?.attributes?.post?.data?.id)}
@@ -64,7 +63,7 @@ const SaveJobFreelancer = ({ id }: Props) => {
       key: "type-job",
       dataIndex: "type-job",
       render: (_: any, record: any) => {
-        return <p>{record?.attributes?.post?.data?.attributes?.workType}</p>;
+        return <p>{t(record?.attributes?.post?.data?.attributes?.workType)}</p>;
       },
     },
 

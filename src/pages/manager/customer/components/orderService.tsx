@@ -2,7 +2,7 @@ import { Select, Table } from "antd";
 import { useTranslation } from "react-i18next";
 import { formatNumberStr, stringToNumber } from "../../../../untils/string";
 import { getMyUser } from "../../../auth/service/api";
-import { getListPosts } from "../../../postJob/service/api";
+import { getListContest, getListPosts } from "../../../postJob/service/api";
 
 interface Props {
   id: any;
@@ -11,16 +11,16 @@ const OrderService = ({ id }: Props) => {
   const { t } = useTranslation("manager");
   const query = {
     filters: {
-      users_permissions_user: {
+      user: {
         id: { $eq: id },
       },
       status: {
-        $in: ["draft"],
+        $in: ["requested"],
       },
     },
   };
 
-  const { data, isLoading } = getListPosts(query);
+  const { data, isLoading } = getListContest(query);
 
   const columns = [
     {
@@ -44,7 +44,7 @@ const OrderService = ({ id }: Props) => {
       key: "service-prize",
       dataIndex: "service-prize",
       render: (_: any, record: any) => {
-        return <p>{record?.attributes?.workType}</p>;
+        return <p>{formatNumberStr(record?.attributes?.prize)}</p>;
       },
     },
 
@@ -54,29 +54,13 @@ const OrderService = ({ id }: Props) => {
       key: "job-status",
       render: (_: any, record: any) => {
         return (
-          <p className="w-content-300 m-0">
-            {formatNumberStr(record?.attributes?.budgetMin)} -{" "}
-            {formatNumberStr(record?.attributes?.budgetMax)}
-          </p>
+          <p className="w-content-300 m-0">{t(record?.attributes?.status)}</p>
         );
       },
     },
   ];
   return (
     <div>
-      <div className="block-service">
-        <Select>
-          <Select.Option value="all" key="all">
-            {t("all")}
-          </Select.Option>
-          <Select.Option value="working" key="working">
-            {t("working")}
-          </Select.Option>
-          <Select.Option value="transaction" key="transaction">
-            {t("transaction")}
-          </Select.Option>
-        </Select>
-      </div>
       <Table
         scroll={{
           x: 1100,

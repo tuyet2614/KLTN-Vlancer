@@ -75,7 +75,6 @@ export const ListJobs: React.FC<ListJobsProps> = ({ dataListJobs, type }) => {
                 {item?.attributes?.budgetMax &&
                   formatNumber(item?.attributes?.budgetMax) + "đ"}
               </p>
-              <span>{formatNumber(item?.attributes?.prize) + "đ"}</span>
             </div>
             <div className="flex ">
               <p className=" m-0 p-0">
