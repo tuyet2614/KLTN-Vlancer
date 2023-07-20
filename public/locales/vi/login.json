@@ -60,5 +60,10 @@
   "enter-pass": "Vui lòng nhập vào mật khẩu mới.",
   "new-pass": "Mật khẩu mới",
   "re-pass": "Nhập lại mật khẩu mới",
+  "signup": {
+    "already": "Username hoặc email đã tồn tại",
+    "fail": "Đăng kí thất bại"
+  },
+  
   "request": "Gửi yêu cầu"
 }

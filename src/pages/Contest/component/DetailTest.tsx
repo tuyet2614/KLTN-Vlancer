@@ -12,8 +12,6 @@ const DetailTest = () => {
   const { id } = useParams();
   const { data, isLoading } = getDetailTest(id);
 
-  console.log("dessss: ", data);
-
   const avatar: string =
     api_url +
     data?.data?.attributes?.user?.data?.attributes?.avatar?.data?.attributes

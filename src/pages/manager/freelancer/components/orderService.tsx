@@ -4,12 +4,15 @@ import { formatNumberStr, stringToNumber } from "../../../../untils/string";
 import { getMyUser } from "../../../auth/service/api";
 import { getListPosts } from "../../../postJob/service/api";
 import { getListAnswers } from "../../services/api";
+import { useNavigate } from "react-router-dom";
+import { systemRoutes } from "../../../../routes";
 
 interface Props {
   id: any;
 }
 const OrderService = ({ id }: Props) => {
   const { t } = useTranslation("manager");
+  const navigate = useNavigate();
   const query = {
     filters: {
       users_permissions_users: {
@@ -17,6 +20,10 @@ const OrderService = ({ id }: Props) => {
       },
       choosen: false,
     },
+  };
+
+  const handleDetaiContest = (contestId: any) => {
+    navigate(systemRoutes.CONTEST_DETAIL_ROUTE(contestId));
   };
 
   const data: any = getListAnswers(query);
@@ -35,7 +42,16 @@ const OrderService = ({ id }: Props) => {
       key: "service-name",
       dataIndex: "service-name",
       render: (_: any, record: any) => {
-        return <p>{record?.attributes?.test?.data?.attributes?.title}</p>;
+        return (
+          <p
+            className="cursor-pointer text-sky-500"
+            onClick={() =>
+              handleDetaiContest(record?.attributes?.test?.data?.id)
+            }
+          >
+            {record?.attributes?.test?.data?.attributes?.title}
+          </p>
+        );
       },
     },
     {

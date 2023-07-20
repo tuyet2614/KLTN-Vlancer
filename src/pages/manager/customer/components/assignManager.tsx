@@ -45,8 +45,6 @@ const AssignManager = ({ id }: Props) => {
     });
   };
 
-  console.log("confirm: ", currentConfirm);
-
   const handleOpenShowMore = (post: any) => {
     setCurrentPost(post);
     setShowMore(true);
@@ -58,7 +56,6 @@ const AssignManager = ({ id }: Props) => {
   const handleCloseShowMore = () => {
     setShowMore(false);
   };
-  console.log("current post: ", currentPost);
   const handleCloseConfirm = () => {
     setConfirm(false);
   };
@@ -132,7 +129,7 @@ const AssignManager = ({ id }: Props) => {
         return (
           <p
             onClick={() => handleDetailPost(record?.id)}
-            className="cursor-pointer"
+            className="cursor-pointer text-sky-500"
           >
             {record?.attributes?.title}
           </p>
@@ -178,7 +175,6 @@ const AssignManager = ({ id }: Props) => {
       dataIndex: "process",
       key: "process",
       render: (_: any, record: any) => {
-        console.log("record:", record);
         return (
           <div className="flex gap-3">
             <div className="w-[250px] flex items-center">

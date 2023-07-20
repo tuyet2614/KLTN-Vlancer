@@ -31,6 +31,7 @@ const UpdateProfileWork = ({ id }: Props) => {
     navigate(`${systemRoutes.USERS_ROUTE}/me`);
   };
   const handleUpdateUser = (value: any) => {
+    console.log("checkkk: ", value);
     const data = {
       ...value,
       summary: {

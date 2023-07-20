@@ -54,7 +54,7 @@ const GetProfileManager = ({ id }: Props) => {
         return (
           <p
             onClick={() => handleDetailPost(record?.id)}
-            className="cursor-pointer"
+            className="cursor-pointer text-sky-500"
           >
             {record?.attributes?.title}
           </p>

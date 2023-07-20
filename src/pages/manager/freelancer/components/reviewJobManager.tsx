@@ -62,7 +62,7 @@ const ReviewJobManager = ({ id }: Props) => {
         return (
           <p
             onClick={() => handleDetailPost(record?.attributes?.post?.data?.id)}
-            className="cursor-pointer"
+            className="cursor-pointer text-sky-500"
           >
             {record?.attributes?.post?.data?.attributes?.title}
           </p>

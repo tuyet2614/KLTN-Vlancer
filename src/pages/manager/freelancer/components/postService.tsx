@@ -20,6 +20,9 @@ const PostService = ({ id }: Props) => {
       },
     },
   };
+  const handleDetaiContest = (contestId: any) => {
+    navigate(systemRoutes.CONTEST_DETAIL_ROUTE(contestId));
+  };
 
   const data: any = getListAnswers(query);
 
@@ -37,7 +40,16 @@ const PostService = ({ id }: Props) => {
       key: "service-name",
       dataIndex: "service-name",
       render: (_: any, record: any) => {
-        return <p>{record?.attributes?.test?.data?.attributes?.title}</p>;
+        return (
+          <p
+            className="cursor-pointer text-sky-500"
+            onClick={() =>
+              handleDetaiContest(record?.attributes?.test?.data?.id)
+            }
+          >
+            {record?.attributes?.test?.data?.attributes?.title}
+          </p>
+        );
       },
     },
     {

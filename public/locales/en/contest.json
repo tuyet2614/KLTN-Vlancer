@@ -70,6 +70,7 @@
     "want_price": "PROPOSED COST",
     "price_want": "You want to receive (exact payment for the project)",
     "deadline": "EXPECTED COMPLETION IN",
+    "placeholder_deadline": "Expected completion in",
     "PROPOSED": "PROPOSED CONSULT CLIENTS",
     "ques": "What experience and skills do you have that would be a good fit for this project?",
     "send": "Submit bid",

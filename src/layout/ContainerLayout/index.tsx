@@ -53,7 +53,7 @@ const ContainerLayout = () => {
         <div className="menu">
           <MenuTop />
         </div>
-        {isLogin && <ManageMenu user={user} />}
+        {isLogin && user && <ManageMenu user={user} />}
 
         <Layout className={`container-layout-content`}>
           <Content>

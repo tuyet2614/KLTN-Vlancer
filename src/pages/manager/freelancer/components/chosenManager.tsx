@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { systemRoutes } from "../../../../routes";
 import axios from "axios";
 import { useUserStore } from "../../../../store/user";
+import TextArea from "antd/lib/input/TextArea";
 
 interface Props {
   id: any;
@@ -163,7 +164,7 @@ const ChosenManager = ({ id }: Props) => {
         return (
           <p
             onClick={() => handleDetailPost(record?.attributes?.post?.data?.id)}
-            className="w-content-300 m-0 cursor-pointer"
+            className="w-content-300 m-0 cursor-pointer text-sky-500"
           >
             {record?.attributes?.post?.data?.attributes?.title}
           </p>
@@ -274,7 +275,11 @@ const ChosenManager = ({ id }: Props) => {
             />
           </Form.Item>
           <Form.Item name="descriptionStatus" label={t("work-done")}>
-            <Input placeholder={t("work-placeholder")} className="w-full" />
+            <TextArea
+              rows={4}
+              placeholder={t("work-placeholder")}
+              className="w-full"
+            />
           </Form.Item>
           {percent === 100 && (
             <div>

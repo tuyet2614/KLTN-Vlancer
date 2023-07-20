@@ -8,11 +8,7 @@ interface Props {
 
 const Message = ({ username, message }: Props) => {
   let sentByCurrentUser = false;
-  console.log("useeee: ", username);
-  console.log("messss: ", message);
-
   if (message.user_id_create?.data?.id === username.id) {
-    console.log("true");
     sentByCurrentUser = true;
   }
 

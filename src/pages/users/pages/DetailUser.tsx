@@ -15,14 +15,31 @@ import { getMyUser } from "../../auth/service/api";
 import { systemRoutes } from "../../../routes";
 import { useState } from "react";
 import Loading from "../../../components/base/components/loading";
+import socketIO from "socket.io-client";
 
 const DetailUser = () => {
   const { t } = useTranslation("user");
   const { id } = useParams();
+  // const [userName, setUserName] = useState("");
   const { data: dataUser, isLoading } =
     id === "me" ? getMyUser() : getDetailUser(id);
   const avatar: string = api_url + dataUser?.avatar?.formats?.thumbnail.url;
   const navigate = useNavigate();
+  const socket = socketIO("http://localhost:1337");
+  const userName: string = dataUser;
+
+  const handleSubmit = () => {
+    localStorage.setItem("userName", userName);
+    socket.emit("join", { userName }, (error: any) => {
+      if (error) return alert(error);
+    });
+    navigate(systemRoutes.CHAT_ROUTE, {
+      state: {
+        id: dataUser?.id,
+        userData: dataUser,
+      },
+    });
+  };
 
   const handleRouteToUpdate = () => {
     navigate(systemRoutes.UPDATE_USER_ROUTE(dataUser.id));
@@ -31,8 +48,6 @@ const DetailUser = () => {
   const handleRoteDetailProfile = (profileId: string) => {
     navigate(systemRoutes.DETAIL_PROFILE_ROUTE(profileId));
   };
-
-  console.log("data user: ", dataUser);
   return (
     <div className="detail-user">
       {isLoading ? (
@@ -127,7 +142,7 @@ const DetailUser = () => {
               </div>
               {id !== "me" && (
                 <>
-                  <Button>{t("contact")}</Button>
+                  <Button onClick={handleSubmit}>{t("contact")}</Button>
                   <div className="direct">
                     <span>{t("press")}</span>
                     <span>

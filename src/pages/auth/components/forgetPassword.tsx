@@ -29,7 +29,6 @@ const ForgetPassword = () => {
         console.log("resposns: ", respons);
       })
       .catch((error: any) => {
-        console.log("eeeee: ", error);
         if (error?.message === "Request failed with status code 500") {
           emailjs
             .send(

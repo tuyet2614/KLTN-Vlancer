@@ -1,4 +1,4 @@
-import logo from "@assets/images/icon/logo_vlancer.svg";
+import logo from "@assets/images/logo.png";
 import { Button, Image, Menu, MenuProps } from "antd";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";

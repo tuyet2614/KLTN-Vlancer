@@ -22,8 +22,6 @@ const LoginRouteComponent = () => {
     onError: (error) => console.log("Login Failed:", error),
   });
 
-  console.log("user: ", user);
-
   useEffect(() => {
     if (user) {
       axios
@@ -60,18 +58,6 @@ const LoginRouteComponent = () => {
         <Row className="flex justify-between ">
           <Col span={11}>
             <Form.Item className="login-item">
-              {/* <GoogleOAuthProvider clientId={clientId}> */}
-              {/* <GoogleLogin
-                onSuccess={(credentialResponse: any) => {
-                  console.log("creditttt: ", credentialResponse);
-                  setUser(credentialResponse);
-                }}
-                onError={() => {
-                  console.log("Login Failed");
-                }}
-              /> */}
-              {/* </GoogleOAuthProvider> */}
-              {/* <Link to="/api/auth/google/callback"> */}
               <Button onClick={() => login()}>
                 <Image src={googleIcon} preview={false} className="icon" />
                 <span className="">Google</span>

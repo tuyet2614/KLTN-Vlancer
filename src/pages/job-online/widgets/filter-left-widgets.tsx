@@ -42,9 +42,9 @@ export const FilterLeftWidgets: React.FC<FilterLeftWidgetsProps> = ({
             name="payment"
             configsCheckboxs={[
               { name: "all", value: "all" },
-              { name: "project", value: "Trả theo dự dán" },
-              { name: "hour", value: "Trả theo giờ" },
-              { name: "month", value: "Trả theo tháng" },
+              { name: "project", value: "byProject" },
+              { name: "hour", value: "byHour" },
+              { name: "month", value: "byMonth" },
             ]}
           />
           <FilterCity

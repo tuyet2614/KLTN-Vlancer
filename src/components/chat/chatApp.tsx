@@ -4,13 +4,14 @@ import socketIO from "socket.io-client";
 import { List } from "./List";
 import { ChatBar } from "./component/chatBar";
 import { ChatBody } from "./component/chatBody";
-import { ChatFooter } from "./component/chatFooter";
 import "./style.scss";
 import { getAuthToken } from "../../untils/token";
 import { useLocation } from "react-router-dom";
+import { getMyUser } from "../../pages/auth/service/api";
 
 const ChatApp = () => {
   const locationState = useLocation();
+  const { data: myUser, isLoading } = getMyUser();
   const { id, userData } = locationState.state;
   const [messages, setMessages] = useState<any>([]);
   const [message, setMessage] = useState("");
@@ -18,37 +19,31 @@ const ChatApp = () => {
   const socket = socketIO("http://localhost:1337");
   const [typingStatus, setTypingStatus] = useState("");
   const lastMessageRef: any = useRef(null);
-
   let welcome: any;
+
   useEffect(() => {
-    socket.on("disconnect", () => {
-      socket.off();
-      location.replace("http://localhost:3000/");
-      console.log("disconnected");
-    });
     socket.emit("join", { userData }, (error: any) => {
+      //Sending the username to the backend as the user connects.
       if (error) return alert(error);
     });
+
     socket.on("welcome", async (data: any, error: any) => {
+      //Getting the welcome message from the backend
       let welcomeMessage = {
         user: data.user,
         message: data.text,
       };
       welcome = welcomeMessage;
-      setMessages([welcomeMessage]);
-
-      await fetch("http://localhost:1337/api/messages?populate=*", {
-        headers: {
-          Authorization: `Bearer ${getAuthToken()}`,
-          "Content-Type": "application/json",
-        },
-      })
+      setMessages([welcomeMessage]); //Storing the Welcome Message
+      await fetch(
+        `http://localhost:1337/api/messages?filters[room_id][$contains]=${id}`
+      ) //Fetching all messages from Strapi
         .then(async (res) => {
           const response = await res.json();
           let arr = [welcome];
           response.data.map((one: any, i: any) => {
             arr = [...arr, one.attributes];
-            setMessages((msgs: any) => arr);
+            setMessages((msgs: any) => arr); // Storing all Messages in a state variable
           });
         })
         .catch((e) => console.log(e.message));
@@ -58,9 +53,9 @@ const ChatApp = () => {
         setUsers(await e.json());
       });
     });
-
     socket.on("message", async (data: any, error: any) => {
-      await fetch("http://localhost:1337/api/messages?populate=*")
+      //Listening for a message connection
+      await fetch("http://localhost:1337/api/messages")
         .then(async (res) => {
           const response = await res.json();
           let arr = [welcome];
@@ -75,15 +70,11 @@ const ChatApp = () => {
 
   const sendMessage = (message: any) => {
     if (message) {
-      socket.emit(
-        "sendMessage",
-        { message, user_id: 13, user_id_create: userData?.id },
-        (error: any) => {
-          if (error) {
-            alert(error);
-          }
+      socket.emit("sendMessage", { message, user: userData }, (error: any) => {
+        if (error) {
+          alert(error);
         }
-      );
+      });
       setMessage("");
     } else {
       alert("Message can't be empty");
@@ -100,9 +91,10 @@ const ChatApp = () => {
   const handleClick = () => {
     sendMessage(message);
   };
+
   return (
     <div className="chat">
-      <ChatBar socket={socket} users={users} />
+      <ChatBar socket={socket} users={users?.data} />
       <div className="chat__main">
         <ChatBody
           messages={messages}

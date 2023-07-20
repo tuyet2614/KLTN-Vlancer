@@ -29,6 +29,7 @@ export const useLoginApi = (user: any) => {
 
 export const CreateUserApi = (user: any, handleFc: () => void) => {
   // const navigate = useNavigate()
+  // const { t } = useTranslation("login");
   authApi
     .post("/auth/local/register", user)
 
@@ -39,6 +40,17 @@ export const CreateUserApi = (user: any, handleFc: () => void) => {
     })
     .catch(function (response) {
       //handle error
+      if (
+          response.response.data.error.message === "Email or Username are already taken"
+        ) {
+          Notification.Error({
+            message: ("Username hoặc email đã tồn tại"),
+          });
+        } else {
+          Notification.Error({
+            message: ("Đăng kí thất bại"),
+          });
+        }
     });
 };
 

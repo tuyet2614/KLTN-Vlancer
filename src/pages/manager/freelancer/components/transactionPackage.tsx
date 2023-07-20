@@ -36,7 +36,11 @@ const TransactionPackage = ({ id }: Props) => {
       key: "service-name",
       dataIndex: "service-name",
       render: (_: any, record: any) => {
-        return <p>{record?.attributes?.title}</p>;
+        return (
+          <p className="cursor-pointer text-sky-500">
+            {record?.attributes?.title}
+          </p>
+        );
       },
     },
     {

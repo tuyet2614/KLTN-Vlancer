@@ -9,6 +9,7 @@ import { useState } from "react";
 import { Rate } from "antd";
 import authApi from "../../../../constant/http-auth-common";
 import "../../style/index.scss";
+import TextArea from "antd/lib/input/TextArea";
 
 interface Props {
   id: any;
@@ -84,7 +85,7 @@ const ReviewManager = ({ id }: Props) => {
         return (
           <p
             onClick={() => handleDetailPost(record?.id)}
-            className="cursor-pointer"
+            className="cursor-pointer text-sky-500"
           >
             {record?.attributes?.title}
           </p>
@@ -152,7 +153,6 @@ const ReviewManager = ({ id }: Props) => {
     },
   ];
 
-  console.log("review::", value);
   return (
     <div>
       <Table
@@ -199,14 +199,14 @@ const ReviewManager = ({ id }: Props) => {
             <Rate allowHalf value={value} onChange={setValue} />
           </Form.Item>
           <Form.Item name={"content"} label={t("content")}>
-            <Input placeholder={t("enter-review")} />
+            <TextArea placeholder={t("enter-review")} rows={4} />
           </Form.Item>
           <div className="flex flex-end gap-5">
-            <Button htmlType="submit" className="btn btn-ok">
+            <Button htmlType="submit" className="btn btn-ok" type="primary">
               {t("ok")}
             </Button>
             <Button onClick={handleCloseReview} className="btn btn-cancel">
-              {t("Cancel")}
+              {t("canc")}
             </Button>
           </div>
         </Form>

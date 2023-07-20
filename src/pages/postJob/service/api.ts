@@ -7,6 +7,7 @@ import getApi from "../../../constant/http-common";
 import { systemRoutes } from "../../../routes";
 
 export const addNewPost = async(data: any, routeListJob:() => void) => {
+    console.log('auth api: ', authApi)
     
    await authApi.post('/posts', {data})
         .then( (response) =>  {

@@ -105,6 +105,7 @@ function DetailJobPage() {
           setIsLoading(false);
         });
   }, [loading]);
+
   const postId: any = dataJob?.data?.id;
 
   const avatar: string = dataJob?.data?.attributes?.users_permissions_user?.data
@@ -180,8 +181,6 @@ function DetailJobPage() {
     );
   }
 
-  console.log("data job: ", dataJob);
-
   return (
     <>
       {isLoading ? (
@@ -194,7 +193,15 @@ function DetailJobPage() {
                 <h1 className="text-4xl font-bold uppercase">
                   {dataJob?.data?.attributes?.title}
                 </h1>
-                <span>{dataJob?.data?.attributes?.description}</span>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: dataJob?.data?.attributes?.description?.replaceAll(
+                      /\n/g,
+                      "<br>"
+                    ),
+                  }}
+                />
+
                 {type === "post" ? (
                   <div>
                     <span>{t("skill")}: </span>
@@ -208,7 +215,7 @@ function DetailJobPage() {
                   </div>
                 ) : (
                   <div>
-                    <span>{t("need-service", { ns: "contest" })}: </span>
+                    <span>{t("detail.need-service", { ns: "contest" })}: </span>
                     <span className="text-[#08c] font-bold">
                       {dataJob?.data?.attributes?.field?.category}
                     </span>
@@ -294,11 +301,16 @@ function DetailJobPage() {
                     </div>
                   </div>
                 </div>
-                <div className="pt-[30px] align-center w-[100%]">
-                  <Button className="w-[100%]" type="primary">
-                    {t("contact")}
-                  </Button>
-                </div>
+                {token &&
+                  user?.id !==
+                    dataJob?.data?.attributes?.users_permissions_user?.data
+                      ?.id && (
+                    <div className="pt-[30px] align-center w-[100%]">
+                      <Button className="w-[100%]" type="primary">
+                        {t("contact")}
+                      </Button>
+                    </div>
+                  )}
               </div>
             </div>
             {token &&
@@ -352,7 +364,6 @@ function DetailJobPage() {
             <div className="space-y-5 w-[63%]">
               {dataRecmt?.data?.attributes?.recommends?.data?.map(
                 (recmt: any) => {
-                  console.log("recmt: ", recmt?.id);
                   return (
                     <div
                       key={recmt.id}
@@ -479,8 +490,6 @@ function DetailJobPage() {
                 {type === "contest" &&
                   dataRecmt?.data?.attributes?.answers?.data.map(
                     (recmt: any) => {
-                      console.log("recomment: ", recmt);
-
                       return (
                         <div
                           key={recmt.id}
