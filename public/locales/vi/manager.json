@@ -6,6 +6,11 @@
     "get-profile": "Nhận hồ sơ",
     "assign": "Giao việc",
     "review": "Đánh giá",
+    "star": "Mức độ",
+    "canc": "Hủy bỏ",
+    "content": "Nhận xét",
+    "ok": "Đồng ý",
+    "enter-review": "Nhập nhận xét",
     "job-name": "Tên việc",
     "type-job": "Loại việc",
     "prize": "Ngân sách",
@@ -36,9 +41,9 @@
     "job-status": "Trạng thái",
     "code-order": "Người tạo",
     "test-name": "Tên cuộc thi ",
-    "awards": "Nhận giải",
-    "draft": "Chờ duyệt",
-    "requested": "Yêu cầu",
+    "awards": "Hết hạn",
+    "draft": "Khởi tạo",
+    "requested": "Đang diễn ra",
     "pendind": "Đang đợi",
     "viewed": "Đang xem xét",
     "process": "Tiến trình",
@@ -98,6 +103,6 @@
      "receive": "Gửi bài",
      "new-service": "Bạn có muốn cung cấp dịch vụ?",
      "post-now": "Đăng dịch vụ ngay",
-     "send-test": "Gửi bài thi",
-     "win": "Chiến thắng"
+     "send-test": "Đang diễn ra",
+     "win": "Hết hạn"
 }

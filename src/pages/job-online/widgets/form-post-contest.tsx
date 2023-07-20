@@ -70,7 +70,7 @@ export const FormPostContest: React.FC<FormPostProps> = ({
                 size="large"
                 disabledDate={(d) => !d || d.isBefore(customDay)}
                 format="DD/MM/YYYY"
-                placeholder={t("detail.deadline")}
+                placeholder={t("detail.placeholder_deadline")}
               />
             </Form.Item>
           </div>

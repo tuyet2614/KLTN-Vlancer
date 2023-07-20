@@ -21,6 +21,10 @@
     "full_name": "Full name",
   "username": "Username",
   "phone_number": "Phone number",
+  "signup": {
+    "already": "Username or email already exist",
+    "fail": "Sign up fail"
+  },
   "roles": "Roles",
   "position": "Position",
   "status": "Status",

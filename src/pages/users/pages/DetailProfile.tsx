@@ -92,6 +92,7 @@ const DetailProfile = () => {
                     .url && avatar_profile
                 }
                 preview={false}
+                className="image_profile"
               />
             </div>
             <div className="portfolio-description">

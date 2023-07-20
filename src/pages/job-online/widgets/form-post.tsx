@@ -27,7 +27,7 @@ export const FormPost: React.FC<FormPostProps> = ({ postId, setLoading }) => {
     authApi
       .post(`/recommends`, {
         data: {
-          price: e.price,
+          price: Number(e.price.replace(/\./g, "")),
           deadline: dateValue,
           description: e.description,
           users_permissions_user: user?.id,
@@ -58,7 +58,12 @@ export const FormPost: React.FC<FormPostProps> = ({ postId, setLoading }) => {
             >
               <div className="flex w-80 space-x-2 border border-gray-300 items-center p-2 rounded-lg">
                 <p className="w-36">{t("detail.price_want")}</p>
-                <InputNumber className=" flex-1" controls={false} />
+                <InputNumber
+                  className=" flex-1"
+                  controls={false}
+                  parser={(value: any) => numberParser(value)}
+                  formatter={(value: any) => formatNumberStr(value)}
+                />
               </div>
             </Form.Item>
             <Form.Item name="date" label={t("detail.deadline")} required>
@@ -68,7 +73,7 @@ export const FormPost: React.FC<FormPostProps> = ({ postId, setLoading }) => {
                 size="large"
                 disabledDate={(d) => !d || d.isBefore(customDay)}
                 format="DD/MM/YYYY"
-                placeholder={t("detail.deadline")}
+                placeholder={t("detail.placeholder_deadline")}
               />
             </Form.Item>
           </div>

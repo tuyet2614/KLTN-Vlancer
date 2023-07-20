@@ -102,7 +102,8 @@
         "why": "Bạn tham gia vLance.vn với mục đích gì",
         "level": "Chọn mức kinh nghiệm phù hợp",
         "service": "Tên dịch vụ (VD : Thiết kế banner facebook,...)",
-        "location": "Nơi làm việc"
+        "location": "Nơi làm việc",
+        "enter_category": "Nhập dịch vụ"
     },
     "delete": "Xóa hồ sơ năng lực",
     "sure-delete": "Bạn có chắc muốn xóa hồ sơ năng lực này?",

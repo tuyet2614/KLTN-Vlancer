@@ -192,7 +192,7 @@ const InformationUpdate = ({ id }: Props) => {
               <Input />
             </Form.Item>
             <Form.Item
-              label={t("city ")}
+              label={t("city")}
               name="city"
               initialValue={dataUser?.city}
               rules={[

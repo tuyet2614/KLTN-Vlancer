@@ -84,7 +84,6 @@ const CreateForm = () => {
         };
 
         JSON.stringify(createTest(data, navigate, user));
-        console.log("check errr: ", error);
       });
   };
 

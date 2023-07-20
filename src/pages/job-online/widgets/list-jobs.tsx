@@ -14,8 +14,9 @@ interface ListJobsProps {
 export const ListJobs: React.FC<ListJobsProps> = ({ dataListJobs, type }) => {
   const { t } = useTranslation(["jobs-online", "service"]);
   const navigate = useNavigate();
+
   return (
-    <div className="flex-1 w-[80%]">
+    <div className="flex-1 ">
       {dataListJobs?.data?.map((item: any) => (
         <div
           className="border-t space-y-3 flex flex-col  py-6 px-4 tag-job"
@@ -67,6 +68,7 @@ export const ListJobs: React.FC<ListJobsProps> = ({ dataListJobs, type }) => {
                   </p>
                 </div>
               )}
+
               <span className="px-3">|</span>
               <p className=" m-0 p-0">
                 {item?.attributes?.budgetMin &&
@@ -74,6 +76,10 @@ export const ListJobs: React.FC<ListJobsProps> = ({ dataListJobs, type }) => {
 
                 {item?.attributes?.budgetMax &&
                   formatNumber(item?.attributes?.budgetMax) + "đ"}
+              </p>
+              <p className=" m-0 p-0">
+                {item?.attributes?.prize &&
+                  formatNumber(item?.attributes?.prize) + "đ"}
               </p>
             </div>
             <div className="flex ">

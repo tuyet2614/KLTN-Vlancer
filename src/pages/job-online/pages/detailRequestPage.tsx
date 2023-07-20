@@ -152,7 +152,15 @@ function DetailRequestPage() {
                 <h1 className="text-4xl font-bold uppercase">
                   {dataJob?.data?.attributes?.title}
                 </h1>
-                <span>{dataJob?.data?.attributes?.description}</span>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: dataJob?.data?.attributes?.description?.replaceAll(
+                      /\n/g,
+                      "<br>"
+                    ),
+                  }}
+                />
+
                 {type === "post" ? (
                   <div>
                     <span>{t("skill")}: </span>
@@ -166,7 +174,7 @@ function DetailRequestPage() {
                   </div>
                 ) : (
                   <div>
-                    <span>{t("need-service", { ns: "contest" })}: </span>
+                    <span>{t("detail.need-service", { ns: "contest" })}: </span>
                     <span className="text-[#08c] font-bold">
                       {dataJob?.data?.attributes?.field?.category}
                     </span>

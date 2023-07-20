@@ -57,7 +57,7 @@ const ListJobsOnlinePage: React.FC<ListJobsOnlinePageProps> = () => {
 
     const query = {
       filters: {
-        service: {
+        services: {
           id: { $in: value.service },
         },
         category: {

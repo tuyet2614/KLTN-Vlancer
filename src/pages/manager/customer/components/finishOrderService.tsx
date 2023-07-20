@@ -3,12 +3,15 @@ import { useTranslation } from "react-i18next";
 import { formatNumberStr, stringToNumber } from "../../../../untils/string";
 import { getMyUser } from "../../../auth/service/api";
 import { getListContest, getListPosts } from "../../../postJob/service/api";
+import { useNavigate } from "react-router-dom";
+import { systemRoutes } from "../../../../routes";
 
 interface Props {
   id: any;
 }
 const FinishOrderService = ({ id }: Props) => {
   const { t } = useTranslation("manager");
+  const navigate = useNavigate();
   const query = {
     filters: {
       user: {
@@ -19,9 +22,11 @@ const FinishOrderService = ({ id }: Props) => {
       },
     },
   };
+  const handleDetaiContest = (id: any) => {
+    navigate(systemRoutes.CONTEST_DETAIL_ROUTE(id));
+  };
 
   const data: any = getListContest(query);
-  console.log("list contest: ", data);
 
   const columns = [
     {
@@ -37,7 +42,14 @@ const FinishOrderService = ({ id }: Props) => {
       key: "service-name",
       dataIndex: "service-name",
       render: (_: any, record: any) => {
-        return <p>{record?.attributes?.title}</p>;
+        return (
+          <p
+            className="cursor-pointer text-sky-500"
+            onClick={() => handleDetaiContest(record?.id)}
+          >
+            {record?.attributes?.title}
+          </p>
+        );
       },
     },
     {

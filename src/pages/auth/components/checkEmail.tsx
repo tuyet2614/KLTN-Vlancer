@@ -8,7 +8,6 @@ export const CheckEmail = () => {
   const { t } = useTranslation("login");
   const location = useLocation();
   const { email } = location?.state;
-  console.log("email: ", email);
 
   return (
     <div className="form-send-email">

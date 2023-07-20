@@ -13,7 +13,6 @@ const DetailCmtPage: React.FC<DetailCmtPageProps> = ({}) => {
   const location = useLocation();
   const { t } = useTranslation("jobs-online");
   const { id } = location?.state;
-  console.log("iddddd: ", id);
   const navigate = useNavigate();
   const [detailCmt, setDetailCmt] = useState<any>();
   useEffect(() => {

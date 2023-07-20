@@ -18,8 +18,8 @@ export const createTest = (data: any, navigate:NavigateFunction, dataUser:any) =
           serviceId,
           templateId,
           {
-            name: dataUser?.username,
-            email: dataUser?.email,
+            name: dataUser?.user?.username,
+            email: dataUser?.user?.email,
             message: `Tôi muốn tạo cuộc thi này để tìm các mẫu thiết kế phù hợp \n Thông tin chi tiết của cuộc thi có thể xem tại đây:`,
             link: `
           <a href="http://localhost:3000/request-detail-job/${response?.data?.data?.id}/tests">xem chi tiết</a>
